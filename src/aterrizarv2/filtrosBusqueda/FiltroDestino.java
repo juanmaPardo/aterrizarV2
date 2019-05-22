@@ -1,5 +1,7 @@
 package aterrizarv2.filtrosBusqueda;
 
+import aterrizarv2.vuelos.AsientoVueloFullData;
+
 
 public class FiltroDestino implements FiltroBusqueda{
     private String destino;
@@ -11,6 +13,10 @@ public class FiltroDestino implements FiltroBusqueda{
     public String getDestino() {
         return destino;
     }
-    
+
+    @Override
+    public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
+        return asiento.getDestino() == destino;
+    }
     
 }

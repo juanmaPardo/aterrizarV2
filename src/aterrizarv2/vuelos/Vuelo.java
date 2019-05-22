@@ -26,7 +26,7 @@ public class Vuelo {
     private Hora horaSalida;
     private Hora horaLlegada;
 
-    public Vuelo(LinkedList<Asiento> asientos, String origen, String destino, FechaFlexible fechaSalida, FechaFlexible fechaLlegada, Hora horaSalida, Hora horaLlegada) {
+    public Vuelo(String origen, String destino, FechaFlexible fechaSalida, FechaFlexible fechaLlegada, Hora horaSalida, Hora horaLlegada) {
         this.asientos = new LinkedList<>();
         this.origen = origen;
         this.destino = destino;
@@ -37,17 +37,14 @@ public class Vuelo {
     }
 
     
-    
-    /*
-    //Sacarla, quizas
-    public LinkedList<Asiento> getDatosAsientoVuelo(){
-        LinkedList<Asiento> datoAsientoVuelo = new LinkedList<>();
+    public LinkedList<AsientoVueloFullData> getDatosAsientoVuelo(){
+        LinkedList<AsientoVueloFullData> datoAsientoVuelo = new LinkedList<>();
         asientos.forEach(asiento ->{
-            datoAsientoVuelo.add(new Asiento(asiento, destino, origen, fechaSalida, horaSalida));
+            datoAsientoVuelo.add(new AsientoVueloFullData(asiento, destino, origen, fechaSalida, horaSalida));
         });
         return datoAsientoVuelo;
-    }*/
-    
+    }
+   
     
     public void cargarAsientos(Aerolinea aerolinea) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
         String[][] asientosVuelo = aerolinea.asientosDisponibles(origen, destino, fechaSalida.representacionEnIso()

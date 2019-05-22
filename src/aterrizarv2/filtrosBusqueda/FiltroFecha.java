@@ -1,6 +1,7 @@
 package aterrizarv2.filtrosBusqueda;
 
 import aterrizarv2.fecha.FechaFlexible;
+import aterrizarv2.vuelos.AsientoVueloFullData;
 
 public class FiltroFecha implements FiltroBusqueda{
     private FechaFlexible fechaSalida;
@@ -11,5 +12,10 @@ public class FiltroFecha implements FiltroBusqueda{
     
     public String fechaIso(){
         return fechaSalida.representacionEnIso();
+    }
+
+    @Override
+    public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
+        return asiento.getFechaSalida().representacionEnIso() == fechaSalida.representacionEnIso();
     }
 }

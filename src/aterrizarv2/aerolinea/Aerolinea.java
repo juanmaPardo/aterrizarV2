@@ -31,6 +31,11 @@ public class Aerolinea implements AerolineaLanchitaI{
         }
     }
 
+    public LinkedList<Vuelo> getVuelos() {
+        return vuelos;
+    }
+    
+    
     @Override
     public String[][] asientosDisponibles(String origen, String destino, String fechaSalida, String fechaLLegada, String horaSalida, String horaLlegada) {
         //Implementado por el sistema, no nosotros

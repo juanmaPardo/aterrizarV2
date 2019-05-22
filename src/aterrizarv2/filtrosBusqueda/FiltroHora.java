@@ -1,6 +1,7 @@
 package aterrizarv2.filtrosBusqueda;
 
 import aterrizarv2.hora.Hora;
+import aterrizarv2.vuelos.AsientoVueloFullData;
 
 
 public class FiltroHora implements FiltroBusqueda {
@@ -12,5 +13,10 @@ public class FiltroHora implements FiltroBusqueda {
     
     public String horaDeLLegada(){
         return horaSalida.getHoraFormatoString();
+    }
+
+    @Override
+    public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
+        return asiento.getHoraSalida().getHoraFormatoString() == horaSalida.getHoraFormatoString();
     }
 }
