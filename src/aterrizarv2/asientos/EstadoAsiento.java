@@ -2,12 +2,25 @@ package aterrizarv2.asientos;
 
 import aterrizarv2.asientos.excepcionesAsiento.AsientoNoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoVendidoException;
+import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 
 public class EstadoAsiento {
     private EnumEstadoAsiento estadoAsiento;
 
     public EstadoAsiento() {
         this.estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
+    }
+    
+    public EstadoAsiento(String estado) throws EstadoAsientoInvalidaException{
+        if(estado == "D"){
+            estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
+        }
+        else if(estado == "R"){
+            estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
+        }
+        else{
+            throw new EstadoAsientoInvalidaException("El acronimo especificado no hace referencia a ninguna ubicacion de asiento valida");
+        }
     }
     
     public void sobrereservarAsiento(){
