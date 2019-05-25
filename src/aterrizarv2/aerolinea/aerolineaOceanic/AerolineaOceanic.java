@@ -6,6 +6,21 @@ import java.util.LinkedList;
 
 public class AerolineaOceanic implements AerolineaOceanicI{
 
+    public AerolineaOceanic() {
+    }
+
+    
+    String convertirFormatoCiudad(String ciudad){
+        String codigoCiudadOceanic = ciudad;
+        if (ciudad.length() == 2){
+            codigoCiudadOceanic = ciudad + '_';
+            if (ciudad == "LA"){
+                codigoCiudadOceanic = "SLA";
+            }
+        }
+        return codigoCiudadOceanic;
+    }
+
     @Override
     public LinkedList<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
