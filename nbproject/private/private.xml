@@ -26,10 +26,8 @@
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
         </group>
         <group>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/vuelos/VueloTest.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/Aerolinea.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicTest.java</file>
         </group>
     </open-files>
 </project-private>
