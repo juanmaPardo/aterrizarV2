@@ -45,6 +45,14 @@ public class VueloTest {
     Vuelo vueloBsAsMadrid;
     Asiento asiento2;
     Asiento asiento1;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
     
     @Before
     public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, EstadoAsientoInvalidaException {
@@ -71,6 +79,10 @@ public class VueloTest {
         asiento2 = new Asiento(new ClaseAsiento(claseEjecutivo), codigoAsiento2,estadoReservado,precio2000Pesos,new UbicacionAsiento(ubicacionVentana));
         vueloBsAsMadrid = new Vuelo(origenBuenosAires,destinoMadrid,fechaSalida1Junio2018,fechaLlegada2Junio2018,horaSalida23hs,horaLlegada11hs);
         vueloRioLima = new Vuelo(origenRioJaneiro,destinoLima,fechaSalida13Noviembre2018,fechaLlegada13Noviembre2018,horaSalida12hs,horaLlegada21hs);
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
     
     
@@ -105,6 +117,93 @@ public class VueloTest {
         String fechaSalidaObtenida = vueloBsAsMadrid.getFechaSalida();
         String fechaSalidaEsperada = "01/06/2018";
         Assert.assertEquals(fechaSalidaEsperada,fechaSalidaObtenida);
+    }
+
+    /**
+     * Test of cargarAsientos method, of class Vuelo.
+     */
+    @Test
+    public void testCargarAsientos() throws Exception {
+        System.out.println("cargarAsientos");
+        Aerolinea aerolinea = null;
+        Vuelo instance = null;
+        instance.cargarAsientos(aerolinea);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of agregarAsiento method, of class Vuelo.
+     */
+    @Test
+    public void testAgregarAsiento() {
+        System.out.println("agregarAsiento");
+        Asiento asientoVuelo = null;
+        Vuelo instance = null;
+        instance.agregarAsiento(asientoVuelo);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getAsientosVuelo method, of class Vuelo.
+     */
+    @Test
+    public void testGetAsientosVuelo() {
+        System.out.println("getAsientosVuelo");
+        Vuelo instance = null;
+        LinkedList<Asiento> expResult = null;
+        LinkedList<Asiento> result = instance.getAsientosVuelo();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getFechaSalida method, of class Vuelo.
+     */
+    @Test
+    public void testGetFechaSalida() {
+        System.out.println("getFechaSalida");
+        Vuelo instance = null;
+        String expResult = "";
+        String result = instance.getFechaSalida();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getFechaLlegada method, of class Vuelo.
+     */
+    @Test
+    public void testGetFechaLlegada() {
+        System.out.println("getFechaLlegada");
+        Vuelo instance = null;
+        String expResult = "";
+        String result = instance.getFechaLlegada();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getHoraLLegada method, of class Vuelo.
+     */
+    @Test
+    public void testGetHoraLLegada() {
+        System.out.println("getHoraLLegada");
+        Vuelo instance = null;
+        String expResult = "";
+        String result = instance.getHoraLLegada();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void jasjajs(){
+        
     }
      
 }
