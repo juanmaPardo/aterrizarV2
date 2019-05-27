@@ -16,7 +16,7 @@ public class EstadoAsiento {
             estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
         }
         else if(estado == "R"){
-            estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
+            estadoAsiento = EnumEstadoAsiento.RESERVADO;
         }
         else{
             throw new EstadoAsientoInvalidaException("El acronimo especificado no hace referencia a ninguna ubicacion de asiento valida");
