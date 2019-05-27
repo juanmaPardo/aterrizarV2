@@ -3,26 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Trabajo Practico">
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/UbicacionAsientoInvalidaException.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/ClaseAsientoInvalidaException.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroPrecioMin.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/PrecioAsiento.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/EstadoAsiento.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/EstadoAsientoInvalidaException.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/aerolinea/exceptionesAerolinea/DatosVueloIncorrectoException.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaI.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/CodigoAsiento.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroCodigoAsiento.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroDestino.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/UbicacionAsiento.java</file>
-            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/busquedas/exceptionesBusqueda/ParametrosInsuficienteException.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroOrigen.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroPrecioMax.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/Asiento.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/asientos/ClaseAsiento.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroHora.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroClaseAsiento.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchita.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroBusqueda.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/aerolinea/Aerolinea.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroPrecio.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroUbicacionAsiento.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroFecha.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/AterrizarV2.java</file>
+            <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
         </group>
     </open-files>
