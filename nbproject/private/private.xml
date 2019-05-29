@@ -32,5 +32,12 @@
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
         </group>
+<<<<<<< HEAD
+        <group>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicTest.java</file>
+        </group>
+=======
+>>>>>>> e8ee2051087ebfb2dd923620b2da2c817de14415
     </open-files>
 </project-private>
