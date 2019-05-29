@@ -1,4 +1,3 @@
-
 package aterrizarv2.vuelos;
 
 import aterrizarv2.aerolinea.Aerolinea;
@@ -104,7 +103,6 @@ public class VueloTest {
         UbicacionAsiento pasillo = new UbicacionAsiento("P");
         UbicacionAsiento ventana = new UbicacionAsiento("E");
 
-<<<<<<< HEAD
         
         Assert.assertEquals(asientosVuelo.get(0).getCodigo().getCodigo(),"EC0344-42");
         Assert.assertEquals(asientosVuelo.get(1).getCodigo().getCodigo(),"EC0344-66");
@@ -121,21 +119,8 @@ public class VueloTest {
         Assert.assertEquals(asientosVuelo.get(0).getEstado().getEstadoAsiento(),EnumEstadoAsiento.DISPONIBLE);
         Assert.assertEquals(asientosVuelo.get(1).getEstado().getEstadoAsiento(),EnumEstadoAsiento.DISPONIBLE);
         
-=======
-    /**
-     * Test of getHoraLLegada method, of class Vuelo.
-     */
-    @Test
-    public void testGetHoraLLegada() {
-        System.out.println("getHoraLLegada");
-        Vuelo instance = null;
-        String expResult = "";
-        String result = instance.getHoraLLegada();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
->>>>>>> 9cfff7b407c14f8b4c7bda25f6470e1c43484373
     }
     
      
 }
+
