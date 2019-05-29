@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 public class AerolineaLanchita extends Aerolinea{
     
     public AerolineaLanchita(){
-        super();
+        //0,15 es el recargo de lanchita
+        super(0.15);
     }
     
 }

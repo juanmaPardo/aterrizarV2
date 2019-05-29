@@ -16,7 +16,7 @@ public class UbicacionAsiento {
         else if(ubic == "C"){
             ubicacionAsiento = EnumUbicacionAsiento.CENTRO;
         }
-        else if(ubic == "V"){
+        else if(ubic == "E"){
             ubicacionAsiento = EnumUbicacionAsiento.VENTANA;
         }
         else{

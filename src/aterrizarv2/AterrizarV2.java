@@ -32,7 +32,14 @@ public class AterrizarV2 {
     public List<AsientoVueloFullData> asientosCumplenParametro(Usuario usuario, Busqueda busqueda){
         List<Vuelo> vuelosDisponibles = obtenerVuelosDisponibles();
         List<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelos(vuelosDisponibles);
-        return  busqueda.asientosCumplenRequisitoBusqueda(asientosVuelos);
+        List<AsientoVueloFullData> asientosCumplenRequisitos = busqueda.asientosCumplenRequisitoBusqueda(asientosVuelos);
+        List<AsientoVueloFullData> noSuperOferta = asientosNoSuperOferta(asientosCumplenRequisitos,usuario);
+        return (usuario.esVip()) ? asientosCumplenRequisitos : noSuperOferta;
+    }
+    
+    public List<AsientoVueloFullData> asientosNoSuperOferta(List<AsientoVueloFullData> asientosCumplenRequisitos,Usuario user){
+        return asientosCumplenRequisitos.stream().
+                filter(asiento -> !Aerolinea.esSuperOferta(asiento.getAsiento(), user)).collect(Collectors.toList());
     }
     
     protected LinkedList<AsientoVueloFullData> obtenerAsientosVuelos(List<Vuelo> vuelosDisponibles){

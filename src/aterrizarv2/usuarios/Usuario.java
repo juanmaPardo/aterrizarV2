@@ -54,6 +54,7 @@ public class Usuario {
         perfil.incrementarDineroGastado(costoCompra);
     }
     
+    
     public boolean esVip(){return false;}
     /*
     public void reservarAsiento(String codigoAsiento, AerolineaGeneral aerolinea) throws AsientoReservadoException, CodigoAsientoException, UsuarioNoEncontradoException{
