@@ -3,12 +3,14 @@ package aterrizarv2;
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.busquedas.Busqueda;
+import aterrizarv2.busquedas.ordenamientoBusqueda.OrdenamientoAsientos;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 
@@ -29,12 +31,20 @@ public class AterrizarV2 {
         usuarios.add(usuario);
     }
     
-    public List<AsientoVueloFullData> asientosCumplenParametro(Usuario usuario, Busqueda busqueda){
+    public List<AsientoVueloFullData> asientosCumplenParametro(Usuario usuario, Busqueda busqueda, OrdenamientoAsientos orden){
+        usuario.getPerfil().agregarBusqueda(busqueda);//Agregamos la busqueda por temas estadisticos
         List<Vuelo> vuelosDisponibles = obtenerVuelosDisponibles();
         List<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelos(vuelosDisponibles);
         List<AsientoVueloFullData> asientosCumplenRequisitos = busqueda.asientosCumplenRequisitoBusqueda(asientosVuelos);
         List<AsientoVueloFullData> noSuperOferta = asientosNoSuperOferta(asientosCumplenRequisitos,usuario);
-        return (usuario.esVip()) ? asientosCumplenRequisitos : noSuperOferta;
+        if(usuario.esVip()){
+            if(orden != null) orden.ordenar(asientosCumplenRequisitos,this.asientosVendidosTodasAerolineas());
+            return asientosCumplenRequisitos;
+        }
+        else{
+            if(orden != null) orden.ordenar(noSuperOferta,this.asientosVendidosTodasAerolineas());
+            return noSuperOferta;
+        }
     }
     
     public List<AsientoVueloFullData> asientosNoSuperOferta(List<AsientoVueloFullData> asientosCumplenRequisitos,Usuario user){
@@ -42,7 +52,7 @@ public class AterrizarV2 {
                 filter(asiento -> !Aerolinea.esSuperOferta(asiento.getAsiento(), user)).collect(Collectors.toList());
     }
     
-    protected LinkedList<AsientoVueloFullData> obtenerAsientosVuelos(List<Vuelo> vuelosDisponibles){
+    public static LinkedList<AsientoVueloFullData> obtenerAsientosVuelos(List<Vuelo> vuelosDisponibles){
         LinkedList<AsientoVueloFullData> asientosVuelos = new LinkedList<>();
         vuelosDisponibles.forEach(vuelo ->{
             asientosVuelos.addAll(vuelo.getDatosAsientoVuelo());
@@ -56,6 +66,12 @@ public class AterrizarV2 {
         List<LinkedList<Vuelo>> vuelosAerolineas=aerolineas.stream().map(aerolinea -> aerolinea.getVuelos()).collect(Collectors.toList());
         vuelosAerolineas.forEach(listaVuelos -> vuelos.addAll(listaVuelos));
         return vuelos;
+    }
+    
+    public TreeMap<String,Integer> asientosVendidosTodasAerolineas(){
+        TreeMap<String,Integer> todosAsientosVuelosVendidos = new TreeMap();
+        aerolineas.forEach(aerolinea -> todosAsientosVuelosVendidos.putAll(aerolinea.getAsientosVendidosVuelo()));
+        return todosAsientosVuelosVendidos;
     }
     
 }

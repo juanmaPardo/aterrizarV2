@@ -131,7 +131,7 @@ public class BusquedaTest {
         Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
         
         
-        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userVip, busqueda);
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userVip, busqueda,null);
         
         
         
@@ -150,7 +150,7 @@ public class BusquedaTest {
         Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
         
         
-        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda);
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda,null);
         
         
         

@@ -25,6 +25,10 @@ public class PerfilUsuario {
     public LinkedList<Busqueda> busquedasRealizadas(){
         return busquedas;
     }
+    
+    public void agregarBusqueda(Busqueda busqueda){
+        busquedas.add(busqueda);
+    }
 
     public double getDineroGastado() {
         return dineroGastado;
