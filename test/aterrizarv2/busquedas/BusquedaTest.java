@@ -140,5 +140,22 @@ public class BusquedaTest {
         
     }
     
+    @Test
+    public void noDevuelveAsientosCumpleFiltrosPeroElUserNoEsVip() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroOrigen buenosAires = new FiltroOrigen("BUE");
+        FiltroDestino madrid = new FiltroDestino("MAD");
+        FiltroFecha junio2018 = new FiltroFecha(fechaSalida1Junio2018);
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
+        
+        
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda);
+        
+        
+        
+        Assert.assertEquals(asientosCumplenParametro.size(),0);
+    }
+    
    
 }
