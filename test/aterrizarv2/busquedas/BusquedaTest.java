@@ -95,10 +95,30 @@ public class BusquedaTest {
         Mockito.when(aerolinea.getVuelos()).thenReturn(vuelosRetorno);
         
         userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );
+        userVip.efectuarCompra(200000);
         userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
         aterrizar = new AterrizarV2();
         aterrizar.agregarAerolinea(aerolinea);
+    }
+    
+    
+    @Test
+    public void todosLosFiltrosBusquedaMatchean() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroOrigen buenosAires = new FiltroOrigen("BUE");
+        FiltroDestino madrid = new FiltroDestino("MAD");
+        FiltroFecha junio2018 = new FiltroFecha(fechaSalida1Junio2018);
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
+        
+        AsientoVueloFullData asiento = vueloBsAsMadrid.getDatosAsientoVuelo().get(0);
+       
+        
+       boolean resultado = busqueda.cumpleTodosRequisitos(asiento);
+        
+        Assert.assertEquals(true,resultado);
+        
     }
     
     @Test
@@ -109,6 +129,7 @@ public class BusquedaTest {
         FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
         
         Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
+        
         
         List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userVip, busqueda);
         

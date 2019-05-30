@@ -16,6 +16,8 @@ public class FiltroFecha implements FiltroBusqueda{
 
     @Override
     public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
-        return asiento.getFechaSalida().representacionEnIso() == fechaSalida.representacionEnIso();
+        String fechaSalidaIso = fechaSalida.representacionEnIso();
+        String asientoFechaIso = asiento.getFechaSalida().representacionEnIso();
+        return asientoFechaIso.equals(fechaSalidaIso);
     }
 }

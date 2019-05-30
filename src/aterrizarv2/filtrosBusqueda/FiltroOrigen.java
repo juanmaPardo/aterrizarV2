@@ -16,6 +16,6 @@ public class FiltroOrigen implements FiltroBusqueda {
 
     @Override
     public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
-        return asiento.getOrigen() == origen;
+        return asiento.getOrigen().equals(origen);
     }
 }

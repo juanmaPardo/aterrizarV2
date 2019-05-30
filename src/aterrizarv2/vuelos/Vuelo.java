@@ -40,7 +40,7 @@ public class Vuelo {
     public LinkedList<AsientoVueloFullData> getDatosAsientoVuelo(){
         LinkedList<AsientoVueloFullData> datoAsientoVuelo = new LinkedList<>();
         asientos.forEach(asiento ->{
-            datoAsientoVuelo.add(new AsientoVueloFullData(asiento, destino, origen, fechaSalida, horaSalida));
+            datoAsientoVuelo.add(new AsientoVueloFullData(asiento, origen, destino, fechaSalida, horaSalida));
         });
         return datoAsientoVuelo;
     }

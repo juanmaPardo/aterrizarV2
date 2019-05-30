@@ -2,6 +2,7 @@ package aterrizarv2.busquedas;
 
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
+import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.filtrosBusqueda.FiltroBusqueda;
 import aterrizarv2.busquedas.exceptionesBusqueda.*;
 import aterrizarv2.filtrosBusqueda.FiltroClaseAsiento;
@@ -70,11 +71,11 @@ public class Busqueda {
     }
     
     private boolean claseAsientoAceptable(AsientoVueloFullData asiento){
-        List<ClaseAsiento> clasesAsiento =  filtroClaseAsiento.stream().map(filtro -> filtro.getClase()).collect(Collectors.toList());
-        return clasesAsiento.contains(asiento.getAsiento().getClase());
+        List<EnumClaseAsiento> clasesAsiento =  filtroClaseAsiento.stream().map(filtro -> filtro.getClase().getClaseAsiento()).collect(Collectors.toList());
+        return clasesAsiento.stream().anyMatch(clase -> clase == asiento.getAsiento().getClase().getClaseAsiento());
     }
     
-    private boolean cumpleTodosRequisitos(AsientoVueloFullData asiento){
+    public boolean cumpleTodosRequisitos(AsientoVueloFullData asiento){
         return filtroBusqueda.stream().
                 allMatch(filtroBusq -> filtroBusq.asientoVueloCumpleParametro(asiento));
     }

@@ -17,6 +17,6 @@ public class FiltroHora implements FiltroBusqueda {
 
     @Override
     public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
-        return asiento.getHoraSalida().getHoraFormatoString() == horaSalida.getHoraFormatoString();
+        return asiento.getHoraSalida().getHoraFormatoString().equals(horaSalida.getHoraFormatoString());
     }
 }

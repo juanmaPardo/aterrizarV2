@@ -16,7 +16,7 @@ public class FiltroDestino implements FiltroBusqueda{
 
     @Override
     public boolean asientoVueloCumpleParametro(AsientoVueloFullData asiento) {
-        return asiento.getDestino() == destino;
+        return asiento.getDestino().equals(destino);
     }
     
 }
