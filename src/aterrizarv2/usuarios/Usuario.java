@@ -4,7 +4,7 @@ import aterrizarv2.asientos.Asiento;
 import java.util.LinkedList;
 
 
-public class Usuario {
+public abstract class Usuario {
     protected PerfilUsuario perfil;
     protected LinkedList<Asiento> asientosComprados;
     protected LinkedList<Asiento> asientosReservados;
@@ -55,7 +55,7 @@ public class Usuario {
     }
     
     
-    public boolean esVip(){return false;}
+    public abstract boolean esVip();
     /*
     public void reservarAsiento(String codigoAsiento, AerolineaGeneral aerolinea) throws AsientoReservadoException, CodigoAsientoException, UsuarioNoEncontradoException{
         aerolinea.reservar(codigoAsiento, dni);
