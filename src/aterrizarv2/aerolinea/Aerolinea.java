@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class Aerolinea implements AerolineaLanchitaI{
+public abstract class Aerolinea{
     protected LinkedList<Vuelo> vuelos;
     protected LinkedList<Asiento> asientosComprados;
     protected TreeMap<String,Integer> asientosVendidosVuelo;//Key:Numero vuelo, Value: cantidadVendidos
@@ -35,9 +35,9 @@ public class Aerolinea implements AerolineaLanchitaI{
         this.RECARGO_AEROLINEA = recargo;
     }
     
-    public void agregarVuelo(Vuelo vuelo) throws DatosVueloIncorrectoException{
+    public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException{
         try {
-            vuelo.cargarAsientos(this);
+            vuelo.cargarAsientos(this,tipoCarga);
             vuelos.add(vuelo);
         } catch (CodigoAsientoException | PrecioNegativoException | ClaseAsientoInvalidaException | UbicacionAsientoInvalidaException | EstadoAsientoInvalidaException ex) {
             throw new DatosVueloIncorrectoException("Los datos de los asientos obtenidos con el vuelo no son correctos");
@@ -64,15 +64,6 @@ public class Aerolinea implements AerolineaLanchitaI{
         return (esPrimeraClase && precioAsiento < 8000) || (esClaseEjecutiva && precioAsiento < 4000);
     }
     
-    @Override
-    public String[][] asientosDisponibles(String origen, String destino, String fechaSalida, String fechaLLegada, String horaSalida, String horaLlegada) {
-        //Implementado por el sistema, no nosotros
-    }
-
-    @Override
-    public void comprar(String codigoAsiento) {
-        //Implementado por el sistema, no nosotros
-    }
     
     public AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
         LinkedList<AsientoVueloFullData> asientosVuelos = AterrizarV2.obtenerAsientosVuelos(vuelos);
@@ -93,14 +84,13 @@ public class Aerolinea implements AerolineaLanchitaI{
         }
     }
     
-    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException{
-        AsientoVueloFullData asientoComprado = obtenerAsiento(codigoAsiento);
-        this.comprar(codigoAsiento);
-        usuarioCompra.efectuarCompra(asientoComprado.getAsiento().getPrecio().getPrecioAsiento());
-        usuarioCompra.marcarComoComprado(asientoComprado.getAsiento());
-        this.asientosComprados.add(asientoComprado.getAsiento());
-        this.actualizaAsientosVendidosVuelo(asientoComprado.getAsiento());
-    }
+    
+    public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
+    
+    public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido);
+    
+    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException;
+    
 
     public TreeMap<String, Integer> getAsientosVendidosVuelo() {
         return asientosVendidosVuelo;

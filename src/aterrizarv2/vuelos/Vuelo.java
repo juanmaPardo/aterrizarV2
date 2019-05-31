@@ -46,19 +46,14 @@ public class Vuelo {
     }
    
     
-    public void cargarAsientos(Aerolinea aerolinea) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
-        String[][] asientosVuelo = aerolinea.asientosDisponibles(origen, destino, fechaSalida.representacionEnIso()
-                , fechaLlegada.representacionEnIso(), horaSalida.getHoraFormatoString(), horaLlegada.getHoraFormatoString());
+    public void cargarAsientos(Aerolinea aerolinea,String tipoCarga) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
         
-        for(int i = 0 ; i < asientosVuelo.length ; i++){
-            CodigoAsiento codigo = new CodigoAsiento(asientosVuelo[i][0]);
-            PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[i][1]));
-            ClaseAsiento clase = new ClaseAsiento(asientosVuelo[i][2]);
-            UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[i][3]);
-            EstadoAsiento estado = new EstadoAsiento(asientosVuelo[i][4]);
-            this.agregarAsiento(new Asiento(clase, codigo, estado, precio, ubicacion));
-        }
+        String[][] asientosVuelo = aerolinea.asientosDisponibles(this, tipoCarga);
+        
+        //Cada aerolinea con el resultado dado me tiene que devolver una lista de asientos
+        asientos.addAll(aerolinea.devolverAsiento(asientosVuelo));
     }
+    
     
     public void agregarAsiento(Asiento asientoVuelo){
         asientos.add(asientoVuelo);
@@ -83,7 +78,11 @@ public class Vuelo {
     public String getFechaLlegada() {
         return fechaLlegada.representacionEnIso();
     }
-
+    
+    public String getHoraSalida() {
+        return horaSalida.getHoraFormatoString();
+    }
+    
     public String getHoraLLegada() {
         return horaLlegada.getHoraFormatoString();
     }
