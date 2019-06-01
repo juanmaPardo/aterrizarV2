@@ -1,6 +1,7 @@
 package aterrizarv2.vuelos;
 
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -13,6 +14,8 @@ import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.fecha.FechaFlexible;
+import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
+import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import aterrizarv2.hora.Hora;
 import java.util.LinkedList;
 
@@ -49,7 +52,7 @@ public class Vuelo {
     }
    
     
-    public void cargarAsientos(Aerolinea aerolinea,String tipoCarga) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
+    public void cargarAsientos(Aerolinea aerolinea,String tipoCarga) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
         
         String[][] asientosVuelo = aerolinea.asientosDisponibles(this, tipoCarga);
         
