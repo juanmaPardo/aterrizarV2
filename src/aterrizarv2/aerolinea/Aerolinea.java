@@ -2,6 +2,7 @@ package aterrizarv2.aerolinea;
 
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchitaI;
+import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -87,7 +88,7 @@ public abstract class Aerolinea{
     
     public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
     
-    public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido);
+    public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException;
     
     public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException;
     

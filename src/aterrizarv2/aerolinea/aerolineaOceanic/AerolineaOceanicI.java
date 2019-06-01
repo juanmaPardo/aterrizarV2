@@ -6,9 +6,9 @@ import java.util.LinkedList;
 
 public interface AerolineaOceanicI {
     
-    LinkedList<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic,String fechaSalida);
+    String[][] asientosDisponiblesParaOrigen(String codigoOrigenOceanic,String fechaSalida);
     
-    LinkedList<AsientoDTO> asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic,String fechaSalida,String codigoDestinoOceanic);
+    String[][] asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic,String fechaSalida,String codigoDestinoOceanic);
     
     boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento);
     

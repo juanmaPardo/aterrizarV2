@@ -35,7 +35,10 @@ public class Vuelo {
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
     }
-
+    
+    public String obtenerSalidaLatinoamericano(){
+        return fechaSalida.representacionEnLatinoamericano();
+    }
     
     public LinkedList<AsientoVueloFullData> getDatosAsientoVuelo(){
         LinkedList<AsientoVueloFullData> datoAsientoVuelo = new LinkedList<>();
