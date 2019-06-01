@@ -13,6 +13,8 @@ import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.busquedas.Busqueda;
+import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
+import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.vuelos.AsientoVueloFullData;
@@ -90,7 +92,7 @@ public abstract class Aerolinea{
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException;
     
-    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException;
+    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
 
     public TreeMap<String, Integer> getAsientosVendidosVuelo() {
