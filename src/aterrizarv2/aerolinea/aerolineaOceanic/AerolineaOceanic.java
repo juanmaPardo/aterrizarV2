@@ -53,7 +53,6 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         actualizaAsientosVendidosVuelo(asientoComprado.getAsiento());
     }
     
-   
 
     @Override
     public String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException {
