@@ -1,4 +1,3 @@
-
 package aterrizarv2.aerolinea.aerolineaOceanic;
 
 import aterrizarv2.aerolinea.Aerolinea;
@@ -8,6 +7,7 @@ import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -122,6 +122,9 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
     @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
+        if(!estaDisponibleAsiento(asiento.getAsiento())){
+            throw new AsientoNoDisponibleException("El asiento ya no esta disponible");
+        }
         usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         asiento.getAsiento().getEstado().reservarAsiento();
         String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();

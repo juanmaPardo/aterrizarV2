@@ -96,6 +96,10 @@ public abstract class Aerolinea{
         return asiento.getEstado().estaReservado();
     }
     
+    public boolean estaDisponibleAsiento(Asiento asiento){
+        return asiento.getEstado().estaDisponible();
+    }
+    
     public void expiroReserva(Asiento asiento, Usuario usuario){
         usuario.eliminarAsientoReservado(asiento);
         if(asiento.estaSobrereservado()){

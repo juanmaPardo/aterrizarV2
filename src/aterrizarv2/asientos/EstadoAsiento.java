@@ -42,6 +42,10 @@ public class EstadoAsiento {
         return estadoAsiento == EnumEstadoAsiento.RESERVADO;
     }
     
+    public boolean estaDisponible() {
+        return estadoAsiento == EnumEstadoAsiento.DISPONIBLE;
+    }
+    
     public boolean estaSobrereservado(){
         return estadoAsiento == EnumEstadoAsiento.SOBRERESERVADO;
     }
@@ -71,4 +75,6 @@ public class EstadoAsiento {
         if(estadoPermite == EstadoAsientoVuelo.VENDIDO)return false;//Estos no se muestran en busquedas
         return (estadoPermite == EstadoAsientoVuelo.DISPONIBLE) ? estadoPermite == estadoAsiento : true  ;
     }*/
+
+
 }

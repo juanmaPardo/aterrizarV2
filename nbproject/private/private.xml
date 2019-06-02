@@ -37,7 +37,10 @@
         <group>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchita.java</file>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaI.java</file>
+            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
+            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/asientos/Asiento.java</file>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/asientos/EstadoAsiento.java</file>
+            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/AsientoNoDisponibleException.java</file>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/usuarios/Usuario.java</file>
             <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
