@@ -7,6 +7,7 @@ import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
@@ -30,12 +31,14 @@ public abstract class Aerolinea{
     protected LinkedList<Asiento> asientosComprados;
     protected TreeMap<String,Integer> asientosVendidosVuelo;//Key:Numero vuelo, Value: cantidadVendidos
     protected static double RECARGO_AEROLINEA;
+    protected final int DIAS_EXPIRE_RESERVA;
 
-    public Aerolinea(double recargo) {
+    public Aerolinea(double recargo, int diasReserva) {
         this.vuelos = new LinkedList<>();
         this.asientosComprados = new LinkedList<>();
         this.asientosVendidosVuelo = new TreeMap<>();
         this.RECARGO_AEROLINEA = recargo;
+        this.DIAS_EXPIRE_RESERVA = diasReserva;
     }
     
     public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
@@ -87,8 +90,21 @@ public abstract class Aerolinea{
         }
     }
     
+    public abstract void reservarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
+  
     
-    public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
+    public boolean estaDisponibleAsiento(Asiento asiento){
+        return asiento.getEstado().estaDisponible();
+    }
+    
+    public void expiroReserva(Asiento asiento, Usuario usuario){
+        usuario.eliminarAsientoReservado(asiento);
+        if(asiento.estaSobrereservado()){
+            Usuario usuarioSobrereserva = 
+        }
+    }
+    
+    public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException;
     

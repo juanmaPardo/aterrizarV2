@@ -7,6 +7,8 @@ import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
@@ -24,11 +26,12 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     
     public AerolineaLanchita(){
         //0,15 es el recargo de lanchita
-        super(0.15);
+        super(0.15,10);
     }
     
     @Override
     public String[][] asientosDisponibles(String origen, String destino, String fechaSalida, String fechaLLegada, String horaSalida, String horaLlegada) {
+        return null;
         //Implementado por el sistema, no nosotros
     }
 
@@ -38,8 +41,11 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     }
     
     @Override
-    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException{
+    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoComprado = obtenerAsiento(codigoAsiento);
+        if(estaReservadoAsiento(asientoComprado.getAsiento()) && !usuarioCompra.asientoReservadoPorMi(asientoComprado.getAsiento())){
+            throw new AsientoReservadoException("asiento ya esta reservado");
+        }
         this.comprar(codigoAsiento);
         usuarioCompra.efectuarCompra(asientoComprado.getAsiento().getPrecio().getPrecioAsiento());
         usuarioCompra.marcarComoComprado(asientoComprado.getAsiento());
@@ -71,6 +77,24 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
             disponibles.add(new Asiento(clase, codigo, estado, precio, ubicacion));
         }
         return disponibles;
+    }
+
+    @Override
+    public void reservar(String codigo, String dni) {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
+        AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
+        if(!estaDisponibleAsiento(asiento.getAsiento())){
+            throw new AsientoNoDisponibleException("El asiento ya no esta disponible");
+        }
+        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
+        asiento.getAsiento().getEstado().reservarAsiento();
+        String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();
+        String dni = Integer.toString(usuarioReserva.getDni());
+        this.reservar(codigoVuelo, dni);
     }
 
     

@@ -54,6 +54,9 @@ public abstract class Usuario {
         perfil.incrementarDineroGastado(costoCompra);
     }
     
+    public boolean asientoReservadoPorMi(Asiento asiento){
+        return asientosReservados.stream().anyMatch(as -> as.getCodigo().getCodigo().equals(asiento.getCodigo().getCodigo()));
+    }
     
     public abstract boolean esVip();
     /*
@@ -77,4 +80,8 @@ public abstract class Usuario {
     public void quitarASientoReservado(AsientoGeneralVuelo asiento) {
         asientosReservados.remove(asiento);
     }*/
+
+    public void eliminarAsientoReservado(Asiento asiento) {
+        asientosReservados.remove(asiento);
+    }
 }
