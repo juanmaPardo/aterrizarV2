@@ -58,8 +58,8 @@ public class AerolineaOceanicTest {
         String origenRioJaneiro = "RIO";
         String destinoLima = "LIM";
         String destinoLosAngeles = "LA";
-        String fechaSalida1Junio2018 = (new FechaFlexible("01/06/2018")).representacionEnLatinoamericano();
-        String fechaLlegada2Junio2018 = (new FechaFlexible("02/06/2018")).representacionEnLatinoamericano();
+        String fechaSalida22Diciembre2018 = (new FechaFlexible("22/12/2018")).representacionEnLatinoamericano();
+        String fechaLlegada23Diciembre2018 = (new FechaFlexible("23/12/2018")).representacionEnLatinoamericano();
         String fechaSalida13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
         String fechaLlegada13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
         String horaSalida23hs = (new Hora("23:05")).getHoraFormatoString();
@@ -71,12 +71,13 @@ public class AerolineaOceanicTest {
         aerolineaOc = Mockito.mock(AerolineaOceanic.class);
         
         
+        
         vueloBsAsLima = new Vuelo(origenBuenosAires, destinoLima, new FechaFlexible(fechaSalida13Noviembre2018), new FechaFlexible(fechaLlegada13Noviembre2018), new Hora(horaSalida12hs), new Hora(horaLlegada21hs));
         
-        //vueloRioLosAngeles = new Vuelo(origenRioJaneiro,destinoLosAngeles,new FechaFlexible(fechaSalida1Junio2018), new FechaFlexible(fechaLlegada2Junio2018), new Hora(horaSalida23hs), new Hora(horaLlegada11hs));
+        vueloRioLosAngeles = new Vuelo(origenRioJaneiro,destinoLosAngeles,new FechaFlexible(fechaSalida22Diciembre2018), new FechaFlexible(fechaLlegada23Diciembre2018), new Hora(horaSalida23hs), new Hora(horaLlegada11hs));
         
         String[][] asientosDisponiblesBueLim = {{"EC0344","13",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","P","P"},{"EC0324","23",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","T","C"}};
-        //String[][] asientosDisponiblesRioLA = {{"MLR123","67", fechaSalida1Junio2018, horaSalida23hs, "872.50", "P", "P"},{"NDL113", "122", fechaSalida1Junio2018, horaSalida23hs, "921.76", "T","C"}};
+        String[][] asientosDisponiblesRioLA = {{"MLR123","67", fechaSalida22Diciembre2018, horaSalida23hs, "872.50", "P", "P"},{"NDL113", "122", fechaSalida22Diciembre2018, horaSalida23hs, "921.76", "T","C"}};
         
         LinkedList<Asiento> asientosBueLim = new LinkedList<>();
         
@@ -103,9 +104,38 @@ public class AerolineaOceanicTest {
         asientosBueLim.add(asientoUno);
         asientosBueLim.add(asientoDos);
         
+        LinkedList<Asiento> asientosRioLa = new LinkedList<>();
+        
+        String codigoUnoBis = asientosDisponiblesRioLA[0][0];
+        String numeroAsientoUnoBis= asientosDisponiblesRioLA[0][1];
+        String fechaSalidaUnoBis = asientosDisponiblesRioLA[0][2];
+        String horaSalidaUnoBis = asientosDisponiblesRioLA[0][3];
+        PrecioAsiento precioUnoBis = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLA[0][4]));
+        ClaseAsiento claseUnoBis = new ClaseAsiento(asientosDisponiblesRioLA[0][5]);
+        UbicacionAsiento ubicacionUnoBis = new UbicacionAsiento(asientosDisponiblesRioLA[0][6]);
+        CodigoAsiento codigoVueloUnoBis = new CodigoAsiento(codigoUnoBis,numeroAsientoUnoBis);
+        AsientoDTO asientoUnoBis = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaUnoBis),new Hora(horaSalidaUnoBis),claseUnoBis,codigoVueloUnoBis,null,precioUnoBis,ubicacionUnoBis);
+        
+        String codigoDosBis = asientosDisponiblesRioLA[1][0];
+        String numeroAsientoDosBis  = asientosDisponiblesRioLA[1][1];
+        String fechaSalidaDosBis  = asientosDisponiblesRioLA[1][2];
+        String horaSalidaDosBis  = asientosDisponiblesRioLA[1][3];
+        PrecioAsiento precioDosBis  = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLA[1][4]));
+        ClaseAsiento claseDosBis  = new ClaseAsiento(asientosDisponiblesRioLA[1][5]);
+        UbicacionAsiento ubicacionDosBis  = new UbicacionAsiento(asientosDisponiblesRioLA[1][6]);
+        CodigoAsiento codigoVueloDosBis  = new CodigoAsiento(codigoDosBis ,numeroAsientoDosBis);
+        AsientoDTO asientoDosBis  = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaDosBis ),new Hora(horaSalidaDosBis ),claseDosBis ,codigoVueloDosBis ,null,precioDosBis ,ubicacionDosBis);
+        
+        asientosRioLa.add(asientoUnoBis);
+        asientosRioLa.add(asientoDosBis);
+        
         Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesBueLim)).thenReturn(asientosBueLim);
         
-        Mockito.when(aerolineaOc.asientosDisponibles(vueloBsAsLima,"Origen")).thenReturn(asientosDisponiblesBueLim);      
+        Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesRioLA)).thenReturn(asientosRioLa);
+        
+        Mockito.when(aerolineaOc.asientosDisponibles(vueloBsAsLima,"Origen")).thenReturn(asientosDisponiblesBueLim);  
+        
+        Mockito.when(aerolineaOc.asientosDisponibles(vueloRioLosAngeles,"OrigenYDestino")).thenReturn(asientosDisponiblesRioLA);
     }
 
 
@@ -157,10 +187,37 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );
         
         Assert.assertEquals(asientosDTO.get(0).getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
-        Assert.assertEquals(asientosDTO.get(1).getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento());
-        
+        Assert.assertEquals(asientosDTO.get(1).getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
     
-    
-    
+        @Test
+        public void asientosDisponiblesParaOrigenYDestinoDevuelveAsientoDTOCorrectamente() throws TipoPedidoInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException{
+        String[][] asientosDisponibles = aerolineaOc.asientosDisponibles(vueloRioLosAngeles,"OrigenYDestino");
+        LinkedList<Asiento> asientosDTO = aerolineaOc.devolverAsiento(asientosDisponibles);
+        
+        ClaseAsiento primeraClase = new ClaseAsiento("P");
+        ClaseAsiento turista = new ClaseAsiento("T");
+
+        UbicacionAsiento pasillo = new UbicacionAsiento("P");
+        UbicacionAsiento centro = new UbicacionAsiento("C");
+        
+        //{"MLR123","67", fechaSalida1Junio2018, horaSalida23hs, "872.50", "P", "P"}
+        //{"NDL113", "122", fechaSalida1Junio2018, horaSalida23hs, "921.76", "T","C"}
+        
+        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroVuelo(),"MLR123");
+        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroVuelo(), "NDL113");
+        
+        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroAsiento(),"67");
+        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroAsiento(),"122");
+                
+        Assert.assertEquals(asientosDTO.get(0).getPrecio().getPrecioAsiento(), 872.50);
+        Assert.assertEquals(asientosDTO.get(1).getPrecio().getPrecioAsiento(), 921.76);
+        
+        Assert.assertEquals(asientosDTO.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
+        Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );
+        
+        Assert.assertEquals(asientosDTO.get(0).getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
+        Assert.assertEquals(asientosDTO.get(1).getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
+    }
+ 
 }
