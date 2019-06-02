@@ -41,16 +41,19 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     }
     
     @Override
-    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException{
-        AsientoVueloFullData asientoComprado = obtenerAsiento(codigoAsiento);
-        if(estaReservadoAsiento(asientoComprado.getAsiento()) && !usuarioCompra.asientoReservadoPorMi(asientoComprado.getAsiento())){
+    public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
+        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
+        if(estaReservadoAsiento(asientoAComprar.getAsiento()) && !usuarioAComprar.asientoReservadoPorMi(asientoAComprar.getAsiento())){
             throw new AsientoReservadoException("asiento ya esta reservado");
         }
+        else if(asientoAComprar.getAsiento().getEstado().asientoVendido()){
+            throw new AsientoNoDisponibleException("asiento ya vendido");
+        }
         this.comprar(codigoAsiento);
-        usuarioCompra.efectuarCompra(asientoComprado.getAsiento().getPrecio().getPrecioAsiento());
-        usuarioCompra.marcarComoComprado(asientoComprado.getAsiento());
-        asientosComprados.add(asientoComprado.getAsiento());
-        actualizaAsientosVendidosVuelo(asientoComprado.getAsiento());
+        usuarioAComprar.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
+        usuarioAComprar.marcarComoComprado(asientoAComprar.getAsiento());
+        asientosComprados.add(asientoAComprar.getAsiento());
+        actualizaAsientosVendidosVuelo(asientoAComprar.getAsiento());
     }
    
 
@@ -87,8 +90,8 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
-        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         asiento.getAsiento().getEstado().reservarAsiento();
+        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();
         String dni = Integer.toString(usuarioReserva.getDni());
         this.reservar(codigoVuelo, dni);

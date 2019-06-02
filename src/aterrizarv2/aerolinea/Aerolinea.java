@@ -104,7 +104,9 @@ public abstract class Aerolinea{
             Usuario usuarioSobrereserva = AterrizarV2.usuarioSobrereserva(codigoAsiento);
             reservarAsiento(codigoAsiento, usuarioSobrereserva);
         }
-        asiento.getEstado().asientoDisponible();
+        else{
+            asiento.getEstado().asientoDisponible();
+        }
     }
     
     public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
