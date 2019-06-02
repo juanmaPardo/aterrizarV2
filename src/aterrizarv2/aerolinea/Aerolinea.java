@@ -38,7 +38,7 @@ public abstract class Aerolinea{
         this.RECARGO_AEROLINEA = recargo;
     }
     
-    public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException{
+    public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
         try {
             vuelo.cargarAsientos(this,tipoCarga);
             vuelos.add(vuelo);
