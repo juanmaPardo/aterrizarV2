@@ -3,6 +3,7 @@ package aterrizarv2.busquedas;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
+import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -57,7 +58,7 @@ public class BusquedaTest {
                     
     
     @Before
-    public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, DniInvalidoException {
+    public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, DniInvalidoException, TipoPedidoInvalidaException {
         String origenBuenosAires = "BUE";
         String destinoMadrid = "MAD";
         String origenRioJaneiro = "RIO";

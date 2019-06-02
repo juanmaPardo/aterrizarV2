@@ -2,6 +2,7 @@ package aterrizarv2.vuelos;
 
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
+import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
@@ -113,7 +114,7 @@ public class VueloTest {
     }
     
     @Test
-    public void agregamosVueloAerolinea() throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
+    public void agregamosVueloAerolinea() throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
         vueloBsAsMadrid.cargarAsientos(aerolinea,"");
         LinkedList<Asiento> asientosVuelo = vueloBsAsMadrid.getAsientosVuelo();
 
