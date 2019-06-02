@@ -47,7 +47,7 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         if(estaReservadoAsiento(asientoComprado.getAsiento()) && !usuarioCompra.asientoReservadoPorMi(asientoComprado.getAsiento())){
             throw new AsientoReservadoException("asiento ya esta reservado");
         }
-        String codigoVuelo = asientoComprado.getAsiento().getCodigo().getCodigo();
+        String codigoVuelo = asientoComprado.getAsiento().getCodigo().getNumeroVuelo();
         Integer numeroAsiento = Integer.parseInt(asientoComprado.getAsiento().getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuarioCompra.getDni());
         this.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
