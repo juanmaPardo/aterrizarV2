@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public abstract class Aerolinea{
-    protected LinkedList<Vuelo> vuelos;
+    protected static LinkedList<Vuelo> vuelos;
     protected LinkedList<Asiento> asientosComprados;
     protected TreeMap<String,Integer> asientosVendidosVuelo;//Key:Numero vuelo, Value: cantidadVendidos
     protected static double RECARGO_AEROLINEA;
@@ -71,7 +71,7 @@ public abstract class Aerolinea{
     }
     
     
-    public AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
+    public static AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
         LinkedList<AsientoVueloFullData> asientosVuelos = AterrizarV2.obtenerAsientosVuelos(vuelos);
         return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
                 .collect(Collectors.toList()).get(0);
@@ -92,16 +92,19 @@ public abstract class Aerolinea{
     
     public abstract void reservarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
   
-    
-    public boolean estaDisponibleAsiento(Asiento asiento){
-        return asiento.getEstado().estaDisponible();
+    public boolean estaReservadoAsiento(Asiento asiento){
+        return asiento.getEstado().estaReservado();
     }
     
-    public void expiroReserva(Asiento asiento, Usuario usuario){
+    
+    public void expiroReserva(Asiento asiento, Usuario usuario) throws CodigoAsientoException{
         usuario.eliminarAsientoReservado(asiento);
-        if(asiento.estaSobrereservado()){
-            Usuario usuarioSobrereserva = 
+        if(asiento.getEstado().estaSobrereservado()){
+            String codigoAsiento = asiento.getCodigo().getCodigo();
+            Usuario usuarioSobrereserva = AterrizarV2.usuarioSobrereserva(codigoAsiento);
+            reservarAsiento(codigoAsiento, usuarioSobrereserva);
         }
+        asiento.getEstado().asientoDisponible();
     }
     
     public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
