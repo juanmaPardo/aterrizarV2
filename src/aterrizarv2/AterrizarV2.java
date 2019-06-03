@@ -1,6 +1,7 @@
 package aterrizarv2;
 
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.busquedas.Busqueda;
@@ -77,11 +78,11 @@ public class AterrizarV2 {
     }
     
     public void sobrereservarAsiento(String codigoAsiento, Usuario usuario) throws AsientoReservadoException, CodigoAsientoException{
-        AsientoVueloFullData asiento = obtenerAsientoAerolinea(codigoAsiento);
+        Asiento asiento = obtenerAsientoAerolinea(codigoAsiento);
         if (asientosSobrerreservados.containsKey(codigoAsiento)){
             throw new AsientoReservadoException ("El asiento ya esta sobrereservado");
         }
-        asiento.getAsiento().getEstado().sobrereservarAsiento();
+        asiento.getEstado().sobrereservarAsiento();
         asientosSobrerreservados.put(codigoAsiento, usuario);
     }
     
@@ -89,9 +90,17 @@ public class AterrizarV2 {
         Usuario usuario = asientosSobrerreservados.get(codigoAsiento);
         return usuario;
     }
-
-    private AsientoVueloFullData obtenerAsientoAerolinea(String codigoAsiento) throws CodigoAsientoException {
-        return Aerolinea.obtenerAsiento(codigoAsiento);
+    
+    
+    private Aerolinea obtenerAerolineaTieneAsiento(String codigoAsiento){
+        return aerolineas.stream().filter(aerolinea -> aerolinea.aerolineaTieneAsiento(codigoAsiento))
+                .collect(Collectors.toList()).get(0);
+        
+    }
+    
+    private Asiento obtenerAsientoAerolinea(String codigoAsiento) throws CodigoAsientoException {
+        Aerolinea aerolinea = obtenerAerolineaTieneAsiento(codigoAsiento);
+        return aerolinea.obtenerAsiento(codigoAsiento).getAsiento();
     }
  
 }
