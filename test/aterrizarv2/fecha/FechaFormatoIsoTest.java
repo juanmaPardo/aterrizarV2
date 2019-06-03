@@ -3,9 +3,7 @@ package aterrizarv2.fecha;
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import junit.framework.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class FechaFormatoIsoTest {
     

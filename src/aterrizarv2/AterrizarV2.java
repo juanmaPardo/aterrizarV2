@@ -62,8 +62,7 @@ public class AterrizarV2 {
         });
         return asientosVuelos;
     }
-    
-    
+        
     private List<Vuelo> obtenerVuelosDisponibles(){
         ArrayList<Vuelo> vuelos = new ArrayList<>();
         List<LinkedList<Vuelo>> vuelosAerolineas=aerolineas.stream().map(aerolinea -> aerolinea.getVuelos()).collect(Collectors.toList());

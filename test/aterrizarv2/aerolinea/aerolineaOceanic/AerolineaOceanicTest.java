@@ -1,13 +1,11 @@
 
 package aterrizarv2.aerolinea.aerolineaOceanic;
 
-import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.asientos.EnumUbicacionAsiento;
-import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
@@ -26,10 +24,7 @@ import aterrizarv2.vuelos.AsientoDTO;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
@@ -174,14 +169,14 @@ public class AerolineaOceanicTest {
         //{"EC0344","13",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","P","P"}
         //{"EC0324","23",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","T","C"}
         
-        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroVuelo(),"EC0344");
-        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroVuelo(), "EC0324");
+        Assert.assertEquals("EC0344", asientosDTO.get(0).getCodigo().getNumeroVuelo());
+        Assert.assertEquals("EC0324", asientosDTO.get(1).getCodigo().getNumeroVuelo());
         
-        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroAsiento(),"13");
-        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroAsiento(),"23");
+        Assert.assertEquals("13", asientosDTO.get(0).getCodigo().getNumeroAsiento());
+        Assert.assertEquals("23", asientosDTO.get(1).getCodigo().getNumeroAsiento());
                 
-        Assert.assertEquals(asientosDTO.get(0).getPrecio().getPrecioAsiento(), 565.60);
-        Assert.assertEquals(asientosDTO.get(1).getPrecio().getPrecioAsiento(), 565.60);
+        Assert.assertEquals(565.60, asientosDTO.get(0).getPrecio().getPrecioAsiento());
+        Assert.assertEquals(565.60, asientosDTO.get(1).getPrecio().getPrecioAsiento());
         
         Assert.assertEquals(asientosDTO.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
         Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );
@@ -204,14 +199,14 @@ public class AerolineaOceanicTest {
         //{"MLR123","67", fechaSalida1Junio2018, horaSalida23hs, "872.50", "P", "P"}
         //{"NDL113", "122", fechaSalida1Junio2018, horaSalida23hs, "921.76", "T","C"}
         
-        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroVuelo(),"MLR123");
-        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroVuelo(), "NDL113");
+        Assert.assertEquals("MLR123", asientosDTO.get(0).getCodigo().getNumeroVuelo());
+        Assert.assertEquals("NDL113", asientosDTO.get(1).getCodigo().getNumeroVuelo());
         
-        Assert.assertEquals(asientosDTO.get(0).getCodigo().getNumeroAsiento(),"67");
-        Assert.assertEquals(asientosDTO.get(1).getCodigo().getNumeroAsiento(),"122");
+        Assert.assertEquals("67", asientosDTO.get(0).getCodigo().getNumeroAsiento());
+        Assert.assertEquals("122", asientosDTO.get(1).getCodigo().getNumeroAsiento());
                 
-        Assert.assertEquals(asientosDTO.get(0).getPrecio().getPrecioAsiento(), 872.50);
-        Assert.assertEquals(asientosDTO.get(1).getPrecio().getPrecioAsiento(), 921.76);
+        Assert.assertEquals(872.50, asientosDTO.get(0).getPrecio().getPrecioAsiento());
+        Assert.assertEquals(921.76, asientosDTO.get(1).getPrecio().getPrecioAsiento());
         
         Assert.assertEquals(asientosDTO.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
         Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );

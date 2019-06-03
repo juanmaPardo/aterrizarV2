@@ -1,7 +1,6 @@
 package aterrizarv2.busquedas;
 
 import aterrizarv2.AterrizarV2;
-import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.asientos.Asiento;
@@ -33,13 +32,9 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
 

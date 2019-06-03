@@ -1,9 +1,7 @@
 package aterrizarv2.vuelos;
 
-import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
-import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -25,17 +23,11 @@ import aterrizarv2.hora.Hora;
 import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
 import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import junit.framework.Assert;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInOrder;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
 
@@ -125,14 +117,14 @@ public class VueloTest {
         UbicacionAsiento ventana = new UbicacionAsiento("E");
 
         
-        Assert.assertEquals(asientosVuelo.get(0).getCodigo().getCodigo(),"EC0344-42");
-        Assert.assertEquals(asientosVuelo.get(1).getCodigo().getCodigo(),"EC0344-66");
+        Assert.assertEquals("EC0344-42", asientosVuelo.get(0).getCodigo().getCodigo());
+        Assert.assertEquals("EC0344-66", asientosVuelo.get(1).getCodigo().getCodigo());
         
         Assert.assertEquals(asientosVuelo.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento());
         Assert.assertEquals(asientosVuelo.get(1).getClase().getClaseAsiento(),turista.getClaseAsiento());
         
-        Assert.assertEquals(asientosVuelo.get(0).getPrecio().getPrecioAsiento(),565.60);
-        Assert.assertEquals(asientosVuelo.get(1).getPrecio().getPrecioAsiento(),365.60);
+        Assert.assertEquals(565.60, asientosVuelo.get(0).getPrecio().getPrecioAsiento());
+        Assert.assertEquals(365.60, asientosVuelo.get(1).getPrecio().getPrecioAsiento());
         
         Assert.assertEquals(asientosVuelo.get(0).getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento());
         Assert.assertEquals(asientosVuelo.get(1).getUbicacion().getUbicacionAsiento(),ventana.getUbicacionAsiento());

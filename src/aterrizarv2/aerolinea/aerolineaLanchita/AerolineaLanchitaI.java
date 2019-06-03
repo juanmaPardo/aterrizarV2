@@ -1,7 +1,5 @@
 package aterrizarv2.aerolinea.aerolineaLanchita;
 
-import java.util.ArrayList;
-
 
 public interface AerolineaLanchitaI {
     
