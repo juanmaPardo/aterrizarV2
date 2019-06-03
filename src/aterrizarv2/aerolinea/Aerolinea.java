@@ -21,13 +21,14 @@ import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public abstract class Aerolinea{
-    protected static LinkedList<Vuelo> vuelos;
+    protected LinkedList<Vuelo> vuelos;
     protected LinkedList<Asiento> asientosComprados;
     protected TreeMap<String,Integer> asientosVendidosVuelo;//Key:Numero vuelo, Value: cantidadVendidos
     protected static double RECARGO_AEROLINEA;
@@ -71,10 +72,24 @@ public abstract class Aerolinea{
     }
     
     
-    public static AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
-        LinkedList<AsientoVueloFullData> asientosVuelos = AterrizarV2.obtenerAsientosVuelos(vuelos);
+    public AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
+        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
                 .collect(Collectors.toList()).get(0);
+    }
+    
+    public boolean aerolineaTieneAsiento(String codigoAsiento){
+        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
+        return !asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
+                .collect(Collectors.toList()).isEmpty();
+    }
+    
+    public LinkedList<AsientoVueloFullData> obtenerAsientosVuelosDisponibles(List<Vuelo> vuelosDisponibles){
+        LinkedList<AsientoVueloFullData> asientosVuelos = new LinkedList<>();
+        vuelosDisponibles.forEach(vuelo ->{
+            asientosVuelos.addAll(vuelo.getDatosAsientoVuelo());
+        });
+        return asientosVuelos;
     }
     
     public void actualizaAsientosVendidosVuelo(Asiento asiento){
