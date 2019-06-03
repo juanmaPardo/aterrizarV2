@@ -35,23 +35,9 @@
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/fecha/Fecha.java</file>
         </group>
         <group>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/filtrosBusqueda/FiltroClaseAsiento.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/vuelos/VueloTest.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/Aerolinea.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicTest.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/usuarios/Usuario.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/usuarios/UsuarioPaga.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/AterrizarV2.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/busquedas/BusquedaTest.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/asientos/CodigoAsiento.java</file>
             <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/asientos/Asiento.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/usuarios/UsuarioNoPaga.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/usuarios/PerfilUsuario.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaI.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicTest.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
         </group>
     </open-files>
 </project-private>
