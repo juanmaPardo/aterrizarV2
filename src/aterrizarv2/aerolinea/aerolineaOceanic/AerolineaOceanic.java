@@ -42,19 +42,22 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
     }
 
     @Override
-    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException {
-        AsientoVueloFullData asientoComprado = obtenerAsiento(codigoAsiento);
-        if(estaReservadoAsiento(asientoComprado.getAsiento()) && !usuarioCompra.asientoReservadoPorMi(asientoComprado.getAsiento())){
+    public void comprarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException, AsientoReservadoException {
+        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
+        if(estaReservadoAsiento(asientoAComprar.getAsiento()) && !usuario.asientoReservadoPorMi(asientoAComprar.getAsiento())){
             throw new AsientoReservadoException("asiento ya esta reservado");
         }
-        String codigoVuelo = asientoComprado.getAsiento().getCodigo().getNumeroVuelo();
-        Integer numeroAsiento = Integer.parseInt(asientoComprado.getAsiento().getCodigo().getNumeroAsiento());
-        String dni = Integer.toString(usuarioCompra.getDni());
+        else if(asientoAComprar.getAsiento().getEstado().asientoVendido()){
+            throw new AsientoNoDisponibleException("asiento ya vendido");
+        }
+        String codigoVuelo = asientoAComprar.getAsiento().getCodigo().getNumeroVuelo();
+        Integer numeroAsiento = Integer.parseInt(asientoAComprar.getAsiento().getCodigo().getNumeroAsiento());
+        String dni = Integer.toString(usuario.getDni());
         this.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
-        usuarioCompra.efectuarCompra(asientoComprado.getAsiento().getPrecio().getPrecioAsiento());
-        usuarioCompra.marcarComoComprado(asientoComprado.getAsiento());
-        asientosComprados.add(asientoComprado.getAsiento());
-        actualizaAsientosVendidosVuelo(asientoComprado.getAsiento());
+        usuario.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
+        usuario.marcarComoComprado(asientoAComprar.getAsiento());
+        asientosComprados.add(asientoAComprar.getAsiento());
+        actualizaAsientosVendidosVuelo(asientoAComprar.getAsiento());
     }
     
 
@@ -121,11 +124,8 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
     @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
-        if(!estaDisponibleAsiento(asiento.getAsiento())){
-            throw new AsientoNoDisponibleException("El asiento ya no esta disponible");
-        }
-        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         asiento.getAsiento().getEstado().reservarAsiento();
+        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();
         Integer numeroAsiento = Integer.parseInt(asiento.getAsiento().getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuarioReserva.getDni());

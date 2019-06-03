@@ -1,7 +1,7 @@
 package aterrizarv2.asientos;
 
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoNoReservadoException;
-import aterrizarv2.asientos.excepcionesAsiento.AsientoVendidoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 
 public class EstadoAsiento {
@@ -32,8 +32,8 @@ public class EstadoAsiento {
     
     
     public void reservarAsiento(){
-        if(estadoAsiento == EnumEstadoAsiento.VENDIDO){
-            throw new AsientoVendidoException("No se puede reservar un asiento que fue vendido");
+        if(estadoAsiento == EnumEstadoAsiento.VENDIDO ||estadoAsiento == EnumEstadoAsiento.RESERVADO){
+            throw new AsientoNoDisponibleException("El asiento no se encuentra disponible para reservar");
         }
         estadoAsiento = EnumEstadoAsiento.RESERVADO;
     }
