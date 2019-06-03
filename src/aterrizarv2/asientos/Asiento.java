@@ -34,6 +34,7 @@ public class Asiento {
     public UbicacionAsiento getUbicacion() {
         return ubicacion;
     }
+
     
     
     

@@ -21,6 +21,7 @@ import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,9 +73,23 @@ public abstract class Aerolinea{
     
     
     public AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
-        LinkedList<AsientoVueloFullData> asientosVuelos = AterrizarV2.obtenerAsientosVuelos(vuelos);
+        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
                 .collect(Collectors.toList()).get(0);
+    }
+    
+    public boolean aerolineaTieneAsiento(String codigoAsiento){
+        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
+        return !asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
+                .collect(Collectors.toList()).isEmpty();
+    }
+    
+    public LinkedList<AsientoVueloFullData> obtenerAsientosVuelosDisponibles(List<Vuelo> vuelosDisponibles){
+        LinkedList<AsientoVueloFullData> asientosVuelos = new LinkedList<>();
+        vuelosDisponibles.forEach(vuelo ->{
+            asientosVuelos.addAll(vuelo.getDatosAsientoVuelo());
+        });
+        return asientosVuelos;
     }
     
     public void actualizaAsientosVendidosVuelo(Asiento asiento){
@@ -92,15 +107,20 @@ public abstract class Aerolinea{
     
     public abstract void reservarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
   
-    
-    public boolean estaDisponibleAsiento(Asiento asiento){
-        return asiento.getEstado().estaDisponible();
+    public boolean estaReservadoAsiento(Asiento asiento){
+        return asiento.getEstado().estaReservado();
     }
     
-    public void expiroReserva(Asiento asiento, Usuario usuario){
+    
+    public void expiroReserva(Asiento asiento, Usuario usuario) throws CodigoAsientoException{
         usuario.eliminarAsientoReservado(asiento);
-        if(asiento.estaSobrereservado()){
-            Usuario usuarioSobrereserva = 
+        if(asiento.getEstado().estaSobrereservado()){
+            String codigoAsiento = asiento.getCodigo().getCodigo();
+            Usuario usuarioSobrereserva = AterrizarV2.usuarioSobrereserva(codigoAsiento);
+            reservarAsiento(codigoAsiento, usuarioSobrereserva);
+        }
+        else{
+            asiento.getEstado().asientoDisponible();
         }
     }
     

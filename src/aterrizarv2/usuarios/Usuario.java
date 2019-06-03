@@ -1,6 +1,9 @@
 package aterrizarv2.usuarios;
 
+import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.asientos.Asiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
+import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import java.util.LinkedList;
 
 
@@ -8,7 +11,6 @@ public abstract class Usuario {
     protected PerfilUsuario perfil;
     protected LinkedList<Asiento> asientosComprados;
     protected LinkedList<Asiento> asientosReservados;
-    protected LinkedList<Asiento> asientosSobreReservados;
     protected String nombre;
     protected String apellido;
     protected Integer dni;
@@ -59,27 +61,14 @@ public abstract class Usuario {
     }
     
     public abstract boolean esVip();
-    /*
-    public void reservarAsiento(String codigoAsiento, AerolineaGeneral aerolinea) throws AsientoReservadoException, CodigoAsientoException, UsuarioNoEncontradoException{
-        aerolinea.reservar(codigoAsiento, dni);
+    
+    public void reservarAsiento(String codigoAsiento, Aerolinea aerolinea) throws CodigoAsientoException {
+        aerolinea.reservarAsiento(codigoAsiento, this);
     }
     
-     public void agregarAsientoSobrereservado(AsientoGeneralVuelo asiento){
-        asientosReservados.add(asiento);
+    public void comprarAsiento(String codigoAsiento, Aerolinea aerolinea) throws CodigoAsientoException, AsientoReservadoException{
+        aerolinea.comprarAsiento(codigoAsiento, this);
     }
-        
-    public void comprarAsiento(String codigoAsiento, AerolineaGeneral aerolinea) throws CodigoAsientoException{
-        aerolinea.comprar(codigoAsiento, this);
-    }
-    
-    @Override
-    public int compareTo(Usuario otroUsuario) {
-        return Integer.compare(this.dni,otroUsuario.dni);
-    }
-
-    public void quitarASientoReservado(AsientoGeneralVuelo asiento) {
-        asientosReservados.remove(asiento);
-    }*/
 
     public void eliminarAsientoReservado(Asiento asiento) {
         asientosReservados.remove(asiento);

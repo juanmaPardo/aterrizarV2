@@ -2,6 +2,8 @@ package aterrizarv2;
 
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.asientos.Asiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
+import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.busquedas.ordenamientoBusqueda.OrdenamientoAsientos;
 import aterrizarv2.usuarios.Usuario;
@@ -17,10 +19,12 @@ import java.util.stream.Collectors;
 public class AterrizarV2 {
     private LinkedList<Aerolinea> aerolineas;
     private LinkedList<Usuario> usuarios;
+    private static TreeMap <String,Usuario> asientosSobrerreservados;
 
     public AterrizarV2() {
         aerolineas = new LinkedList<>();
         usuarios = new LinkedList<>();
+        asientosSobrerreservados = new TreeMap <>();
     }
     
     public void agregarAerolinea(Aerolinea aerolinea){
@@ -74,4 +78,30 @@ public class AterrizarV2 {
         return todosAsientosVuelosVendidos;
     }
     
+    public void sobrereservarAsiento(String codigoAsiento, Usuario usuario) throws AsientoReservadoException, CodigoAsientoException{
+        Asiento asiento = obtenerAsientoAerolinea(codigoAsiento);
+        if (asientosSobrerreservados.containsKey(codigoAsiento)){
+            throw new AsientoReservadoException ("El asiento ya esta sobrereservado");
+        }
+        asiento.getEstado().sobrereservarAsiento();
+        asientosSobrerreservados.put(codigoAsiento, usuario);
+    }
+    
+    public static Usuario usuarioSobrereserva(String codigoAsiento) {
+        Usuario usuario = asientosSobrerreservados.get(codigoAsiento);
+        return usuario;
+    }
+    
+    
+    private Aerolinea obtenerAerolineaTieneAsiento(String codigoAsiento){
+        return aerolineas.stream().filter(aerolinea -> aerolinea.aerolineaTieneAsiento(codigoAsiento))
+                .collect(Collectors.toList()).get(0);
+        
+    }
+    
+    private Asiento obtenerAsientoAerolinea(String codigoAsiento) throws CodigoAsientoException {
+        Aerolinea aerolinea = obtenerAerolineaTieneAsiento(codigoAsiento);
+        return aerolinea.obtenerAsiento(codigoAsiento).getAsiento();
+    }
+ 
 }
