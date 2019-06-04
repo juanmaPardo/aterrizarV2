@@ -1,13 +1,11 @@
 
 package aterrizarv2.aerolinea.aerolineaOceanic;
 
-import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.asientos.EnumUbicacionAsiento;
-import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
@@ -26,10 +24,7 @@ import aterrizarv2.vuelos.AsientoDTO;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.mockito.Mockito;
@@ -190,6 +185,7 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getHoraSalida().getHoraFormatoString(),horaSalida12hs);
         Assert.assertEquals(asientoCasteado2.getHoraSalida().getHoraFormatoString(),horaSalida12hs);
         
+
         Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroVuelo(),"EC0344");
         Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroVuelo(), "EC0324");
         
@@ -198,6 +194,7 @@ public class AerolineaOceanicTest {
                 
         Assert.assertEquals(asientoCasteado1.getPrecio().getPrecioAsiento(), 565.60);
         Assert.assertEquals(asientoCasteado2.getPrecio().getPrecioAsiento(), 565.60);
+
         
         Assert.assertEquals(asientoCasteado1.getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
         Assert.assertEquals(asientoCasteado2.getClase().getClaseAsiento(), turista.getClaseAsiento() );
@@ -223,6 +220,7 @@ public class AerolineaOceanicTest {
         //{"MLR123","67", fechaSalida1Junio2018, horaSalida23hs, "872.50", "P", "P"}
         //{"NDL113", "122", fechaSalida1Junio2018, horaSalida23hs, "921.76", "T","C"}
         
+
         Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroVuelo(),"MLR123");
         Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroVuelo(), "NDL113");
         
@@ -237,6 +235,7 @@ public class AerolineaOceanicTest {
         
         Assert.assertEquals(asientoCasteado1.getPrecio().getPrecioAsiento(), 872.50);
         Assert.assertEquals(asientoCasteado2.getPrecio().getPrecioAsiento(), 921.76);
+
         
         Assert.assertEquals(asientoCasteado1.getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
         Assert.assertEquals(asientoCasteado2.getClase().getClaseAsiento(), turista.getClaseAsiento() );
@@ -244,5 +243,6 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
+      
  
 }

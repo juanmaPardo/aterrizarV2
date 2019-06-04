@@ -1,8 +1,5 @@
 package aterrizarv2.usuarios;
 
-import aterrizarv2.asientos.Asiento;
-import java.util.LinkedList;
-
 
 public class UsuarioPaga extends Usuario{
     private double cuotaPorMes;

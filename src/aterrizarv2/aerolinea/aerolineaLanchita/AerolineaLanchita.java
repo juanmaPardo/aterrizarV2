@@ -14,13 +14,10 @@ import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
-import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     
