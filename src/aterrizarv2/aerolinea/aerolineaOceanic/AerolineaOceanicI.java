@@ -1,9 +1,6 @@
 
 package aterrizarv2.aerolinea.aerolineaOceanic;
 
-import aterrizarv2.vuelos.AsientoDTO;
-import java.util.LinkedList;
-
 public interface AerolineaOceanicI {
     
     String[][] asientosDisponiblesParaOrigen(String codigoOrigenOceanic,String fechaSalida);

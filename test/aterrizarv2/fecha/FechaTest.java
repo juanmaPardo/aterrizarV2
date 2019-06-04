@@ -2,12 +2,8 @@ package aterrizarv2.fecha;
 
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class FechaTest {
     

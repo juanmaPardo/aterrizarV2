@@ -6,13 +6,11 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.util.Arrays;
 import java.util.List;
 import org.hamcrest.MatcherAssert;
-import static org.hamcrest.Matchers.is;
 import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.mockito.Mockito;
 

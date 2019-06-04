@@ -1,7 +1,5 @@
 package aterrizarv2.busquedas;
 
-import aterrizarv2.asientos.Asiento;
-import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.filtrosBusqueda.FiltroBusqueda;
 import aterrizarv2.busquedas.exceptionesBusqueda.*;
@@ -10,7 +8,6 @@ import aterrizarv2.filtrosBusqueda.FiltroDestino;
 import aterrizarv2.filtrosBusqueda.FiltroFecha;
 import aterrizarv2.filtrosBusqueda.FiltroOrigen;
 import aterrizarv2.vuelos.AsientoVueloFullData;
-import aterrizarv2.vuelos.Vuelo;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

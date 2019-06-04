@@ -1,11 +1,9 @@
 package aterrizarv2.aerolinea;
 
 import aterrizarv2.AterrizarV2;
-import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchitaI;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
-import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
@@ -13,7 +11,6 @@ import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
-import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import aterrizarv2.usuarios.Usuario;
@@ -23,8 +20,6 @@ import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public abstract class Aerolinea{

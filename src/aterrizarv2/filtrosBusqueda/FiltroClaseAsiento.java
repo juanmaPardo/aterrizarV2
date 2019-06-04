@@ -2,7 +2,6 @@ package aterrizarv2.filtrosBusqueda;
 
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.vuelos.AsientoVueloFullData;
-import aterrizarv2.vuelos.Vuelo;
 
 public class FiltroClaseAsiento implements FiltroBusqueda{
     private ClaseAsiento clase;
