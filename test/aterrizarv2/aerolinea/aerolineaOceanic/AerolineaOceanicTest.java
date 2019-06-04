@@ -8,6 +8,7 @@ import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.asientos.EnumUbicacionAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
@@ -20,6 +21,8 @@ import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import aterrizarv2.hora.Hora;
 import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
 import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
+import aterrizarv2.usuarios.DniInvalidoException;
+import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.vuelos.AsientoDTO;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
@@ -52,10 +55,12 @@ public class AerolineaOceanicTest {
     String fechaSalida22Diciembre2018;
     String fechaLlegada23Diciembre2018;
     String horaSalida23hs;
+    AerolineaOceanic oceanicNoMokeda;
+    UsuarioNoPaga userEstandar;
     
     
     @Before
-    public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, EstadoAsientoInvalidaException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, TipoPedidoInvalidaException {
+    public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, EstadoAsientoInvalidaException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, TipoPedidoInvalidaException, DniInvalidoException {
         String origenBuenosAires = "BUE";
         String destinoMadrid = "MAD";
         String origenRioJaneiro = "RIO";
@@ -72,8 +77,7 @@ public class AerolineaOceanicTest {
         
         
         aerolineaOc = Mockito.mock(AerolineaOceanic.class);
-        
-        
+        oceanicNoMokeda =  new AerolineaOceanic();
         
         vueloBsAsLima = new Vuelo(origenBuenosAires, destinoLima, new FechaFlexible(fechaSalida13Noviembre2018), new FechaFlexible(fechaLlegada13Noviembre2018), new Hora(horaSalida12hs), new Hora(horaLlegada21hs));
         
@@ -131,6 +135,10 @@ public class AerolineaOceanicTest {
         
         asientosRioLa.add(asientoUnoBis);
         asientosRioLa.add(asientoDosBis);
+        
+        vueloRioLosAngeles.agregarAsiento(asientoUnoBis);
+        vueloRioLosAngeles.agregarAsiento(asientoDosBis);
+        userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
         Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesBueLim)).thenReturn(asientosBueLim);
         
@@ -243,6 +251,5 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
-      
- 
+        
 }
