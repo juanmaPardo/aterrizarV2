@@ -35,14 +35,10 @@
             <file>file:/home/juan/NetBeansProjects/aterrizarV2/src/aterrizarv2/fecha/Fecha.java</file>
         </group>
         <group>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchita.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaTest.java</file>
             <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicTest.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicI.java</file>
             <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/Aerolinea.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/vuelos/AsientoDTO.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaI.java</file>
-            <file>file:/home/nahuel/Escritorio/Undav/aterrizarV2/src/aterrizarv2/AterrizarV2.java</file>
         </group>
     </open-files>
 </project-private>
