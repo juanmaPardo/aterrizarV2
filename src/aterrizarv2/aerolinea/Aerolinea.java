@@ -104,7 +104,7 @@ public abstract class Aerolinea{
         }
     }
     
-    public abstract void reservarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException;
+    public abstract void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException;
   
     public boolean estaReservadoAsiento(Asiento asiento){
         return asiento.getEstado().estaReservado();

@@ -40,18 +40,23 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     @Override
     public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
-        if(estaReservadoAsiento(asientoAComprar.getAsiento()) && !usuarioAComprar.asientoReservadoPorMi(asientoAComprar.getAsiento())){
-            throw new AsientoReservadoException("asiento ya esta reservado");
+        Asiento asiento = asientoAComprar.getAsiento();
+        if(estaReservadoAsiento(asiento) && !usuarioAComprar.asientoReservadoPorMi(asiento)){
+            throw new AsientoReservadoException("asiento ya esta reservado por otra persona");
         }
-        else if(asientoAComprar.getAsiento().getEstado().asientoVendido()){
+        else if(asiento.getEstado().asientoVendido()){
             throw new AsientoNoDisponibleException("asiento ya vendido");
         }
         this.comprar(codigoAsiento);
+        if (usuarioAComprar.asientoReservadoPorMi(asiento)){
+            usuarioAComprar.eliminarAsientoReservado(asiento);
+        }
+        asientosComprados.add(asiento);
+        actualizaAsientosVendidosVuelo(asiento);
         usuarioAComprar.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
         usuarioAComprar.marcarComoComprado(asientoAComprar.getAsiento());
-        asientosComprados.add(asientoAComprar.getAsiento());
-        actualizaAsientosVendidosVuelo(asientoAComprar.getAsiento());
         cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
+
     }
     
    
