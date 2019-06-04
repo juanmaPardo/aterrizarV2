@@ -48,14 +48,17 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
             throw new AsientoNoDisponibleException("asiento ya vendido");
         }
         this.comprar(codigoAsiento);
-        usuarioAComprar.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
-        usuarioAComprar.marcarComoComprado(asiento);
         if (usuarioAComprar.asientoReservadoPorMi(asiento)){
             usuarioAComprar.eliminarAsientoReservado(asiento);
         }
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
+        usuarioAComprar.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
+        usuarioAComprar.marcarComoComprado(asientoAComprar.getAsiento());
+        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
+
     }
+    
    
 
     @Override

@@ -37,6 +37,10 @@ public abstract class Aerolinea{
         this.DIAS_EXPIRE_RESERVA = diasReserva;
     }
     
+    public void agregarVueloYaCargado(Vuelo vuelo){
+        vuelos.add(vuelo);
+    }
+    
     public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
         try {
             vuelo.cargarAsientos(this,tipoCarga);
@@ -106,6 +110,9 @@ public abstract class Aerolinea{
         return asiento.getEstado().estaReservado();
     }
     
+    public void cambiarEstadoAsientoAVendido(Asiento asiento){
+        asiento.getEstado().venderAsiento();
+    }
     
     public void expiroReserva(Asiento asiento, Usuario usuario) throws CodigoAsientoException{
         usuario.eliminarAsientoReservado(asiento);

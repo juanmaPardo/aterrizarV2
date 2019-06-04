@@ -56,13 +56,14 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuario.getDni());
         this.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
-        usuario.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
-        usuario.marcarComoComprado(asiento);
         if (usuario.asientoReservadoPorMi(asiento)){
             usuario.eliminarAsientoReservado(asiento);
         }
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
+        usuario.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
+        usuario.marcarComoComprado(asientoAComprar.getAsiento());
+        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
     }
     
 

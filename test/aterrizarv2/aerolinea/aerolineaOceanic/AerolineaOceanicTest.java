@@ -45,6 +45,14 @@ public class AerolineaOceanicTest {
     Asiento asiento2;
     Asiento asiento1;
     AerolineaOceanic aerolineaOc;
+    String fechaSalida13Noviembre2018;
+    String fechaLlegada13Noviembre2018;
+    String horaSalida12hs;
+    String horaLlegada21hs;
+    String fechaSalida22Diciembre2018;
+    String fechaLlegada23Diciembre2018;
+    String horaSalida23hs;
+    
     
     @Before
     public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, EstadoAsientoInvalidaException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, TipoPedidoInvalidaException {
@@ -53,14 +61,14 @@ public class AerolineaOceanicTest {
         String origenRioJaneiro = "RIO";
         String destinoLima = "LIM";
         String destinoLosAngeles = "LA";
-        String fechaSalida22Diciembre2018 = (new FechaFlexible("22/12/2018")).representacionEnLatinoamericano();
+        fechaSalida22Diciembre2018 = (new FechaFlexible("22/12/2018")).representacionEnLatinoamericano();
         String fechaLlegada23Diciembre2018 = (new FechaFlexible("23/12/2018")).representacionEnLatinoamericano();
-        String fechaSalida13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
-        String fechaLlegada13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
-        String horaSalida23hs = (new Hora("23:05")).getHoraFormatoString();
+        fechaSalida13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
+        fechaLlegada13Noviembre2018 = (new FechaFlexible("13/11/2018")).representacionEnLatinoamericano();
+        horaSalida23hs = (new Hora("23:05")).getHoraFormatoString();
         String horaLlegada11hs = (new Hora("11:30")).getHoraFormatoString();
-        String horaSalida12hs = (new Hora("12:20")).getHoraFormatoString();
-        String horaLlegada21hs = (new Hora("21:15")).getHoraFormatoString();
+        horaSalida12hs = (new Hora("12:20")).getHoraFormatoString();
+        horaLlegada21hs = (new Hora("21:15")).getHoraFormatoString();
         
         
         aerolineaOc = Mockito.mock(AerolineaOceanic.class);
@@ -168,27 +176,40 @@ public class AerolineaOceanicTest {
         
         //{"EC0344","13",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","P","P"}
         //{"EC0324","23",fechaSalida13Noviembre2018,horaSalida12hs,"565.60","T","C"}
+        AsientoDTO asientoCasteado1 = (AsientoDTO)asientosDTO.get(0);
+        AsientoDTO asientoCasteado2 = (AsientoDTO)asientosDTO.get(1);
         
-        Assert.assertEquals("EC0344", asientosDTO.get(0).getCodigo().getNumeroVuelo());
-        Assert.assertEquals("EC0324", asientosDTO.get(1).getCodigo().getNumeroVuelo());
+        Assert.assertEquals(asientoCasteado1.getFechaSalidaDTO().representacionEnLatinoamericano(),fechaSalida13Noviembre2018 );
+        Assert.assertEquals(asientoCasteado2.getFechaSalidaDTO().representacionEnLatinoamericano(),fechaLlegada13Noviembre2018 );
         
-        Assert.assertEquals("13", asientosDTO.get(0).getCodigo().getNumeroAsiento());
-        Assert.assertEquals("23", asientosDTO.get(1).getCodigo().getNumeroAsiento());
+        Assert.assertEquals(asientoCasteado1.getHoraSalida().getHoraFormatoString(),horaSalida12hs);
+        Assert.assertEquals(asientoCasteado2.getHoraSalida().getHoraFormatoString(),horaSalida12hs);
+        
+
+        Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroVuelo(),"EC0344");
+        Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroVuelo(), "EC0324");
+        
+        Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroAsiento(),"13");
+        Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroAsiento(),"23");
                 
-        Assert.assertEquals(565.60, asientosDTO.get(0).getPrecio().getPrecioAsiento());
-        Assert.assertEquals(565.60, asientosDTO.get(1).getPrecio().getPrecioAsiento());
+        Assert.assertEquals(asientoCasteado1.getPrecio().getPrecioAsiento(), 565.60);
+        Assert.assertEquals(asientoCasteado2.getPrecio().getPrecioAsiento(), 565.60);
+
         
-        Assert.assertEquals(asientosDTO.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
-        Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );
+        Assert.assertEquals(asientoCasteado1.getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
+        Assert.assertEquals(asientoCasteado2.getClase().getClaseAsiento(), turista.getClaseAsiento() );
         
-        Assert.assertEquals(asientosDTO.get(0).getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
-        Assert.assertEquals(asientosDTO.get(1).getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
+        Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
+        Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
     
         @Test
         public void asientosDisponiblesParaOrigenYDestinoDevuelveAsientoDTOCorrectamente() throws TipoPedidoInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException{
         String[][] asientosDisponibles = aerolineaOc.asientosDisponibles(vueloRioLosAngeles,"OrigenYDestino");
         LinkedList<Asiento> asientosDTO = aerolineaOc.devolverAsiento(asientosDisponibles);
+        
+        AsientoDTO asientoCasteado1 = (AsientoDTO)asientosDTO.get(0);
+        AsientoDTO asientoCasteado2 = (AsientoDTO)asientosDTO.get(1);
         
         ClaseAsiento primeraClase = new ClaseAsiento("P");
         ClaseAsiento turista = new ClaseAsiento("T");
@@ -199,20 +220,29 @@ public class AerolineaOceanicTest {
         //{"MLR123","67", fechaSalida1Junio2018, horaSalida23hs, "872.50", "P", "P"}
         //{"NDL113", "122", fechaSalida1Junio2018, horaSalida23hs, "921.76", "T","C"}
         
-        Assert.assertEquals("MLR123", asientosDTO.get(0).getCodigo().getNumeroVuelo());
-        Assert.assertEquals("NDL113", asientosDTO.get(1).getCodigo().getNumeroVuelo());
+
+        Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroVuelo(),"MLR123");
+        Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroVuelo(), "NDL113");
         
-        Assert.assertEquals("67", asientosDTO.get(0).getCodigo().getNumeroAsiento());
-        Assert.assertEquals("122", asientosDTO.get(1).getCodigo().getNumeroAsiento());
+        Assert.assertEquals(asientoCasteado1.getCodigo().getNumeroAsiento(),"67");
+        Assert.assertEquals(asientoCasteado2.getCodigo().getNumeroAsiento(),"122");
+        
+        Assert.assertEquals(asientoCasteado1.getFechaSalidaDTO().representacionEnLatinoamericano(),fechaSalida22Diciembre2018 );
+        Assert.assertEquals(asientoCasteado2.getFechaSalidaDTO().representacionEnLatinoamericano(),fechaSalida22Diciembre2018 );
                 
-        Assert.assertEquals(872.50, asientosDTO.get(0).getPrecio().getPrecioAsiento());
-        Assert.assertEquals(921.76, asientosDTO.get(1).getPrecio().getPrecioAsiento());
+        Assert.assertEquals(asientoCasteado1.getHoraSalida().getHoraFormatoString(),horaSalida23hs);
+        Assert.assertEquals(asientoCasteado2.getHoraSalida().getHoraFormatoString(),horaSalida23hs);
         
-        Assert.assertEquals(asientosDTO.get(0).getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
-        Assert.assertEquals(asientosDTO.get(1).getClase().getClaseAsiento(), turista.getClaseAsiento() );
+        Assert.assertEquals(asientoCasteado1.getPrecio().getPrecioAsiento(), 872.50);
+        Assert.assertEquals(asientoCasteado2.getPrecio().getPrecioAsiento(), 921.76);
+
         
-        Assert.assertEquals(asientosDTO.get(0).getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
-        Assert.assertEquals(asientosDTO.get(1).getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
+        Assert.assertEquals(asientoCasteado1.getClase().getClaseAsiento(),primeraClase.getClaseAsiento() );
+        Assert.assertEquals(asientoCasteado2.getClase().getClaseAsiento(), turista.getClaseAsiento() );
+        
+        Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
+        Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
+      
  
 }
