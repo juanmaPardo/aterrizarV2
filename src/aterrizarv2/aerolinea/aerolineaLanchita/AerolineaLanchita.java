@@ -51,7 +51,9 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
         usuarioAComprar.marcarComoComprado(asientoAComprar.getAsiento());
         asientosComprados.add(asientoAComprar.getAsiento());
         actualizaAsientosVendidosVuelo(asientoAComprar.getAsiento());
+        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
     }
+    
    
 
     @Override

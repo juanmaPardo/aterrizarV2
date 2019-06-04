@@ -58,6 +58,7 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         usuario.marcarComoComprado(asientoAComprar.getAsiento());
         asientosComprados.add(asientoAComprar.getAsiento());
         actualizaAsientosVendidosVuelo(asientoAComprar.getAsiento());
+        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
     }
     
 
