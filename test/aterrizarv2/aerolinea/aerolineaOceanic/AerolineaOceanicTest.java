@@ -55,7 +55,7 @@ public class AerolineaOceanicTest {
     String fechaSalida22Diciembre2018;
     String fechaLlegada23Diciembre2018;
     String horaSalida23hs;
-    AerolineaOceanic aerolineaOceanic;
+    AerolineaOceanic oceanicNoMokeda;
     UsuarioNoPaga userEstandar;
     
     
@@ -77,8 +77,7 @@ public class AerolineaOceanicTest {
         
         
         aerolineaOc = Mockito.mock(AerolineaOceanic.class);
-        
-        
+        oceanicNoMokeda =  new AerolineaOceanic();
         
         vueloBsAsLima = new Vuelo(origenBuenosAires, destinoLima, new FechaFlexible(fechaSalida13Noviembre2018), new FechaFlexible(fechaLlegada13Noviembre2018), new Hora(horaSalida12hs), new Hora(horaLlegada21hs));
         
@@ -137,6 +136,8 @@ public class AerolineaOceanicTest {
         asientosRioLa.add(asientoUnoBis);
         asientosRioLa.add(asientoDosBis);
         
+        vueloRioLosAngeles.agregarAsiento(asientoUnoBis);
+        vueloRioLosAngeles.agregarAsiento(asientoDosBis);
         userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
         Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesBueLim)).thenReturn(asientosBueLim);
@@ -251,13 +252,4 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
         
-     @Test
-     public void seCompraUnAsientoCorrectamente() throws CodigoAsientoException, AsientoReservadoException{
-         aerolineaOceanic.agregarVueloYaCargado(vueloRioLosAngeles);
-         aerolineaOceanic.comprarSiHayDisponibilidad(horaSalida12hs, horaSalida12hs, Integer.MIN_VALUE)
-         aerolineaOceanic.comprarAsiento("MLR123", userEstandar);
-         
-     }
-      
- 
 }
