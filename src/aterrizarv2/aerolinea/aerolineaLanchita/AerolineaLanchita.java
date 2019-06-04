@@ -58,9 +58,9 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
         cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
 
     }
-    
    
-
+    
+    
     @Override
     public String[][] asientosDisponibles(Vuelo vuelo, String parametroNoInteresaEnLanchitaSoloParaPolimorfismo) {
         String origen = vuelo.getOrigen();
