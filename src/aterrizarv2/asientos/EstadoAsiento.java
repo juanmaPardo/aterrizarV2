@@ -76,5 +76,4 @@ public class EstadoAsiento {
         return (estadoPermite == EstadoAsientoVuelo.DISPONIBLE) ? estadoPermite == estadoAsiento : true  ;
     }*/
 
-
 }

@@ -35,6 +35,10 @@ public class AterrizarV2 {
         usuarios.add(usuario);
     }
     
+    public static void eliminarSobrereservaUsuario(String codigoAsiento){
+        asientosSobrerreservados.remove(codigoAsiento);
+    }
+    
     public List<AsientoVueloFullData> asientosCumplenParametro(Usuario usuario, Busqueda busqueda, OrdenamientoAsientos orden){
         usuario.getPerfil().agregarBusqueda(busqueda);//Agregamos la busqueda por temas estadisticos
         List<Vuelo> vuelosDisponibles = obtenerVuelosDisponibles();

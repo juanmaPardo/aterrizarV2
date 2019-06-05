@@ -7,7 +7,6 @@ import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
-import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -41,22 +40,14 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoAComprar.getAsiento();
-        if(estaReservadoAsiento(asiento) && !usuarioAComprar.asientoReservadoPorMi(asiento)){
-            throw new AsientoReservadoException("asiento ya esta reservado por otra persona");
-        }
-        else if(asiento.getEstado().asientoVendido()){
-            throw new AsientoNoDisponibleException("asiento ya vendido");
-        }
+        revisionesCompra(asiento,usuarioAComprar);
         this.comprar(codigoAsiento);
-        if (usuarioAComprar.asientoReservadoPorMi(asiento)){
-            usuarioAComprar.eliminarAsientoReservado(asiento);
-        }
+        postVentaCambioEstadoAsiento(asiento,usuarioAComprar);
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
-        usuarioAComprar.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
-        usuarioAComprar.marcarComoComprado(asientoAComprar.getAsiento());
-        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
-
+        usuarioAComprar.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
+        usuarioAComprar.marcarComoComprado(asiento);
+        cambiarEstadoAsientoAVendido(asiento);
     }
    
     

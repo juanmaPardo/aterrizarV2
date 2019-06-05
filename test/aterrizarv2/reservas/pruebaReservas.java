@@ -237,12 +237,22 @@ public class pruebaReservas {
     public void sobrereservarAsiento_UsuarioPierdeReservaYPasaAlUsuarioQueSobrereservo() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = codigoUno.getCodigo();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
-
         aterrizar.sobrereservarAsiento(codigoAsiento, userEstandar);
         lanchitaNoMockeada.expiroReserva(asientoUno, userVip);
         Assert.assertTrue("Esta en las reservas el asiento", !userVip.asientoReservadoPorMi(asientoUno));
         Assert.assertTrue("No reservo el asiento", userEstandar.asientoReservadoPorMi(asientoUno));
         Assert.assertTrue("Estado asiento no es reservado",asientoUno.getEstado().estaReservado());
+    }
+    
+    @Test
+    public void comprar_UsuarioCompraAsientoYElUsuarioQueSobrereservoLoPierde() throws CodigoAsientoException, AsientoReservadoException{
+        String codigoAsiento = codigoUno.getCodigo();
+        userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
+        aterrizar.sobrereservarAsiento(codigoAsiento, userEstandar);
+        userVip.comprarAsiento(codigoAsiento, lanchitaNoMockeada);
+        Assert.assertTrue("Esta reservado el asiento", !userVip.asientoReservadoPorMi(asientoUno));
+        Assert.assertNotSame("Esta en sobrereservado por el usuario", userEstandar, AterrizarV2.usuarioSobrereserva(codigoAsiento));
+        Assert.assertTrue("Estado asiento no es reservado",asientoUno.getEstado().asientoVendido());
     }
     
 }

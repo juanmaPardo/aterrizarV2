@@ -5,6 +5,7 @@ import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -77,6 +78,12 @@ public abstract class Aerolinea{
                 .collect(Collectors.toList()).get(0);
     }
     
+    public AsientoVueloFullData obtenerAsientoConCodigoVuelo(String codigoVuelo){
+        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
+        return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getNumeroVuelo().equals(codigoVuelo))
+                .collect(Collectors.toList()).get(0);
+    }
+    
     public boolean aerolineaTieneAsiento(String codigoAsiento){
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return !asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
@@ -123,6 +130,24 @@ public abstract class Aerolinea{
         }
         else{
             asiento.getEstado().asientoDisponible();
+        }
+    }
+    
+    public void postVentaCambioEstadoAsiento(Asiento asiento, Usuario usuario){
+        if (usuario.asientoReservadoPorMi(asiento)){
+            usuario.eliminarAsientoReservado(asiento);
+        }
+        if (asiento.getEstado().estaSobrereservado()){
+            AterrizarV2.eliminarSobrereservaUsuario(asiento.getCodigo().getCodigo());
+        }
+    }
+    
+    public void revisionesCompra(Asiento asiento,Usuario usuario) throws AsientoReservadoException{
+        if(estaReservadoAsiento(asiento) && !usuario.asientoReservadoPorMi(asiento)){
+            throw new AsientoReservadoException("asiento ya esta reservado por otra persona");
+        }
+        else if(asiento.getEstado().asientoVendido()){
+            throw new AsientoNoDisponibleException("asiento ya vendido");
         }
     }
     

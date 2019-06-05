@@ -6,6 +6,7 @@ import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
 import aterrizarv2.asientos.EnumClaseAsiento;
 import aterrizarv2.asientos.EnumUbicacionAsiento;
+import aterrizarv2.asientos.EstadoAsiento;
 import aterrizarv2.asientos.PrecioAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
@@ -121,7 +122,7 @@ public class AerolineaOceanicTest {
         ClaseAsiento claseUnoBis = new ClaseAsiento(asientosDisponiblesRioLA[0][5]);
         UbicacionAsiento ubicacionUnoBis = new UbicacionAsiento(asientosDisponiblesRioLA[0][6]);
         CodigoAsiento codigoVueloUnoBis = new CodigoAsiento(codigoUnoBis,numeroAsientoUnoBis);
-        AsientoDTO asientoUnoBis = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaUnoBis),new Hora(horaSalidaUnoBis),claseUnoBis,codigoVueloUnoBis,null,precioUnoBis,ubicacionUnoBis);
+        AsientoDTO asientoUnoBis = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaUnoBis),new Hora(horaSalidaUnoBis),claseUnoBis,codigoVueloUnoBis,new EstadoAsiento("D"),precioUnoBis,ubicacionUnoBis);
         
         String codigoDosBis = asientosDisponiblesRioLA[1][0];
         String numeroAsientoDosBis  = asientosDisponiblesRioLA[1][1];
@@ -131,7 +132,7 @@ public class AerolineaOceanicTest {
         ClaseAsiento claseDosBis  = new ClaseAsiento(asientosDisponiblesRioLA[1][5]);
         UbicacionAsiento ubicacionDosBis  = new UbicacionAsiento(asientosDisponiblesRioLA[1][6]);
         CodigoAsiento codigoVueloDosBis  = new CodigoAsiento(codigoDosBis ,numeroAsientoDosBis);
-        AsientoDTO asientoDosBis  = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaDosBis ),new Hora(horaSalidaDosBis ),claseDosBis ,codigoVueloDosBis ,null,precioDosBis ,ubicacionDosBis);
+        AsientoDTO asientoDosBis  = new AsientoDTO(new FechaFormatoLatinoamericano(fechaSalidaDosBis ),new Hora(horaSalidaDosBis ),claseDosBis ,codigoVueloDosBis ,new EstadoAsiento("D"),precioDosBis ,ubicacionDosBis);
         
         asientosRioLa.add(asientoUnoBis);
         asientosRioLa.add(asientoDosBis);
@@ -140,6 +141,7 @@ public class AerolineaOceanicTest {
         vueloRioLosAngeles.agregarAsiento(asientoDosBis);
         userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
+        
         Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesBueLim)).thenReturn(asientosBueLim);
         
         Mockito.when(aerolineaOc.devolverAsiento(asientosDisponiblesRioLA)).thenReturn(asientosRioLa);
@@ -147,6 +149,9 @@ public class AerolineaOceanicTest {
         Mockito.when(aerolineaOc.asientosDisponibles(vueloBsAsLima,"Origen")).thenReturn(asientosDisponiblesBueLim);  
         
         Mockito.when(aerolineaOc.asientosDisponibles(vueloRioLosAngeles,"OrigenYDestino")).thenReturn(asientosDisponiblesRioLA);
+        
+        oceanicNoMokeda.agregarVueloYaCargado(vueloRioLosAngeles);
+        oceanicNoMokeda.agregarVueloYaCargado(vueloBsAsLima);
     }
 
 
@@ -251,5 +256,11 @@ public class AerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
+        
+        @Test
+        public void funcionaCompra() throws CodigoAsientoException, AsientoReservadoException{
+            oceanicNoMokeda.comprarAsiento("MLR123", userEstandar);
+            org.junit.Assert.assertEquals(String.valueOf(userEstandar.getPerfil().dineroGastado()),"872.5");
+        }
         
 }
