@@ -100,14 +100,14 @@ public class VueloTest {
         
         Mockito.when(aerolinea.devolverAsiento(asientosDisponiblesBueMad)).thenReturn(asientosBueMad);
         
-        Mockito.when(aerolinea.asientosDisponibles(vueloBsAsMadrid,"")).thenReturn(asientosDisponiblesBueMad);
+        Mockito.when(aerolinea.asientosDisponibles(vueloBsAsMadrid,null)).thenReturn(asientosDisponiblesBueMad);
 
         
     }
     
     @Test
     public void agregamosVueloAerolinea() throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
-        vueloBsAsMadrid.cargarAsientos(aerolinea,"");
+        vueloBsAsMadrid.cargarAsientos(aerolinea,null);
         LinkedList<Asiento> asientosVuelo = vueloBsAsMadrid.getAsientosVuelo();
 
         ClaseAsiento primeraClase = new ClaseAsiento("P");

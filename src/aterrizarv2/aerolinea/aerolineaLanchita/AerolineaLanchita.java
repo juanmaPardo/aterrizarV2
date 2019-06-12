@@ -1,6 +1,7 @@
 package aterrizarv2.aerolinea.aerolineaLanchita;
 
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.aerolinea.RequisitoCargaAsientos;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -45,7 +46,7 @@ public class AerolineaLanchita extends Aerolinea{
     
     
     @Override
-    public String[][] asientosDisponibles(Vuelo vuelo, String parametroNoInteresaEnLanchitaSoloParaPolimorfismo) {
+    public String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos noInteresa) {
         String origen = vuelo.getOrigen();
         String destino = vuelo.getDestino();
         String fechaSalida = vuelo.getFechaSalida();

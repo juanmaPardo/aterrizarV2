@@ -42,7 +42,7 @@ public abstract class Aerolinea{
         vuelos.add(vuelo);
     }
     
-    public void agregarVuelo(Vuelo vuelo,String tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
+    public void agregarVuelo(Vuelo vuelo,RequisitoCargaAsientos tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
         try {
             vuelo.cargarAsientos(this,tipoCarga);
             vuelos.add(vuelo);
@@ -153,7 +153,7 @@ public abstract class Aerolinea{
     
     public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
     
-    public abstract String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException;
+    public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
     
     public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     

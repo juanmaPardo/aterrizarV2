@@ -93,8 +93,8 @@ public class OrdenPorPopularidadTest {
         vueloRioLima = new Vuelo(origenRioJaneiro, destinoLima, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida12hs, horaLlegada21hs);
         
         
-        lanchitaNoMockeada.agregarVuelo(vueloBsAsMadrid, "");
-        lanchitaNoMockeada.agregarVuelo(vueloRioLima, "");
+        lanchitaNoMockeada.agregarVuelo(vueloBsAsMadrid, null);
+        lanchitaNoMockeada.agregarVuelo(vueloRioLima, null);
     
         
         userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );

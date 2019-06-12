@@ -1,6 +1,7 @@
 package aterrizarv2.aerolinea.aerolineaOceanic;
 
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.aerolinea.RequisitoCargaAsientos;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -59,14 +60,12 @@ public class AerolineaOceanic extends Aerolinea{
     
 
     @Override
-    public String[][] asientosDisponibles(Vuelo vuelo, String tipoPedido) throws TipoPedidoInvalidaException {
+    public String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException {
         String vueloOrigen = convertirFormatoCiudad(vuelo.getOrigen());
         String vueloDestino = convertirFormatoCiudad(vuelo.getDestino());
         String fechaSalida = vuelo.obtenerSalidaLatinoamericano();
-        if (tipoPedido != "Origen" && tipoPedido != "OrigenYDestino"){
-            throw new TipoPedidoInvalidaException("El tipo de pedido no existe");
-        }
-        if (tipoPedido == "Origen"){
+        
+        if (tipoPedido.getTipoCarga() == "Origen"){
             return comunicacionOceanic.asientosDisponiblesParaOrigen(vueloOrigen,fechaSalida);
         }
         else{
