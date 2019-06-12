@@ -18,30 +18,22 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 
-public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
+public class AerolineaLanchita extends Aerolinea{
+    private AerolineaLanchitaI comunicacionLanchita;
     
-    public AerolineaLanchita(){
+    public AerolineaLanchita(AerolineaLanchitaI comunicacionLanchita){
         //0,15 es el recargo de lanchita
         super(0.15,10);
+        this.comunicacionLanchita = comunicacionLanchita;
     }
     
-    @Override
-    public String[][] asientosDisponibles(String origen, String destino, String fechaSalida, String fechaLLegada, String horaSalida, String horaLlegada) {
-        return null;
-        //Implementado por el sistema, no nosotros
-    }
-
-    @Override
-    public void comprar(String codigoAsiento) {
-        //Implementado por el sistema, no nosotros
-    }
     
     @Override
     public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoAComprar.getAsiento();
         revisionesCompra(asiento,usuarioAComprar);
-        this.comprar(codigoAsiento);
+        comunicacionLanchita.comprar(codigoAsiento);
         postVentaCambioEstadoAsiento(asiento,usuarioAComprar);
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
@@ -60,7 +52,7 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
         String fechaLlegada = vuelo.getFechaLlegada();
         String horaSalida = vuelo.getHoraSalida();
         String horaLlegada = vuelo.getHoraLLegada();
-        return asientosDisponibles(origen,destino,fechaSalida,fechaLlegada,horaSalida,horaLlegada);
+        return comunicacionLanchita.asientosDisponibles(origen,destino,fechaSalida,fechaLlegada,horaSalida,horaLlegada);
     }
 
     @Override
@@ -78,18 +70,13 @@ public class AerolineaLanchita extends Aerolinea implements AerolineaLanchitaI{
     }
 
     @Override
-    public void reservar(String codigo, String dni) {
-         //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
         asiento.getAsiento().getEstado().reservarAsiento();
         usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();
         String dni = Integer.toString(usuarioReserva.getDni());
-        this.reservar(codigoVuelo, dni);
+        comunicacionLanchita.reservar(codigoVuelo, dni);
     }
 
     

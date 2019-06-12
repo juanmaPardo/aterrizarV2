@@ -22,11 +22,12 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 
-public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
-
+public class AerolineaOceanic extends Aerolinea{
+    private AerolineaOceanicI comunicacionOceanic;
     
-    public AerolineaOceanic() {
+    public AerolineaOceanic(AerolineaOceanicI comunicacionOceanic) {
         super(0.20,10);
+        this.comunicacionOceanic = comunicacionOceanic;
     }
 
     String convertirFormatoCiudad(String ciudad){
@@ -47,7 +48,7 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         revisionesCompra(asiento,usuario);
         Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuario.getDni());
-        this.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
+        comunicacionOceanic.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
         postVentaCambioEstadoAsiento(asiento,usuario);
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
@@ -66,10 +67,10 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
             throw new TipoPedidoInvalidaException("El tipo de pedido no existe");
         }
         if (tipoPedido == "Origen"){
-            return asientosDisponiblesParaOrigen(vueloOrigen,fechaSalida);
+            return comunicacionOceanic.asientosDisponiblesParaOrigen(vueloOrigen,fechaSalida);
         }
         else{
-            return asientosDisponiblesParaOrigenYDestino(vueloOrigen,fechaSalida, vueloDestino);
+            return comunicacionOceanic.asientosDisponiblesParaOrigenYDestino(vueloOrigen,fechaSalida, vueloDestino);
         }    
     }
 
@@ -93,31 +94,6 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
     }
 
     @Override
-    public String[][] asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String[][] asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, Integer numeroDeAsiento) {
-        return true;
-    }
-
-    @Override
-    public boolean reservar(String dni, String codigoVuelo, Integer numeroDeAsiento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         AsientoVueloFullData asientoEntero = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoEntero.getAsiento();
@@ -126,7 +102,7 @@ public class AerolineaOceanic extends Aerolinea implements AerolineaOceanicI{
         String codigoVuelo = asiento.getCodigo().getCodigo();
         Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuarioReserva.getDni());
-        this.reservar(dni,codigoVuelo,numeroAsiento);
+        comunicacionOceanic.reservar(dni,codigoVuelo,numeroAsiento);
     }
 
 }
