@@ -15,6 +15,7 @@ public class BuscarAsientos extends javax.swing.JFrame {
      * Creates new form BuscarAsientos
      */
     public BuscarAsientos() {
+        this.setTitle("Aterrizar.com");
         initComponents();
     }
 
@@ -27,55 +28,51 @@ public class BuscarAsientos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        mostrarErrores = new javax.swing.JTextField();
+        origen = new javax.swing.JLabel();
+        fecha = new javax.swing.JLabel();
+        destino = new javax.swing.JLabel();
+        botonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textoOrigen = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        textoDestino = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        textoFecha = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        resultadoBusqueda = new javax.swing.JTable();
+        botonComprar = new javax.swing.JButton();
+        botonReservar = new javax.swing.JButton();
+        botonCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel2.setText("Aterrizar.com");
-
-        jTextField1.setText("aca se deben mostrar los errores");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        mostrarErrores.setText("aca se deben mostrar los errores");
+        mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                mostrarErroresActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel1.setText("Origen:");
+        origen.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        origen.setText("Origen:");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel3.setText("Fecha:");
+        fecha.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        fecha.setText("Fecha:");
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel4.setText("Destino:");
+        destino.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        destino.setText("Destino:");
 
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton1.setText("Buscar");
+        botonBuscar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonBuscar.setText("Buscar");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(textoOrigen);
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(textoDestino);
 
-        jScrollPane3.setViewportView(jTextPane3);
+        jScrollPane3.setViewportView(textoFecha);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        resultadoBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -86,21 +83,21 @@ public class BuscarAsientos extends javax.swing.JFrame {
                 "Aerolinea", "Vuelo", "Asiento", "Precio", "Ubicacion", "Clase"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(resultadoBusqueda);
 
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton2.setText("Comprar");
+        botonComprar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonComprar.setText("Comprar");
 
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton3.setText("Reservar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botonReservar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonReservar.setText("Reservar");
+        botonReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonReservarActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton4.setText("Cerrar");
+        botonCerrar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonCerrar.setText("Cerrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,75 +106,72 @@ public class BuscarAsientos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(botonBuscar)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
+                                        .addComponent(fecha)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jScrollPane3))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
+                                        .addComponent(origen)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(63, 63, 63)
-                                .addComponent(jLabel4)
+                                .addComponent(destino)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(botonComprar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(botonReservar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(botonCerrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel4))
+                        .addComponent(origen)
+                        .addComponent(destino))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addComponent(fecha)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(jButton1)
+                .addComponent(botonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(botonComprar)
+                    .addComponent(botonReservar)
+                    .addComponent(botonCerrar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void mostrarErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarErroresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_mostrarErroresActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botonReservarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,22 +209,21 @@ public class BuscarAsientos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonCerrar;
+    private javax.swing.JButton botonComprar;
+    private javax.swing.JButton botonReservar;
+    private javax.swing.JLabel destino;
+    private javax.swing.JLabel fecha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextField mostrarErrores;
+    private javax.swing.JLabel origen;
+    private javax.swing.JTable resultadoBusqueda;
+    private javax.swing.JTextPane textoDestino;
+    private javax.swing.JTextPane textoFecha;
+    private javax.swing.JTextPane textoOrigen;
     // End of variables declaration//GEN-END:variables
 }

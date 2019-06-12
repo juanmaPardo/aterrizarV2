@@ -15,6 +15,7 @@ public class Sobrereservar extends javax.swing.JFrame {
      * Creates new form Sobrereservar
      */
     public Sobrereservar() {
+        this.setTitle("Aterrizar.com");
         initComponents();
     }
 
@@ -27,37 +28,46 @@ public class Sobrereservar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonSeguirBuscando = new javax.swing.JButton();
+        asiento = new javax.swing.JLabel();
+        nombreAsiento = new javax.swing.JLabel();
+        yaEstaReservado = new javax.swing.JLabel();
+        sobrereservar = new javax.swing.JButton();
+        queDeseaHacer = new javax.swing.JLabel();
+        botonSeguirBuscandoo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel1.setText("Aterrizar.com");
-
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel2.setText("El asiento");
-
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel3.setText("XXXXXX");
-
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel4.setText("ha sido comprado exitosamente");
-
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton1.setText("Seguir Buscando");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonSeguirBuscando.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonSeguirBuscando.setText("Seguir Buscando");
+        botonSeguirBuscando.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonSeguirBuscandoActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton2.setText("Sobrereservar");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        asiento.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        asiento.setText("El asiento");
+
+        nombreAsiento.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        nombreAsiento.setText("XXXXXX");
+
+        yaEstaReservado.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        yaEstaReservado.setText("ya se encuentra reservado");
+
+        sobrereservar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        sobrereservar.setText("Sobrereservar");
+
+        queDeseaHacer.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        queDeseaHacer.setText("¿Qué desea hacer?");
+
+        botonSeguirBuscandoo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        botonSeguirBuscandoo.setText("Seguir Buscando");
+        botonSeguirBuscandoo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSeguirBuscandooActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,44 +77,45 @@ public class Sobrereservar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(113, 113, 113))))
+                        .addComponent(sobrereservar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(botonSeguirBuscandoo))
+                    .addComponent(queDeseaHacer)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(asiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreAsiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(yaEstaReservado)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                    .addComponent(asiento)
+                    .addComponent(nombreAsiento)
+                    .addComponent(yaEstaReservado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(queDeseaHacer)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(sobrereservar)
+                    .addComponent(botonSeguirBuscandoo))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonSeguirBuscandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeguirBuscandoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonSeguirBuscandoActionPerformed
+
+    private void botonSeguirBuscandooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeguirBuscandooActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSeguirBuscandooActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,11 +153,12 @@ public class Sobrereservar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel asiento;
+    private javax.swing.JButton botonSeguirBuscando;
+    private javax.swing.JButton botonSeguirBuscandoo;
+    private javax.swing.JLabel nombreAsiento;
+    private javax.swing.JLabel queDeseaHacer;
+    private javax.swing.JButton sobrereservar;
+    private javax.swing.JLabel yaEstaReservado;
     // End of variables declaration//GEN-END:variables
 }
