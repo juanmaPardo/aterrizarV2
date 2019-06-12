@@ -15,6 +15,7 @@ public class Compras extends javax.swing.JFrame {
      * Creates new form Compras
      */
     public Compras() {
+        this.setTitle("Aterrizar.com");
         initComponents();
     }
 
@@ -27,23 +28,19 @@ public class Compras extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        compras = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        comprasUsuario = new javax.swing.JTable();
+        cierraVentana = new javax.swing.JButton();
+        nombreUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel1.setText("Compras de ");
+        compras.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        compras.setText("Compras de ");
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel2.setText("Aterrizar.com");
-
-        jTable1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        comprasUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        comprasUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -54,20 +51,20 @@ public class Compras extends javax.swing.JFrame {
                 "Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Salida");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Aerolinea");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Vuelo");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Asiento");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Precio");
+        jScrollPane1.setViewportView(comprasUsuario);
+        if (comprasUsuario.getColumnModel().getColumnCount() > 0) {
+            comprasUsuario.getColumnModel().getColumn(0).setHeaderValue("Salida");
+            comprasUsuario.getColumnModel().getColumn(1).setHeaderValue("Aerolinea");
+            comprasUsuario.getColumnModel().getColumn(2).setHeaderValue("Vuelo");
+            comprasUsuario.getColumnModel().getColumn(3).setHeaderValue("Asiento");
+            comprasUsuario.getColumnModel().getColumn(4).setHeaderValue("Precio");
         }
 
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton1.setText("Cerrar");
+        cierraVentana.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cierraVentana.setText("Cerrar");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel3.setText("XXXXXX");
+        nombreUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        nombreUsuario.setText("XXXXXX");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,28 +74,25 @@ public class Compras extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cierraVentana)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(compras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jButton1))
+                        .addComponent(nombreUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
+                    .addComponent(compras)
+                    .addComponent(nombreUsuario))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(cierraVentana)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,11 +134,10 @@ public class Compras extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton cierraVentana;
+    private javax.swing.JLabel compras;
+    private javax.swing.JTable comprasUsuario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel nombreUsuario;
     // End of variables declaration//GEN-END:variables
 }
