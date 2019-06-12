@@ -3,6 +3,7 @@ package aterrizarv2.aerolinea.aerolineaLanchita;
 
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
+import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.CodigoAsiento;
@@ -40,8 +41,8 @@ import org.mockito.Mockito;
 public class AerolineaLanchitaTest {
     Vuelo vueloRioLima;
     Vuelo vueloBsAsMadrid;
-    AerolineaLanchita aerolinea;
     AerolineaLanchita lanchitaNoMockeada;
+    AerolineaLanchitaI lanchitaMockeada;
     UsuarioPaga userVip;
     UsuarioNoPaga userEstandar;
     FechaFlexible fechaSalida1Junio2018;
@@ -52,7 +53,7 @@ public class AerolineaLanchitaTest {
     
     
     @Before
-    public void setUp() throws DniInvalidoException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException, FormatoHoraIncorrectoException, HoraInvalidaException {
+    public void setUp() throws DniInvalidoException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException {
         String origenBuenosAires = "BUE";
         String destinoMadrid = "MAD";
         String origenRioJaneiro = "RIO";
@@ -65,19 +66,20 @@ public class AerolineaLanchitaTest {
         Hora horaLlegada11hs = new Hora("11:30");
         Hora horaSalida12hs = new Hora("12:20");
         Hora horaLlegada21hs = new Hora("21:15");
+
+        lanchitaMockeada = Mockito.mock(AerolineaLanchitaI.class);
+        lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
-        
-        aerolinea = Mockito.mock(AerolineaLanchita.class);
         
         String[][] asientosDisponiblesBueMad = {{"EC0344-42","565.60","P","P","D"}, {"EC0344-66","365.60","T","E","D"}};
         String[][] asientosDisponiblesRioLim = {{"EC0LAM-12","4555.60","P","P","D"}, {"EC0LAM-13","3665.60","T","E","D"}};
         
         
-        Mockito.when(aerolinea.asientosDisponibles("BUE", "MAD", fechaSalida1Junio2018.representacionEnIso(), 
+        Mockito.when(lanchitaMockeada.asientosDisponibles("BUE", "MAD", fechaSalida1Junio2018.representacionEnIso(), 
                 fechaLlegada2Junio2018.representacionEnIso(), horaSalida23hs.getHoraFormatoString(), 
                 horaLlegada11hs.getHoraFormatoString())).thenReturn(asientosDisponiblesBueMad);
         
-        Mockito.when(aerolinea.asientosDisponibles("RIO", "LIM", fechaSalida13Noviembre2018.representacionEnIso(), 
+        Mockito.when(lanchitaMockeada.asientosDisponibles("RIO", "LIM", fechaSalida13Noviembre2018.representacionEnIso(), 
                 fechaLlegada13Noviembre2018.representacionEnIso(), horaSalida12hs.getHoraFormatoString(), 
                 horaLlegada21hs.getHoraFormatoString())).thenReturn(asientosDisponiblesRioLim);
 
@@ -86,75 +88,17 @@ public class AerolineaLanchitaTest {
         vueloRioLima = new Vuelo(origenRioJaneiro, destinoLima, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida12hs, horaLlegada21hs);
         
         
-        LinkedList<Asiento> asientosBueMad = new LinkedList<>();
-        
-        CodigoAsiento codigo = new CodigoAsiento(asientosDisponiblesBueMad[0][0]);
-        PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosDisponiblesBueMad[0][1]));
-        ClaseAsiento clase = new ClaseAsiento(asientosDisponiblesBueMad[0][2]);
-        UbicacionAsiento ubicacion = new UbicacionAsiento(asientosDisponiblesBueMad[0][3]);
-        EstadoAsiento estado = new EstadoAsiento(asientosDisponiblesBueMad[0][4]);
-        Asiento asientoUno = new Asiento(clase, codigo, estado, precio, ubicacion);
-        
-        CodigoAsiento codigoDos = new CodigoAsiento(asientosDisponiblesBueMad[1][0]);
-        PrecioAsiento precioDos = new PrecioAsiento(Double.parseDouble(asientosDisponiblesBueMad[1][1]));
-        ClaseAsiento claseDos = new ClaseAsiento(asientosDisponiblesBueMad[1][2]);
-        UbicacionAsiento ubicacionDos = new UbicacionAsiento(asientosDisponiblesBueMad[1][3]);
-        EstadoAsiento estadoDos = new EstadoAsiento(asientosDisponiblesBueMad[1][4]);
-        Asiento asientoDos = new Asiento(claseDos, codigoDos, estadoDos, precioDos, ubicacionDos);
-        
-        asientosBueMad.add(asientoUno);
-        asientosBueMad.add(asientoDos);
-        
-        Mockito.when(aerolinea.devolverAsiento(asientosDisponiblesBueMad)).thenReturn(asientosBueMad);
-        
-        
-        LinkedList<Asiento> asientosRioLim = new LinkedList<>();
-        
-        CodigoAsiento codigoTres = new CodigoAsiento(asientosDisponiblesRioLim[0][0]);
-        PrecioAsiento precioTres = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLim[0][1]));
-        ClaseAsiento claseTres = new ClaseAsiento(asientosDisponiblesRioLim[0][2]);
-        UbicacionAsiento ubicacionTres = new UbicacionAsiento(asientosDisponiblesRioLim[0][3]);
-        EstadoAsiento estadoTres = new EstadoAsiento(asientosDisponiblesRioLim[0][4]);
-        Asiento asientoTres = new Asiento(claseTres, codigoTres, estadoTres, precioTres, ubicacionTres);
-        
-        CodigoAsiento codigoCuatro = new CodigoAsiento(asientosDisponiblesRioLim[1][0]);
-        PrecioAsiento precioCuatro = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLim[0][1]));
-        ClaseAsiento claseCuatro = new ClaseAsiento(asientosDisponiblesRioLim[1][2]);
-        UbicacionAsiento ubicacionCuatro = new UbicacionAsiento(asientosDisponiblesRioLim[1][3]);
-        EstadoAsiento estadoCuatro = new EstadoAsiento(asientosDisponiblesRioLim[1][4]);
-        Asiento asientoCuatro = new Asiento(claseCuatro, codigoCuatro, estadoCuatro, precioCuatro, ubicacionCuatro);
-        
-        asientosRioLim.add(asientoTres);
-        asientosRioLim.add(asientoCuatro);
-        
-        Mockito.when(aerolinea.devolverAsiento(asientosDisponiblesBueMad)).thenReturn(asientosBueMad);
-        Mockito.when(aerolinea.devolverAsiento(asientosDisponiblesRioLim)).thenReturn(asientosRioLim);
-        
-        
-        
-        Mockito.when(aerolinea.asientosDisponibles(vueloBsAsMadrid,"")).thenReturn(asientosDisponiblesBueMad);
-        Mockito.when(aerolinea.asientosDisponibles(vueloRioLima,"")).thenReturn(asientosDisponiblesRioLim);
-        
-        
-        vueloBsAsMadrid.cargarAsientos(aerolinea,"");
-        vueloRioLima.cargarAsientos(aerolinea,"");
-        
-        
-        LinkedList<Vuelo> vuelosRetorno = new LinkedList<>();
-        vuelosRetorno.add(vueloBsAsMadrid);
-        vuelosRetorno.add(vueloRioLima);
-        Mockito.when(aerolinea.getVuelos()).thenReturn(vuelosRetorno);
+        lanchitaNoMockeada.agregarVuelo(vueloBsAsMadrid, "");
+        lanchitaNoMockeada.agregarVuelo(vueloRioLima, "");
+    
         
         userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );
         userVip.efectuarCompra(200000);
         userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
         aterrizar = new AterrizarV2();
-        aterrizar.agregarAerolinea(aerolinea);
-        
-        lanchitaNoMockeada = new AerolineaLanchita();
-        lanchitaNoMockeada.agregarVueloYaCargado(vueloRioLima);
-        lanchitaNoMockeada.agregarVueloYaCargado(vueloBsAsMadrid);
+        aterrizar.agregarAerolinea(lanchitaNoMockeada);
+
     }
     
     @Test
