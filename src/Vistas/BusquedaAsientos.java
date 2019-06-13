@@ -1,24 +1,65 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
-/**
- *
- * @author santi
- */
-public class BuscarAsientos extends javax.swing.JFrame {
+import aterrizarv2.AterrizarV2;
+import aterrizarv2.vuelos.AsientoVueloFullData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form BuscarAsientos
-     */
-    public BuscarAsientos() {
+public class BusquedaAsientos extends javax.swing.JFrame {
+    
+    public BusquedaAsientos() {
         this.setTitle("Aterrizar.com");
+        this.setResizable(false);
         initComponents();
+        agregarFuncionalidadBotones();
     }
-
+    
+    public void agregarFuncionalidadBotones(){
+        agregarFuncionalidadBotonCierra();
+    }
+    
+    public void agregarFuncionalidadBotonCierra(){
+        botonCerrar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               cerrarVentana();
+            }
+        });
+    }
+    
+    public void agregarFuncionalidadBotonBuscar(ActionListener eventoBusqueda){
+        botonBuscar.addActionListener(eventoBusqueda);
+    }
+    
+    public void cambiarTextoTextField(String texto){
+        mostrarErrores.setText(texto);
+    }
+    
+    public void rellenarTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
+        DefaultTableModel modelo = (DefaultTableModel) resultadoBusqueda.getModel();
+        Object[] filaAgregar = {aerolinea,vuelo,nroAsiento,precio,ubicacion,clase};
+        modelo.addRow(filaAgregar);
+    }
+   
+    
+    public String obtenerTextoOrigen(){
+        return this.textoOrigen.getText();
+    }
+    
+    public String obtenerTextoDestino(){
+        return this.textoDestino.getText();
+    }
+    
+    public String obtenerTextoFecha(){
+        return this.textoFecha.getText();
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +75,9 @@ public class BuscarAsientos extends javax.swing.JFrame {
         destino = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textoOrigen = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
         textoDestino = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoOrigen = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         textoFecha = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -45,7 +86,7 @@ public class BuscarAsientos extends javax.swing.JFrame {
         botonReservar = new javax.swing.JButton();
         botonCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         mostrarErrores.setText("aca se deben mostrar los errores");
         mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
@@ -66,18 +107,15 @@ public class BuscarAsientos extends javax.swing.JFrame {
         botonBuscar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         botonBuscar.setText("Buscar");
 
-        jScrollPane1.setViewportView(textoOrigen);
+        jScrollPane1.setViewportView(textoDestino);
 
-        jScrollPane2.setViewportView(textoDestino);
+        jScrollPane2.setViewportView(textoOrigen);
 
         jScrollPane3.setViewportView(textoFecha);
 
         resultadoBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Aerolinea", "Vuelo", "Asiento", "Precio", "Ubicacion", "Clase"
@@ -112,19 +150,19 @@ public class BuscarAsientos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonBuscar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(fecha)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane3))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(origen)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(63, 63, 63)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(43, 43, 43)
                                 .addComponent(destino)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonComprar)
@@ -140,17 +178,17 @@ public class BuscarAsientos extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(origen)
                         .addComponent(destino))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fecha)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,20 +228,21 @@ public class BuscarAsientos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaAsientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarAsientos().setVisible(true);
+                new BusquedaAsientos().setVisible(true);
             }
         });
     }

@@ -1,24 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
-/**
- *
- * @author santi
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+
+
 public class Reservas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Reservas
-     */
+    
     public Reservas() {
         this.setTitle("Aterrizar.com");
+        this.setResizable(false);
         initComponents();
+        agregarFuncionalidadBotonCierra();
     }
-
+    
+    public Reservas(String nombreUser) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        setearNombreUsuario(nombreUser);
+        agregarFuncionalidadBotonCierra();
+    }
+    
+    public void agregarFuncionalidadBotonCierra(){
+        botonCerrar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               cerrarVentana();
+            }
+        });
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
+    }
+    
+    private void setearNombreUsuario(String nombreUser){
+        this.nombreUsuario.setText(nombreUser);
+    }
+    
+    public void rellenarFilaReservados(String fechaSalida, String aerolinea, String codigoVuelo, String nroAsiento, String precio){
+        DefaultTableModel modelo = (DefaultTableModel) reservasUsuario.getModel();
+        Object[] filaAgregar = {fechaSalida,aerolinea,codigoVuelo,nroAsiento,precio};
+        modelo.addRow(filaAgregar);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +62,7 @@ public class Reservas extends javax.swing.JFrame {
         botonCerrar = new javax.swing.JButton();
         nombreUsuario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         reservas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         reservas.setText("Reservas de ");
@@ -42,10 +70,7 @@ public class Reservas extends javax.swing.JFrame {
         reservasUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         reservasUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"

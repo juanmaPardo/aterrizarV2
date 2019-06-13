@@ -45,22 +45,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="botonCompra" min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botonCompra" min="-2" pref="136" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="botonReservas" pref="122" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botonReservas" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
               <Component id="botonAsientos" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="nombreUsuario" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelDeseaHacer" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="hola" min="-2" pref="39" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="queQuiereHacer" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreUsuario" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -73,11 +73,11 @@
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="hola" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="queQuiereHacer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="nombreUsuario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Component id="labelDeseaHacer" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="66" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" max="-2" attributes="0">
                   <Component id="botonAsientos" alignment="3" max="32767" attributes="0"/>
                   <Component id="botonReservas" alignment="3" max="32767" attributes="0"/>
@@ -121,7 +121,7 @@
         <Property name="text" type="java.lang.String" value="Hola"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="nombreUsuario">
+    <Component class="javax.swing.JLabel" name="labelDeseaHacer">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="14" style="0"/>
@@ -129,7 +129,7 @@
         <Property name="text" type="java.lang.String" value="&#xbf;Qu&#xe9; desea hacer?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="queQuiereHacer">
+    <Component class="javax.swing.JLabel" name="nombreUsuario">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>

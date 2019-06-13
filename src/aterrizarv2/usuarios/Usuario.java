@@ -73,4 +73,14 @@ public abstract class Usuario {
     public void eliminarAsientoReservado(Asiento asiento) {
         asientosReservados.remove(asiento);
     }
+
+    public LinkedList<Asiento> getAsientosComprados() {
+        return asientosComprados;
+    }
+
+    public LinkedList<Asiento> getAsientosReservados() {
+        return asientosReservados;
+    }
+    
+    
 }

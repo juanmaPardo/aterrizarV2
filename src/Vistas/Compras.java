@@ -1,24 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
-/**
- *
- * @author santi
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+
+
 public class Compras extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Compras
-     */
+    
     public Compras() {
         this.setTitle("Aterrizar.com");
+        this.setResizable(false);
         initComponents();
+        agregarFuncionalidadBotonCierra();
+    }
+    
+    public Compras(String nombreUser) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        setearNombreUsuario(nombreUser);
+        agregarFuncionalidadBotonCierra();
+    }
+    
+    public void agregarFuncionalidadBotonCierra(){
+        cierraVentana.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               cerrarVentana();
+            }
+        });
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
+    }
+    
+    public void rellenarFilaComprados(String fechaSalida, String aerolinea, String codigoVuelo, String nroAsiento, String precio){
+        DefaultTableModel modelo = (DefaultTableModel) comprasUsuario.getModel();
+        Object[] filaAgregar = {fechaSalida,aerolinea,codigoVuelo,nroAsiento,precio};
+        modelo.addRow(filaAgregar);
+    }
+    
+    private void setearNombreUsuario(String nombreUser){
+        this.nombreUsuario.setText(nombreUser);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +63,7 @@ public class Compras extends javax.swing.JFrame {
         cierraVentana = new javax.swing.JButton();
         nombreUsuario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         compras.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         compras.setText("Compras de ");
@@ -42,23 +71,13 @@ public class Compras extends javax.swing.JFrame {
         comprasUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         comprasUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
             }
         ));
         jScrollPane1.setViewportView(comprasUsuario);
-        if (comprasUsuario.getColumnModel().getColumnCount() > 0) {
-            comprasUsuario.getColumnModel().getColumn(0).setHeaderValue("Salida");
-            comprasUsuario.getColumnModel().getColumn(1).setHeaderValue("Aerolinea");
-            comprasUsuario.getColumnModel().getColumn(2).setHeaderValue("Vuelo");
-            comprasUsuario.getColumnModel().getColumn(3).setHeaderValue("Asiento");
-            comprasUsuario.getColumnModel().getColumn(4).setHeaderValue("Precio");
-        }
 
         cierraVentana.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         cierraVentana.setText("Cerrar");
@@ -70,16 +89,19 @@ public class Compras extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cierraVentana)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(compras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreUsuario)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cierraVentana)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(compras)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombreUsuario)))
+                        .addGap(0, 220, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,9 +110,9 @@ public class Compras extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compras)
                     .addComponent(nombreUsuario))
-                .addGap(30, 30, 30)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addComponent(cierraVentana)
                 .addContainerGap(23, Short.MAX_VALUE))
         );

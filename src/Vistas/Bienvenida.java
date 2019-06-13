@@ -1,22 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
-/**
- *
- * @author santi
- */
+import java.awt.event.ActionListener;
+
+
 public class Bienvenida extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Birnvenida
-     */
+    
     public Bienvenida() {
         this.setTitle("Aterrizar.com");
+        this.setResizable(false);
         initComponents();
+        this.setVisible(true);
+    }
+    
+    public Bienvenida(String nombreUser) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        setearNombreUsuario(nombreUser);
+        this.setVisible(true);
+    }
+    
+    private void setearNombreUsuario(String nombreUser){
+        this.nombreUsuario.setText(nombreUser);
+    }
+    
+    public void agregarAbridorCompras(ActionListener eventoBotonCompras){
+        this.botonCompra.addActionListener(eventoBotonCompras);
+    }
+    
+    public void agregarAbridorReservas(ActionListener eventoBotonReservas){
+        this.botonReservas.addActionListener(eventoBotonReservas);
+    }
+    
+    public void agregarAbridorBusquedas(ActionListener eventoBotonBusqueda){
+        this.botonAsientos.addActionListener(eventoBotonBusqueda);
     }
 
     /**
@@ -34,8 +52,8 @@ public class Bienvenida extends javax.swing.JFrame {
         botonReservas = new javax.swing.JButton();
         botonAsientos = new javax.swing.JButton();
         hola = new javax.swing.JLabel();
+        labelDeseaHacer = new javax.swing.JLabel();
         nombreUsuario = new javax.swing.JLabel();
-        queQuiereHacer = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -62,31 +80,31 @@ public class Bienvenida extends javax.swing.JFrame {
         hola.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         hola.setText("Hola");
 
-        nombreUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        nombreUsuario.setText("¿Qué desea hacer?");
+        labelDeseaHacer.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        labelDeseaHacer.setText("¿Qué desea hacer?");
 
-        queQuiereHacer.setText("Nombre");
+        nombreUsuario.setText("Nombre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(botonCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(botonCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(botonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(botonReservas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(botonAsientos)
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreUsuario)
+                    .addComponent(labelDeseaHacer)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(hola, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queQuiereHacer)))
+                        .addComponent(nombreUsuario)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,10 +113,10 @@ public class Bienvenida extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hola)
-                    .addComponent(queQuiereHacer))
+                    .addComponent(nombreUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(labelDeseaHacer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(botonAsientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,7 +170,7 @@ public class Bienvenida extends javax.swing.JFrame {
     private javax.swing.JLabel hola;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel labelDeseaHacer;
     private javax.swing.JLabel nombreUsuario;
-    private javax.swing.JLabel queQuiereHacer;
     // End of variables declaration//GEN-END:variables
 }

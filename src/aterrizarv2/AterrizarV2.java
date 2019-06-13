@@ -1,6 +1,7 @@
 package aterrizarv2;
 
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -25,6 +26,10 @@ public class AterrizarV2 {
         aerolineas = new LinkedList<>();
         usuarios = new LinkedList<>();
         asientosSobrerreservados = new TreeMap <>();
+    }
+
+    public LinkedList<Aerolinea> getAerolineas() {
+        return aerolineas;
     }
     
     public void agregarAerolinea(Aerolinea aerolinea){
@@ -106,4 +111,18 @@ public class AterrizarV2 {
         return aerolinea.obtenerAsiento(codigoAsiento).getAsiento();
     }
  
+    public String obtenerAerolineaAsiento(String codigoAsiento){
+        Aerolinea aerolinea = obtenerAerolineaTieneAsiento(codigoAsiento);
+        if(aerolinea instanceof AerolineaLanchita){
+            return "Lanchita";
+        }
+        else{
+            return "Oceanic";
+        }
+    }
+    
+    public String obtenerFechaSalidaAsiento(String codigoAsiento) throws CodigoAsientoException{
+        Aerolinea aerolinea = obtenerAerolineaTieneAsiento(codigoAsiento);
+        return aerolinea.obtenerFechaSalidaAsiento(codigoAsiento);
+    }
 }

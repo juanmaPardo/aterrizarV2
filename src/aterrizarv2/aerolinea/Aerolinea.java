@@ -151,6 +151,14 @@ public abstract class Aerolinea{
         }
     }
     
+    public TreeMap<String, Integer> getAsientosVendidosVuelo() {
+        return asientosVendidosVuelo;
+    }
+    
+    public String obtenerFechaSalidaAsiento(String codigoAsiento) throws CodigoAsientoException{
+        return obtenerAsiento(codigoAsiento).getFechaSalida().representacionEnIso();
+    }
+    
     public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
@@ -158,9 +166,5 @@ public abstract class Aerolinea{
     public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
 
-    public TreeMap<String, Integer> getAsientosVendidosVuelo() {
-        return asientosVendidosVuelo;
-    }
-    
     
 }

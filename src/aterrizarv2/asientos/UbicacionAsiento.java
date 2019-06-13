@@ -24,6 +24,17 @@ public class UbicacionAsiento {
         }
     }
 
+    public String ubicacionFormatoString(){
+        if(ubicacionAsiento == EnumUbicacionAsiento.PASILLO){
+            return "P";
+        }
+        else if(ubicacionAsiento == EnumUbicacionAsiento.CENTRO){
+            return "C";
+        }
+        return "E";
+       
+    }
+    
     public EnumUbicacionAsiento getUbicacionAsiento() {
         return ubicacionAsiento;
     }

@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
-/**
- *
- * @author santi
- */
+
 public class ErrorCompra extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ErrorCompra
-     */
+   
     public ErrorCompra() {
         this.setTitle("Aterrizar.com");
+        this.setResizable(false);
         initComponents();
     }
 
@@ -33,7 +24,7 @@ public class ErrorCompra extends javax.swing.JFrame {
         intenteNuevamente = new javax.swing.JLabel();
         botonAceptar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         errorEnCompra.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         errorEnCompra.setText("Ha ocurrido un error en su compra:");

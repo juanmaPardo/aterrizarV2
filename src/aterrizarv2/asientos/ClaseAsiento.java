@@ -24,7 +24,18 @@ public class ClaseAsiento {
             throw new ClaseAsientoInvalidaException("El acronimo especificado no hace referencia a ninguna clase de asiento valida");
         }
     }
-
+    
+    public String claseFormatoString(){
+        if(claseAsiento == EnumClaseAsiento.EJECUTIVO){
+            return "E";
+        }
+        else if(claseAsiento == EnumClaseAsiento.TURISTA){
+            return "T";
+        }
+        return "P";
+       
+    }
+    
     public EnumClaseAsiento getClaseAsiento() {
         return claseAsiento;
     }
