@@ -26,7 +26,8 @@ import org.mockito.Mockito;
 public class ComienzoPrograma {
     
     public static void main(String[] args) throws DniInvalidoException, FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException, TipoPedidoInvalidaException, CodigoAsientoException, AsientoReservadoException {
-        UsuarioNoPaga usuario = new UsuarioNoPaga("Juan Manuel", "Pardo", 11111111);
+        UsuarioPaga usuario = new UsuarioPaga("Juan Manuel", "Pardo", 1111111, 350);
+        usuario.efectuarCompra(500000);
         AterrizarV2 aterrizar = setearAterrizarDummy();
         efectuarDosCompras(aterrizar,usuario);
         reservarUnAsiento(aterrizar,usuario);
@@ -88,12 +89,12 @@ public class ComienzoPrograma {
     }
     
     
-    public static void reservarUnAsiento(AterrizarV2 aterrizar, UsuarioNoPaga usuario) throws CodigoAsientoException{
+    public static void reservarUnAsiento(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException{
         Aerolinea aerolinea = aterrizar.getAerolineas().get(0);
         aerolinea.reservarAsiento("EC0LAM-12", usuario);
     }
     
-    public static void efectuarDosCompras(AterrizarV2 aterrizar, UsuarioNoPaga usuario) throws CodigoAsientoException, AsientoReservadoException{
+    public static void efectuarDosCompras(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException, AsientoReservadoException{
         Aerolinea aerolinea = aterrizar.getAerolineas().get(0);
         aerolinea.comprarAsiento("EC0344-42", usuario);
         aerolinea.comprarAsiento("EC0344-66", usuario);

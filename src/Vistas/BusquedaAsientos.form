@@ -101,7 +101,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="mostrarErrores">
       <Properties>
-        <Property name="text" type="java.lang.String" value="aca se deben mostrar los errores"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrarErroresActionPerformed"/>

@@ -51,7 +51,12 @@ public class BusquedaModel {
                 String destino = busqueda.obtenerTextoDestino();
                 String fecha = busqueda.obtenerTextoFecha();
                 List<AsientoVueloFullData> disponibles = obtenerAsientosDisponibles(origen,destino,fecha);
-                rellenarConDisponibles(disponibles);
+                if(disponibles.size() != 0){
+                    rellenarConDisponibles(disponibles);
+                }
+                else{
+                    busqueda.cambiarTextoTextField("No se encontro ningun asiento con estos parametros");
+                }
             } catch (FormatoFechaIncorrectoException | FechaNoValidaException | ParametrosInsuficienteException ex) {
                 busqueda.cambiarTextoTextField(ex.getMessage());
             }

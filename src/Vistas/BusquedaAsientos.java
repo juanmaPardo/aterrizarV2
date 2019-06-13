@@ -35,6 +35,7 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     
     public void cambiarTextoTextField(String texto){
         mostrarErrores.setText(texto);
+ 
     }
     
     public void rellenarTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
@@ -88,7 +89,7 @@ public class BusquedaAsientos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        mostrarErrores.setText("aca se deben mostrar los errores");
+        mostrarErrores.setEnabled(false);
         mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarErroresActionPerformed(evt);
