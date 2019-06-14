@@ -1,9 +1,6 @@
 package modeloVistas;
 
 import Vistas.BusquedaAsientos;
-import Vistas.ErrorReserva;
-import Vistas.ReservaExitosa;
-import Vistas.Sobrereservar;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.busquedas.exceptionesBusqueda.ParametrosInsuficienteException;
@@ -18,10 +15,7 @@ import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class BusquedaModel {
@@ -58,7 +52,7 @@ public class BusquedaModel {
                     busqueda.cambiarTextoTextField("No se encontro ningun asiento con estos parametros");
                 }
             } catch (FormatoFechaIncorrectoException | FechaNoValidaException | ParametrosInsuficienteException ex) {
-                busqueda.cambiarTextoTextField(ex.getMessage());
+                busqueda.cambiarTextoTextField("No se cumple con el formato fecha");
             }
         }
         
@@ -87,5 +81,6 @@ public class BusquedaModel {
       
     public void display(){
         this.busqueda.setVisible(true);
+        this.busqueda.setLocation(500, 200);
     }
 }

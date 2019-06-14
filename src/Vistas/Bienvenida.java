@@ -11,6 +11,7 @@ public class Bienvenida extends javax.swing.JFrame {
         this.setResizable(false);
         initComponents();
         this.setVisible(true);
+        this.setLocation(500, 200);
     }
     
     public Bienvenida(String nombreUser) {
@@ -19,6 +20,8 @@ public class Bienvenida extends javax.swing.JFrame {
         initComponents();
         setearNombreUsuario(nombreUser);
         this.setVisible(true);
+        this.setLocation(500, 200);
+
     }
     
     private void setearNombreUsuario(String nombreUser){

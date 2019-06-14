@@ -2,6 +2,7 @@ package aterrizarv2.vuelos;
 
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.RequisitoCargaAsientos;
+import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
@@ -88,6 +89,5 @@ public class Vuelo {
     public String getHoraLLegada() {
         return horaLlegada.getHoraFormatoString();
     }
-    
     
 }

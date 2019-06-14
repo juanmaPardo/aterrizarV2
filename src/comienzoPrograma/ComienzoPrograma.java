@@ -15,11 +15,9 @@ import aterrizarv2.hora.Hora;
 import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
 import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.DniInvalidoException;
-import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.usuarios.UsuarioPaga;
 import aterrizarv2.vuelos.Vuelo;
 import modeloVistas.BienvenidaModel;
-import modeloVistas.ComprasModel;
 import org.mockito.Mockito;
 
 

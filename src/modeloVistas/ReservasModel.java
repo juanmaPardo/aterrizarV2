@@ -47,5 +47,6 @@ public class ReservasModel {
   
     public void display(){
         this.vistaReservas.setVisible(true);
+        this.vistaReservas.setLocation(500, 200);
     }
 }

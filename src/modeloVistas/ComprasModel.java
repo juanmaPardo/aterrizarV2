@@ -42,6 +42,7 @@ public class ComprasModel {
     
     public void display(){
         this.vistaCompras.setVisible(true);
+        this.vistaCompras.setLocation(500, 200);
     }
     
     
