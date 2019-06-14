@@ -106,7 +106,7 @@ public class VueloTest {
     }
     
     @Test
-    public void agregamosVueloAerolinea() throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
+    public void agregamosVueloAerolinea() throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException, FormatoHoraIncorrectoException, HoraInvalidaException{
         vueloBsAsMadrid.cargarAsientos(aerolinea,null);
         LinkedList<Asiento> asientosVuelo = vueloBsAsMadrid.getAsientosVuelo();
 
