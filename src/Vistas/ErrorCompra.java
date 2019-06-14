@@ -1,5 +1,8 @@
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class ErrorCompra extends javax.swing.JFrame {
 
@@ -8,6 +11,26 @@ public class ErrorCompra extends javax.swing.JFrame {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
+    }
+    
+    public ErrorCompra(String fallo) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        errorEnCompra.setText(fallo);
+        botonAceptar.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                cerrarVentana();
+            }
+            
+        });
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
     }
 
     /**

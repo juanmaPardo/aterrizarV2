@@ -1,6 +1,9 @@
 
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class ErrorReserva extends javax.swing.JFrame {
 
@@ -9,6 +12,27 @@ public class ErrorReserva extends javax.swing.JFrame {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
+    }
+    
+    public ErrorReserva(String mensajeError) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        errorReserva.setText(mensajeError);
+        botonAceptar.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                cerrarVentana();
+            }
+            
+        });
+        
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
     }
 
     /**

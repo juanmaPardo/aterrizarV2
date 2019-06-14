@@ -39,13 +39,16 @@ public class BusquedaModel {
     private BusquedaAsientos busqueda;
     private Usuario usuarioBusca;
     private AterrizarV2 pagina;
+    private ActualizadorVistas actualizador;
 
-    public BusquedaModel(Usuario usuarioBusca, AterrizarV2 pagina) {
+    public BusquedaModel(Usuario usuarioBusca, AterrizarV2 pagina,ActualizadorVistas actualizador) {
         this.usuarioBusca = usuarioBusca;
         this.pagina = pagina;
         this.busqueda = new BusquedaAsientos();
         this.busqueda.agregarFuncionalidadBotonBuscar(new ObtieneBusquedas());
         this.busqueda.agregarFuncionalidadBotonComprar(new CompraAsiento());
+        this.busqueda.agregarFuncionalidadBotonReserva(new ReservaAsiento());
+        this.actualizador = actualizador;
     }
     
     class CompraAsiento implements ActionListener{
@@ -59,24 +62,60 @@ public class BusquedaModel {
                     String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
                     Aerolinea aerolinea = pagina.obtenerAerolineaTieneAsiento(codigoAsiento);
                     aerolinea.comprarAsiento(codigoAsiento, usuarioBusca);
-                    displayExitoCompra();
+                    displayExitoCompra(codigoAsiento);
+                    actualizador.actualizarVistas();
                 } catch (CodigoAsientoException | AsientoReservadoException ex) {
-                    displayErrorCompra();
+                    displayErrorCompra(ex.getMessage());
                 }
             }
             else{
-                busqueda.cambiarTextoTextField("No se selecciono ningun asiento a comprar.");
+                //Aca no va a llegar nunca en realidad, pero bueno, se deja 
+                displayErrorCompra("No se selecciono ningun asiento a comprar.");
             }
         }
         
-        public void displayExitoCompra(){
-            CompraExitosa exitoCompra = new CompraExitosa();
+        public void displayExitoCompra(String codigoAsiento){
+            CompraExitosa exitoCompra = new CompraExitosa(codigoAsiento);
             exitoCompra.setVisible(true);
         }
         
-        public void displayErrorCompra(){
-            ErrorCompra exitoCompra = new ErrorCompra();
+        public void displayErrorCompra(String mensajeFallo){
+            ErrorCompra exitoCompra = new ErrorCompra(mensajeFallo);
             exitoCompra.setVisible(true);
+        }
+    }
+    
+    class ReservaAsiento implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(busqueda.seSeleccionoFila()){
+                try {
+                    String codigoVuelo = busqueda.obtenerCodigoVueloFilaSeleccionada();
+                    String numeroAsiento = busqueda.obtenerNumeroAsientoFilaSeleccionada();
+                    String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
+                    Aerolinea aerolinea = pagina.obtenerAerolineaTieneAsiento(codigoAsiento);
+                    aerolinea.reservarAsiento(codigoAsiento, usuarioBusca);
+                    displayExitoReserva(codigoAsiento);
+                    actualizador.actualizarVistas();
+                } catch (CodigoAsientoException ex) {
+                    displayErrorReserva(ex.getMessage());
+                }
+            }
+            else{
+                //Aca no va a llegar nunca en realidad, pero bueno, se deja 
+                displayErrorReserva("No se selecciono ningun asiento a comprar.");
+            }
+        }
+        
+        public void displayExitoReserva(String codigoAsiento){
+            ReservaExitosa exitoReserva = new ReservaExitosa(codigoAsiento);
+            exitoReserva.setVisible(true);
+        }
+        
+        public void displayErrorReserva(String mensajeFallo){
+            ErrorReserva falloReserva = new ErrorReserva(mensajeFallo);
+            falloReserva.setVisible(true);
         }
     }
     
@@ -85,6 +124,7 @@ public class BusquedaModel {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
+                busqueda.eliminarCeldasTabla();
                 String origen = busqueda.obtenerTextoOrigen();
                 String destino = busqueda.obtenerTextoDestino();
                 String fecha = busqueda.obtenerTextoFecha();
@@ -126,4 +166,5 @@ public class BusquedaModel {
     public void display(){
         this.busqueda.setVisible(true);
     }
+    
 }

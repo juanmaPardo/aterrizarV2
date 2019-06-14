@@ -13,31 +13,34 @@ public class BienvenidaModel {
     private ComprasModel ventanaCompras;
     private ReservasModel ventanaReservas;
     private BusquedaModel ventanaBusquedas;
+    private ActualizadorVistas actualizador;
 
     public BienvenidaModel(Usuario usuarioLogeado, AterrizarV2 pagina) {
         this.usuarioLogeado = usuarioLogeado;
         this.ventanaCompras = new ComprasModel(usuarioLogeado,pagina);
         this.ventanaReservas = new ReservasModel(usuarioLogeado,pagina);
-        this.ventanaBusquedas = new BusquedaModel(usuarioLogeado,pagina);
+        this.actualizador = new ActualizadorVistas(ventanaCompras, ventanaReservas);
+        this.ventanaBusquedas = new BusquedaModel(usuarioLogeado,pagina,actualizador);
         this.bienvenida = new Bienvenida(usuarioLogeado.getNombre());
         setearListeners();
     }
     
-    public void setearListeners(){
+    
+    private void setearListeners(){
         setearListenerVentanaCompras();
         setearListenerVentanaReservas();
         setearListenerVentanaBusquedas();
     }
     
-    public void setearListenerVentanaCompras(){
+    private void setearListenerVentanaCompras(){
         bienvenida.agregarAbridorCompras(new AbridorCompras());
     }
     
-    public void setearListenerVentanaReservas(){
+    private void setearListenerVentanaReservas(){
         bienvenida.agregarAbridorReservas(new AbridorReservas());
     }
     
-    public void setearListenerVentanaBusquedas(){
+    private void setearListenerVentanaBusquedas(){
         bienvenida.agregarAbridorBusquedas(new AbridorBusquedas());
     }
     

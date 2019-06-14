@@ -61,8 +61,9 @@ public class ComienzoPrograma {
         lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
         
-        String[][] asientosDisponiblesBueMad = {{"EC0344-42","565.60","P","P","D"}, {"EC0344-66","365.60","T","E","D"}};
-        String[][] asientosDisponiblesRioLim = {{"EC0LAM-12","4555.60","P","P","D"}, {"EC0LAM-13","3665.60","T","E","D"}};
+        String[][] asientosDisponiblesBueMad = {{"EC0344-42","565.60","P","P","D"}, {"EC0344-66","365.60","T","E","D"},{"EC0344-67","3265.60","T","E","D"},{"EC0344-44","565.60","P","P","D"}};
+        String[][] asientosDisponiblesRioLim = {{"EC0LAM-12","4555.60","P","P","D"}, {"EC0LAM-13","3665.60","T","E","D"},
+        {"EC0LAM-14","4555.60","P","P","D"},{"EC0LAM-15","4555.60","P","P","D"},{"EC0LAM-16","4555.60","P","P","D"},{"EC0LAM-17","4555.60","P","P","D"}};
         
         
         Mockito.when(lanchitaMockeada.asientosDisponibles("BUE", "MAD", fechaSalida1Junio2018.representacionEnIso(), 

@@ -21,7 +21,8 @@ public class ComprasModel {
         setearAsientosCompradosEnVista();
     }
     
-    private void setearAsientosCompradosEnVista(){
+    public void setearAsientosCompradosEnVista(){
+        vistaCompras.eliminarCeldasTabla();
         LinkedList<Asiento> asientosComprados = new LinkedList();
         asientosComprados.addAll(usuario.getAsientosComprados());
         asientosComprados.forEach(asiento -> {
@@ -39,6 +40,7 @@ public class ComprasModel {
             }
         });
     }
+  
     
     public void display(){
         this.vistaCompras.setVisible(true);

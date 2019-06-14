@@ -32,6 +32,14 @@ public class Compras extends javax.swing.JFrame {
         });
     }
     
+    public void eliminarCeldasTabla(){
+        DefaultTableModel tb = (DefaultTableModel) comprasUsuario.getModel();
+        int a = comprasUsuario.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        tb.removeRow(tb.getRowCount()-1);
+        } 
+    }
+    
     public void cerrarVentana(){
         this.setVisible(false);
         this.dispose();

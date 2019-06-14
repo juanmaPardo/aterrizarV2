@@ -29,6 +29,10 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         });
     }
     
+    public void agregarFuncionalidadBotonReserva(ActionListener eventoReserva){
+        botonReservar.addActionListener(eventoReserva);
+    }
+    
     public void agregarFuncionalidadBotonBuscar(ActionListener eventoBusqueda){
         botonBuscar.addActionListener(eventoBusqueda);
     }
@@ -40,6 +44,14 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     public void cambiarTextoTextField(String texto){
         mostrarErrores.setText(texto);
  
+    }
+    
+    public void eliminarCeldasTabla(){
+        DefaultTableModel tb = (DefaultTableModel) resultadoBusqueda.getModel();
+        int a = resultadoBusqueda.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        tb.removeRow(tb.getRowCount()-1);
+        } 
     }
     
     public void rellenarTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
@@ -54,7 +66,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     
     
     public String obtenerCodigoVueloFilaSeleccionada(){
-        //System.out.println(resultadoBusqueda.getSelectedRow());
         return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),1);
     }
     

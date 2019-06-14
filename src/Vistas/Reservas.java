@@ -38,6 +38,14 @@ public class Reservas extends javax.swing.JFrame {
         this.dispose();
     }
     
+    public void eliminarCeldasTabla(){
+        DefaultTableModel tb = (DefaultTableModel) reservasUsuario.getModel();
+        int a = reservasUsuario.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        tb.removeRow(tb.getRowCount()-1);
+        } 
+    }
+    
     private void setearNombreUsuario(String nombreUser){
         this.nombreUsuario.setText(nombreUser);
     }

@@ -25,7 +25,8 @@ public class ReservasModel {
         this.setearAsientosReservadosEnVista();
     }
     
-    private void setearAsientosReservadosEnVista(){
+    public void setearAsientosReservadosEnVista(){
+        vistaReservas.eliminarCeldasTabla();
         LinkedList<Asiento> asientosReservados = new LinkedList();
         asientosReservados.addAll(usuario.getAsientosReservados());
         asientosReservados.forEach(asiento -> {
