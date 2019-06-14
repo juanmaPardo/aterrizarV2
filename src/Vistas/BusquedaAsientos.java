@@ -46,6 +46,11 @@ public class BusquedaAsientos extends javax.swing.JFrame {
  
     }
     
+    public void eliminarFilaSeleccionada(){
+        DefaultTableModel tb = (DefaultTableModel) resultadoBusqueda.getModel();
+        tb.removeRow(resultadoBusqueda.getSelectedRow());
+    }
+    
     public void eliminarCeldasTabla(){
         DefaultTableModel tb = (DefaultTableModel) resultadoBusqueda.getModel();
         int a = resultadoBusqueda.getRowCount()-1;

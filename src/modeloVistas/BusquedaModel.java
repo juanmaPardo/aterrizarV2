@@ -64,6 +64,7 @@ public class BusquedaModel {
                     aerolinea.comprarAsiento(codigoAsiento, usuarioBusca);
                     displayExitoCompra(codigoAsiento);
                     actualizador.actualizarVistas();
+                    busqueda.eliminarFilaSeleccionada();
                 } catch (CodigoAsientoException | AsientoReservadoException ex) {
                     displayErrorCompra(ex.getMessage());
                 }
