@@ -100,7 +100,7 @@ public class AterrizarV2 {
         return usuario;
     }
     
-    private Aerolinea obtenerAerolineaTieneAsiento(String codigoAsiento){
+    public Aerolinea obtenerAerolineaTieneAsiento(String codigoAsiento){
         return aerolineas.stream().filter(aerolinea -> aerolinea.aerolineaTieneAsiento(codigoAsiento))
                 .collect(Collectors.toList()).get(0);
         

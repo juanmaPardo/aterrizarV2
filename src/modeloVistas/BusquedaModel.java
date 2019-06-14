@@ -1,10 +1,15 @@
 package modeloVistas;
 
 import Vistas.BusquedaAsientos;
+import Vistas.CompraExitosa;
+import Vistas.ErrorCompra;
 import Vistas.ErrorReserva;
 import Vistas.ReservaExitosa;
 import Vistas.Sobrereservar;
 import aterrizarv2.AterrizarV2;
+import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
+import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.busquedas.exceptionesBusqueda.ParametrosInsuficienteException;
 import aterrizarv2.busquedas.ordenamientoBusqueda.OrdenPorPrecioDescendente;
@@ -40,6 +45,39 @@ public class BusquedaModel {
         this.pagina = pagina;
         this.busqueda = new BusquedaAsientos();
         this.busqueda.agregarFuncionalidadBotonBuscar(new ObtieneBusquedas());
+        this.busqueda.agregarFuncionalidadBotonComprar(new CompraAsiento());
+    }
+    
+    class CompraAsiento implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(busqueda.seSeleccionoFila()){
+                try {
+                    String codigoVuelo = busqueda.obtenerCodigoVueloFilaSeleccionada();
+                    String numeroAsiento = busqueda.obtenerNumeroAsientoFilaSeleccionada();
+                    String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
+                    Aerolinea aerolinea = pagina.obtenerAerolineaTieneAsiento(codigoAsiento);
+                    aerolinea.comprarAsiento(codigoAsiento, usuarioBusca);
+                    displayExitoCompra();
+                } catch (CodigoAsientoException | AsientoReservadoException ex) {
+                    displayErrorCompra();
+                }
+            }
+            else{
+                busqueda.cambiarTextoTextField("No se selecciono ningun asiento a comprar.");
+            }
+        }
+        
+        public void displayExitoCompra(){
+            CompraExitosa exitoCompra = new CompraExitosa();
+            exitoCompra.setVisible(true);
+        }
+        
+        public void displayErrorCompra(){
+            ErrorCompra exitoCompra = new ErrorCompra();
+            exitoCompra.setVisible(true);
+        }
     }
     
     class ObtieneBusquedas implements ActionListener{

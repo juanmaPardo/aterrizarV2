@@ -33,6 +33,10 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         botonBuscar.addActionListener(eventoBusqueda);
     }
     
+    public void agregarFuncionalidadBotonComprar(ActionListener eventoCompra){
+        botonComprar.addActionListener(eventoCompra);
+    }
+    
     public void cambiarTextoTextField(String texto){
         mostrarErrores.setText(texto);
  
@@ -43,7 +47,20 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         Object[] filaAgregar = {aerolinea,vuelo,nroAsiento,precio,ubicacion,clase};
         modelo.addRow(filaAgregar);
     }
-   
+    
+    public boolean seSeleccionoFila(){
+        return (resultadoBusqueda.getSelectedRow() != -1);
+    }
+    
+    
+    public String obtenerCodigoVueloFilaSeleccionada(){
+        //System.out.println(resultadoBusqueda.getSelectedRow());
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),1);
+    }
+    
+    public String obtenerNumeroAsientoFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),2);
+    }
     
     public String obtenerTextoOrigen(){
         return this.textoOrigen.getText();
