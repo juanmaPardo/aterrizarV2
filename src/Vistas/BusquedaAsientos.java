@@ -89,7 +89,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        mostrarErrores.setEnabled(false);
         mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarErroresActionPerformed(evt);

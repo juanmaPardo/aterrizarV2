@@ -5,7 +5,7 @@ import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 
 public class RequisitoCargaAsientos {
     private String tipoCarga;
-    private final String[] cargasAceptables = {"NULL","OrigenYDestino,Origen" };
+    private final String[] cargasAceptables = {"NULL","OrigenYDestino","Origen" };
 
     public RequisitoCargaAsientos(String tipoCarga) throws TipoPedidoInvalidaException {
         if(!esCargaAceptable(tipoCarga)){
@@ -15,9 +15,9 @@ public class RequisitoCargaAsientos {
     }
     
     private boolean esCargaAceptable(String tipoCarga){
-        boolean cumpleRequisitos = true;
-        for(int i= 0 ; i < cargasAceptables.length && cumpleRequisitos; i++){
-            cumpleRequisitos = cargasAceptables[i] == tipoCarga;
+        boolean cumpleRequisitos = false;
+        for(int i= 0 ; i < cargasAceptables.length && !cumpleRequisitos; i++){
+            cumpleRequisitos = cargasAceptables[i].equals(tipoCarga);
         }
         return cumpleRequisitos;
     }

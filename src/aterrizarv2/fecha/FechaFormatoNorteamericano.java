@@ -12,13 +12,13 @@ public class FechaFormatoNorteamericano extends Fecha{
         this.mes = substraerMes(fecha);
         this.anio = substraerAnio(fecha);
     }
-    protected int substraerDia(String fecha){
-        return Integer.parseInt(fecha.substring(3,5));
+    protected String substraerDia(String fecha){
+        return fecha.substring(3,5);
     }
-    protected int substraerMes(String fecha){
-        return Integer.parseInt(fecha.substring(0,2));
+    protected String substraerMes(String fecha){
+        return fecha.substring(0,2);
     }
-    protected int substraerAnio(String fecha){
-        return Integer.parseInt(fecha.substring(6,10));
+    protected String substraerAnio(String fecha){
+        return fecha.substring(6,10);
     }
 }

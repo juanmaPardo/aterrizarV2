@@ -14,6 +14,8 @@ import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
+import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
+import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.vuelos.AsientoVueloFullData;
@@ -42,7 +44,7 @@ public abstract class Aerolinea{
         vuelos.add(vuelo);
     }
     
-    public void agregarVuelo(Vuelo vuelo,RequisitoCargaAsientos tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException{
+    public void agregarVuelo(Vuelo vuelo,RequisitoCargaAsientos tipoCarga) throws DatosVueloIncorrectoException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException, FormatoHoraIncorrectoException, HoraInvalidaException{
         try {
             vuelo.cargarAsientos(this,tipoCarga);
             vuelos.add(vuelo);
@@ -163,7 +165,7 @@ public abstract class Aerolinea{
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
     
-    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
+    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
 
     

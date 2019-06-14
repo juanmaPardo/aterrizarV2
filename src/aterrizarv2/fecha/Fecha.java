@@ -7,9 +7,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Fecha implements DatosFecha{
-    protected int dia;
-    protected int mes;
-    protected int anio;
+    protected String dia;
+    protected String mes;
+    protected String anio;
 
     public Fecha() {}
     
@@ -62,17 +62,17 @@ public class Fecha implements DatosFecha{
         }
     }
     @Override
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
 
     @Override
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
 
     @Override
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
     

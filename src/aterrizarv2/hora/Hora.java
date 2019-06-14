@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 public class Hora {
     //Sistema 24hs
-    private int hora;
-    private int minutos;
+    private String hora;
+    private String minutos;
     private String horaFormatoString;
     
     final static String HORA_FORMAT = "hh:mm";
@@ -27,8 +27,8 @@ public class Hora {
             throw new HoraInvalidaException("La hora propiciada es incorrecta");
         }
         
-        this.hora = Integer.parseInt(posibleHora);
-        this.minutos = Integer.parseInt(posibleMinutos);
+        this.hora = posibleHora;
+        this.minutos = posibleMinutos;
         this.horaFormatoString = hora;
     }
     
@@ -46,23 +46,17 @@ public class Hora {
         return minutosValidos;
     }
 
-    public int getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public int getMinutos() {
+    public String getMinutos() {
         return minutos;
     }
 
     public String getHoraFormatoString() {
         return horaFormatoString;
     }
-   
-    /*
-    @Override
-    public boolean asientoVueloCumpleParametro(AsientoGeneralVuelo asiento) {
-        return asiento.getHoraSalida().getHoraFormatoString() == horaFormatoString;
-    }*/
     
     
 }

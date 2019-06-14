@@ -3,22 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/ordenamientoBusqueda/OrdenPorPrecioAscendenteTest.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanicI.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaTest.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/BusquedaTest.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/Vistas/Bienvenida.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaOceanic/AerolineaOceanic.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/reservas/pruebaReservas.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/Vistas/BuscarAsientos.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/Aerolinea.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/ordenamientoBusqueda/OrdenPorPopularidadTest.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchita.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaI.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/ordenamientoBusqueda/OrdenPorPrecioDescendenteTest.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/vuelos/Vuelo.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/aerolinea/RequisitoCargaAsientos.java</file>
-            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/vuelos/VueloTest.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/modeloVistas/BusquedaModel.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/modeloVistas/ReservasModel.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/AterrizarV2.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/comienzoPrograma/ComienzoPrograma.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/Vistas/BusquedaAsientos.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/Vistas/Compras.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/modeloVistas/ComprasModel.java</file>
         </group>
     </open-files>
 </project-private>
