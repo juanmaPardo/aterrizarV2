@@ -75,6 +75,11 @@ public class Reservas extends javax.swing.JFrame {
         reservas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         reservas.setText("Reservas de ");
 
+        reservasUsuario = new javax.swing.JTable(){
+            public boolean isCellEditable(int i, int n){
+                return false;
+            }
+        };
         reservasUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         reservasUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,6 +89,9 @@ public class Reservas extends javax.swing.JFrame {
                 "Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
             }
         ));
+        reservasUsuario.setFocusable(false);
+        reservasUsuario.getTableHeader().setResizingAllowed(false);
+        reservasUsuario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(reservasUsuario);
 
         botonCerrar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N

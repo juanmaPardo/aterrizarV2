@@ -61,12 +61,18 @@ public class reservasNuevo {
         lanchitaMockeada = Mockito.mock(AerolineaLanchitaI.class);
         lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
+        userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );
+        userVip.efectuarCompra(200000);
+        userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
+        
+        aterrizar = new AterrizarV2();
+        lanchitaMockeada = Mockito.mock(AerolineaLanchitaI.class);
+        lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
         String[][] asientosDisponiblesBueMad = {{"EC0344-42","565.60","P","P","D"}, {"EC0344-66","365.60","T","E","D"}};
         String[][] asientosDisponiblesRioLim = {{"EC0LAM-12","4555.60","P","P","D"}, {"EC0LAM-13","3665.60","T","E","D"}};
         
-        
-        Mockito.when(lanchitaMockeada.asientosDisponibles("BUE", "MAD", fechaSalida1Junio2018.representacionEnIso(), 
+         Mockito.when(lanchitaMockeada.asientosDisponibles("BUE", "MAD", fechaSalida1Junio2018.representacionEnIso(), 
                 fechaLlegada2Junio2018.representacionEnIso(), horaSalida23hs.getHoraFormatoString(), 
                 horaLlegada11hs.getHoraFormatoString())).thenReturn(asientosDisponiblesBueMad);
         
@@ -74,10 +80,8 @@ public class reservasNuevo {
                 fechaLlegada13Noviembre2018.representacionEnIso(), horaSalida12hs.getHoraFormatoString(), 
                 horaLlegada21hs.getHoraFormatoString())).thenReturn(asientosDisponiblesRioLim);
 
-        
         vueloBsAsMadrid = new Vuelo(origenBuenosAires, destinoMadrid, fechaSalida1Junio2018, fechaLlegada2Junio2018, horaSalida23hs, horaLlegada11hs);
         vueloRioLima = new Vuelo(origenRioJaneiro, destinoLima, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida12hs, horaLlegada21hs);
-        
         
         lanchitaNoMockeada.agregarVuelo(vueloBsAsMadrid, null);
         lanchitaNoMockeada.agregarVuelo(vueloRioLima, null);
@@ -89,6 +93,7 @@ public class reservasNuevo {
         
         aterrizar = new AterrizarV2();
         aterrizar.agregarAerolinea(lanchitaNoMockeada);
+         
     }
     
     @Test

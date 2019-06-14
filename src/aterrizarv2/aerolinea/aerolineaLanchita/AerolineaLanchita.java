@@ -27,8 +27,7 @@ public class AerolineaLanchita extends Aerolinea{
         super(0.15,10);
         this.comunicacionLanchita = comunicacionLanchita;
     }
-    
-    
+
     @Override
     public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);

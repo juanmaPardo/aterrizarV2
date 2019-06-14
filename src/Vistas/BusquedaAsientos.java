@@ -2,6 +2,7 @@ package Vistas;
 
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.vuelos.AsientoVueloFullData;
+import com.sun.glass.events.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -140,12 +141,41 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         botonBuscar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         botonBuscar.setText("Buscar");
 
+        textoDestino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoDestinoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoDestinoKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(textoDestino);
 
+        textoOrigen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoOrigenKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoOrigenKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(textoOrigen);
 
+        textoFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoFechaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoFechaKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(textoFecha);
 
+        resultadoBusqueda = new javax.swing.JTable(){
+            public boolean isCellEditable(int i, int n){
+                return false;
+            }
+        };
         resultadoBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -154,6 +184,9 @@ public class BusquedaAsientos extends javax.swing.JFrame {
                 "Aerolinea", "Vuelo", "Asiento", "Precio", "Ubicacion", "Clase"
             }
         ));
+        resultadoBusqueda.setFocusable(false);
+        resultadoBusqueda.getTableHeader().setResizingAllowed(false);
+        resultadoBusqueda.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(resultadoBusqueda);
 
         botonComprar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -215,7 +248,7 @@ public class BusquedaAsientos extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(origen)
                         .addComponent(destino))
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,6 +277,45 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonReservarActionPerformed
 
+    private void textoOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoOrigenKeyTyped
+        int numeroCaracteres = 4;
+        if(textoOrigen.getText().length() >= numeroCaracteres){
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoOrigenKeyTyped
+
+    private void textoDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDestinoKeyTyped
+        int numeroCaracteres = 4;
+        if(textoDestino.getText().length() >= numeroCaracteres){
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoDestinoKeyTyped
+
+    private void textoFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFechaKeyTyped
+        int numeroCaracteres = 10;
+        if(textoFecha.getText().length() >= numeroCaracteres){
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoFechaKeyTyped
+
+    private void textoOrigenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoOrigenKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
+            textoDestino.requestFocus();
+        }
+    }//GEN-LAST:event_textoOrigenKeyPressed
+
+    private void textoDestinoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDestinoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
+            textoFecha.requestFocus();
+        }
+    }//GEN-LAST:event_textoDestinoKeyPressed
+
+    private void textoFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFechaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
+            textoOrigen.requestFocus();
+        }
+    }//GEN-LAST:event_textoFechaKeyPressed
+        
     /**
      * @param args the command line arguments
      */

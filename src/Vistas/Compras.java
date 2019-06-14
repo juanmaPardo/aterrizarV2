@@ -76,6 +76,11 @@ public class Compras extends javax.swing.JFrame {
         compras.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         compras.setText("Compras de ");
 
+        comprasUsuario = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         comprasUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         comprasUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +90,9 @@ public class Compras extends javax.swing.JFrame {
                 "Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
             }
         ));
+        comprasUsuario.setFocusable(false);
+        comprasUsuario.getTableHeader().setResizingAllowed(false);
+        comprasUsuario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(comprasUsuario);
 
         cierraVentana.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -118,9 +126,9 @@ public class Compras extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compras)
                     .addComponent(nombreUsuario))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(40, 40, 40)
                 .addComponent(cierraVentana)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
