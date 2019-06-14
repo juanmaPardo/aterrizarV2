@@ -19,7 +19,7 @@ public class ReservaExitosa extends javax.swing.JFrame {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
-        asiento.setText(codigoAsiento);
+        nombreAsiento.setText(codigoAsiento);
         botonSeguirBuscando.addActionListener(new ActionListener(){
 
             @Override
