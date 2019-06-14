@@ -71,8 +71,11 @@ public class AerolineaLanchita extends Aerolinea{
     }
 
     @Override
-    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
+        if(asiento.getAsiento().getEstado().estaReservado()){
+            throw new AsientoReservadoException("El asiento ya esta reservado");
+        }
         asiento.getAsiento().getEstado().reservarAsiento();
         usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
         String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();

@@ -99,9 +99,12 @@ public class AerolineaOceanic extends Aerolinea{
     }
 
     @Override
-    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
         AsientoVueloFullData asientoEntero = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoEntero.getAsiento();
+        if(asiento.getEstado().estaReservado()){
+            throw new AsientoReservadoException("El asiento ya esta reservado");
+        }
         asiento.getEstado().reservarAsiento();
         usuarioReserva.agregarAsientoReservado(asiento);
         String codigoVuelo = asiento.getCodigo().getCodigo();
