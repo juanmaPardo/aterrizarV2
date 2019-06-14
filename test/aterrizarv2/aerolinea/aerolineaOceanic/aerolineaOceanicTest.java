@@ -35,8 +35,8 @@ import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
 
-public class oceanicNuevo {
-    Vuelo vueloRioLima;
+public class aerolineaOceanicTest {
+    Vuelo vueloRioLosAngeles;
     Vuelo vueloBsAsMadrid;
     AerolineaOceanic oceanic;
     AerolineaOceanicI oceanicMock;
@@ -60,12 +60,12 @@ public class oceanicNuevo {
         String origenBuenosAires = "BUE";
         String destinoMadrid = "MAD";
         String origenRioJaneiro = "RIO";
-        String destinoLima = "LIM";
+        String destinoLosAngeles = "LA";
         
-        String bueOceanic = oceanic.convertirFormatoCiudad("BUE");
-        String madOceanic = oceanic.convertirFormatoCiudad("MAD");
-        String rioOceanic = oceanic.convertirFormatoCiudad("RIO");
-        String limOceanic = oceanic.convertirFormatoCiudad("LIM");
+        String bueOceanic = oceanic.convertirFormatoCiudad(origenBuenosAires);
+        String madOceanic = oceanic.convertirFormatoCiudad(destinoMadrid);
+        String rioOceanic = oceanic.convertirFormatoCiudad(origenRioJaneiro);
+        String losAngelesOceanic = oceanic.convertirFormatoCiudad(destinoLosAngeles);
         
         /* ----------------------------------------------------------------------------------------------*/
         
@@ -118,7 +118,7 @@ public class oceanicNuevo {
         Mockito.when(oceanicMock.asientosDisponiblesParaOrigenYDestino(bueOceanic, unoJunio,madOceanic)).thenReturn(asientosBueLim);
         
         Mockito.when(oceanicMock.asientosDisponiblesParaOrigen(rioOceanic, treceNoviembre)).thenReturn(asientosRioLA);
-        Mockito.when(oceanicMock.asientosDisponiblesParaOrigenYDestino(rioOceanic, treceNoviembre, limOceanic)).thenReturn(asientosRioLA);
+        Mockito.when(oceanicMock.asientosDisponiblesParaOrigenYDestino(rioOceanic, treceNoviembre, losAngelesOceanic)).thenReturn(asientosRioLA);
         
         /* ----------------------------------------------------------------------------------------------*/
         
@@ -128,13 +128,13 @@ public class oceanicNuevo {
         /* CREACION Y CARGA DE LOS VUELOS */
         
         vueloBsAsMadrid = new Vuelo(bueOceanic, madOceanic, fechaSalida1Junio2018, fechaLlegada2Junio2018, horaSalida12hs, horaLlegada11hs);
-        vueloRioLima = new Vuelo(rioOceanic, limOceanic, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida23hs, horaLlegada00hs);
+        vueloRioLosAngeles = new Vuelo(rioOceanic, losAngelesOceanic, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida23hs, horaLlegada00hs);
         
         RequisitoCargaAsientos requisitoOrigen = new RequisitoCargaAsientos("Origen");
         
         
         oceanic.agregarVuelo(vueloBsAsMadrid, requisitoOrigen);
-        oceanic.agregarVuelo(vueloRioLima, requisitoOrigen);
+        oceanic.agregarVuelo(vueloRioLosAngeles, requisitoOrigen);
         /* ----------------------------------------------------------------------------------------------*/
         
         
