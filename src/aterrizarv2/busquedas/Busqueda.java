@@ -61,13 +61,16 @@ public class Busqueda {
         List<AsientoVueloFullData> cumplenFiltroCaracterUnico = disponibles.stream()
                 .filter(asiento -> cumpleTodosRequisitos(asiento)).collect(Collectors.toList());
         
+        List<AsientoVueloFullData> asientosNoVendidos = cumplenFiltroCaracterUnico.stream()
+                .filter(asiento -> !asiento.getAsiento().getEstado().asientoVendido()).collect(Collectors.toList());
+        
         if(filtroClaseAsiento.size() != 0){
-            List<AsientoVueloFullData> asientosCumplenTodosFiltros = cumplenFiltroCaracterUnico.stream()
+            List<AsientoVueloFullData> asientosCumplenTodosFiltros = asientosNoVendidos.stream()
                     .filter(vuelo -> claseAsientoAceptable(vuelo)).collect(Collectors.toList());
             
             return asientosCumplenTodosFiltros;
         }
-        return cumplenFiltroCaracterUnico;
+        return asientosNoVendidos;
     }
     
     private boolean claseAsientoAceptable(AsientoVueloFullData asiento){

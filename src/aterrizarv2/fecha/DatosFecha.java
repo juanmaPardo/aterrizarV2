@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 
 public interface DatosFecha {
     
-    public int getDia();
+    public String getDia();
     
-    public int getMes();
+    public String getMes();
     
-    public int getAnio();
+    public String getAnio();
     
     public String representacionEnIso();
     
@@ -44,13 +44,13 @@ public interface DatosFecha {
     
     public static DatosFecha fechaAnterior(DatosFecha a, DatosFecha b){
         if(hayDiferenciaAnios(a,b)){
-            return (a.getAnio() < b.getAnio()) ? a : b;
+            return (Integer.parseInt(a.getAnio()) < Integer.parseInt(b.getAnio())) ? a : b;
         }
         else if(hayDiferenciaMeses(a,b)){
-            return (a.getMes() < b.getMes()) ? a : b;
+            return (Integer.parseInt(a.getMes()) < Integer.parseInt(b.getMes())) ? a : b;
         }
         else{
-            return (a.getDia() <= b.getDia()) ? a : b;//Si es la misma fecha retorna a
+            return (Integer.parseInt(a.getDia())) <= Integer.parseInt(b.getDia()) ? a : b;//Si es la misma fecha retorna a
         }
     };
 }

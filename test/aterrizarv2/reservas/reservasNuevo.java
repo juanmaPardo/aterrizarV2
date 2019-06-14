@@ -6,18 +6,9 @@ import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchitaI;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
-import aterrizarv2.asientos.ClaseAsiento;
-import aterrizarv2.asientos.CodigoAsiento;
-import aterrizarv2.asientos.EstadoAsiento;
-import aterrizarv2.asientos.PrecioAsiento;
-import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
-import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
-import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
-import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
-import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.fecha.FechaFlexible;
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
@@ -29,35 +20,31 @@ import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.usuarios.UsuarioPaga;
 import aterrizarv2.vuelos.Vuelo;
 import junit.framework.Assert;
-import org.junit.Test;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
 
-public class pruebaReservas {
+public class reservasNuevo {
     Vuelo vueloRioLima;
     Vuelo vueloBsAsMadrid;
     AerolineaLanchita lanchitaNoMockeada;
+    AerolineaLanchitaI lanchitaMockeada;
     UsuarioPaga userVip;
     UsuarioNoPaga userEstandar;
     FechaFlexible fechaSalida1Junio2018;
     FechaFlexible fechaSalida13Noviembre2018;
     FechaFlexible fechaLlegada2Junio2018;
     FechaFlexible fechaLlegada13Noviembre2018;
-    AerolineaLanchitaI lanchitaMockeada;
     AterrizarV2 aterrizar;
-    private CodigoAsiento codigoUno;
-    private Asiento asientoUno;
-    private CodigoAsiento codigoDos;
-    private Asiento asientoDos;
-    private CodigoAsiento codigoTres;
-    private Asiento asientoTres;
-    private CodigoAsiento codigoCuatro;
-    private Asiento asientoCuatro;
-    
-    
+   
+   
     @Before
-    public void setUp() throws DniInvalidoException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, TipoPedidoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException {
+    public void setUp() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException, TipoPedidoInvalidaException, DniInvalidoException {
         String origenBuenosAires = "BUE";
         String destinoMadrid = "MAD";
         String origenRioJaneiro = "RIO";
@@ -70,13 +57,15 @@ public class pruebaReservas {
         Hora horaLlegada11hs = new Hora("11:30");
         Hora horaSalida12hs = new Hora("12:20");
         Hora horaLlegada21hs = new Hora("21:15");
+
+        lanchitaMockeada = Mockito.mock(AerolineaLanchitaI.class);
+        lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
         userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );
         userVip.efectuarCompra(200000);
         userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
         aterrizar = new AterrizarV2();
-        
         lanchitaMockeada = Mockito.mock(AerolineaLanchitaI.class);
         lanchitaNoMockeada = new AerolineaLanchita(lanchitaMockeada);
         
@@ -93,45 +82,24 @@ public class pruebaReservas {
 
         vueloBsAsMadrid = new Vuelo(origenBuenosAires, destinoMadrid, fechaSalida1Junio2018, fechaLlegada2Junio2018, horaSalida23hs, horaLlegada11hs);
         vueloRioLima = new Vuelo(origenRioJaneiro, destinoLima, fechaSalida13Noviembre2018, fechaLlegada13Noviembre2018, horaSalida12hs, horaLlegada21hs);
-       
+        
         lanchitaNoMockeada.agregarVuelo(vueloBsAsMadrid, null);
         lanchitaNoMockeada.agregarVuelo(vueloRioLima, null);
+    
         
-        codigoUno = new CodigoAsiento(asientosDisponiblesBueMad[0][0]);
-        PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosDisponiblesBueMad[0][1]));
-        ClaseAsiento clase = new ClaseAsiento(asientosDisponiblesBueMad[0][2]);
-        UbicacionAsiento ubicacion = new UbicacionAsiento(asientosDisponiblesBueMad[0][3]);
-        EstadoAsiento estado = new EstadoAsiento(asientosDisponiblesBueMad[0][4]);
-        asientoUno = new Asiento(clase, codigoUno, estado, precio, ubicacion);
+        userVip = new UsuarioPaga("Juan", "Carlos",41565456 ,320 );
+        userVip.efectuarCompra(200000);
+        userEstandar = new UsuarioNoPaga("Pedro", "Benitez", 31256748);
         
-        codigoDos = new CodigoAsiento(asientosDisponiblesBueMad[1][0]);
-        PrecioAsiento precioDos = new PrecioAsiento(Double.parseDouble(asientosDisponiblesBueMad[1][1]));
-        ClaseAsiento claseDos = new ClaseAsiento(asientosDisponiblesBueMad[1][2]);
-        UbicacionAsiento ubicacionDos = new UbicacionAsiento(asientosDisponiblesBueMad[1][3]);
-        EstadoAsiento estadoDos = new EstadoAsiento(asientosDisponiblesBueMad[1][4]);
-        asientoDos = new Asiento(claseDos, codigoDos, estadoDos, precioDos, ubicacionDos);
-        
-        codigoTres = new CodigoAsiento(asientosDisponiblesRioLim[0][0]);
-        PrecioAsiento precioTres = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLim[0][1]));
-        ClaseAsiento claseTres = new ClaseAsiento(asientosDisponiblesRioLim[0][2]);
-        UbicacionAsiento ubicacionTres = new UbicacionAsiento(asientosDisponiblesRioLim[0][3]);
-        EstadoAsiento estadoTres = new EstadoAsiento(asientosDisponiblesRioLim[0][4]);
-        asientoTres = new Asiento(claseTres, codigoTres, estadoTres, precioTres, ubicacionTres);
-        
-        codigoCuatro = new CodigoAsiento(asientosDisponiblesRioLim[1][0]);
-        PrecioAsiento precioCuatro = new PrecioAsiento(Double.parseDouble(asientosDisponiblesRioLim[0][1]));
-        ClaseAsiento claseCuatro = new ClaseAsiento(asientosDisponiblesRioLim[1][2]);
-        UbicacionAsiento ubicacionCuatro = new UbicacionAsiento(asientosDisponiblesRioLim[1][3]);
-        EstadoAsiento estadoCuatro = new EstadoAsiento(asientosDisponiblesRioLim[1][4]);
-        asientoCuatro = new Asiento(claseCuatro, codigoCuatro, estadoCuatro, precioCuatro, ubicacionCuatro);
-         
+        aterrizar = new AterrizarV2();
         aterrizar.agregarAerolinea(lanchitaNoMockeada);
          
     }
     
     @Test
     public void reservarAsiento_reservaExitosaDeUsuarioAUnAsiento() throws CodigoAsientoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         Assert.assertTrue("No reservo el asiento", userVip.asientoReservadoPorMi(asientoUno));
         Assert.assertTrue("Estado asiento no es reservado",asientoUno.getEstado().estaReservado());
@@ -139,8 +107,10 @@ public class pruebaReservas {
     
     @Test
     public void reservarAsiento_usuarioReservaVariosAsientosExitosamente() throws CodigoAsientoException{
-        String codigoAsiento = codigoUno.getCodigo();
-        String codigoAsiento2 = codigoDos.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        String codigoAsiento2 = "EC0344-66";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
+        Asiento asientoDos= lanchitaNoMockeada.obtenerAsiento(codigoAsiento2).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         userVip.reservarAsiento(codigoAsiento2, lanchitaNoMockeada);
         Assert.assertTrue("No reservo el asiento", userVip.asientoReservadoPorMi(asientoUno)); 
@@ -151,29 +121,30 @@ public class pruebaReservas {
     
     @Test(expected = AsientoNoDisponibleException.class)
     public void reservarAsiento_UsuarioNoPuedeReservarAsientoReservadoPorOtro() throws CodigoAsientoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         userEstandar.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
     }
     
     @Test(expected = AsientoReservadoException.class)
     public void reservarAsiento_UsuarioNoPuedeComprarAsientoReservadoPorOtro() throws CodigoAsientoException, AsientoReservadoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         userEstandar.comprarAsiento(codigoAsiento, lanchitaNoMockeada);
     }
     
     @Test(expected = AsientoNoDisponibleException.class)
     public void reservarAsiento_UsuarioNoPuedeReservarAsientoCompradoPorOtro() throws CodigoAsientoException, AsientoReservadoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
         userVip.comprarAsiento(codigoAsiento, lanchitaNoMockeada);
         userEstandar.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
     }
     
     @Test
     public void expiroReserva_UsuarioReservaPeroSuReservaExpiraYOtroUsuarioReservaSuAsiento() throws CodigoAsientoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         lanchitaNoMockeada.expiroReserva(asientoUno, userVip);
         userEstandar.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         Assert.assertTrue("Esta en las reservas el asiento", !userVip.asientoReservadoPorMi(asientoUno)); 
@@ -183,7 +154,8 @@ public class pruebaReservas {
     
     @Test
     public void expiroReserva_UsuarioPierdeLaReservaYElAsientoEstaDisponible() throws CodigoAsientoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         lanchitaNoMockeada.expiroReserva(asientoUno, userVip);
         Assert.assertTrue("Esta en las reservas el asiento", !userVip.asientoReservadoPorMi(asientoUno));
@@ -192,7 +164,8 @@ public class pruebaReservas {
     
     @Test
     public void sobrereservarAsiento_UsuarioSobrereservaAsientoReservado() throws CodigoAsientoException, AsientoReservadoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         aterrizar.sobrereservarAsiento(codigoAsiento, userEstandar);
         Assert.assertTrue("No reservo el asiento", userVip.asientoReservadoPorMi(asientoUno));
@@ -202,7 +175,8 @@ public class pruebaReservas {
     
     @Test
     public void sobrereservarAsiento_UsuarioPierdeReservaYPasaAlUsuarioQueSobrereservo() throws CodigoAsientoException, AsientoReservadoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         aterrizar.sobrereservarAsiento(codigoAsiento, userEstandar);
         lanchitaNoMockeada.expiroReserva(asientoUno, userVip);
@@ -213,7 +187,8 @@ public class pruebaReservas {
     
     @Test
     public void comprar_UsuarioCompraAsientoYElUsuarioQueSobrereservoLoPierde() throws CodigoAsientoException, AsientoReservadoException{
-        String codigoAsiento = codigoUno.getCodigo();
+        String codigoAsiento = "EC0344-42";
+        Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         aterrizar.sobrereservarAsiento(codigoAsiento, userEstandar);
         userVip.comprarAsiento(codigoAsiento, lanchitaNoMockeada);
@@ -221,5 +196,4 @@ public class pruebaReservas {
         Assert.assertNotSame("Esta en sobrereservado por el usuario", userEstandar, AterrizarV2.usuarioSobrereserva(codigoAsiento));
         Assert.assertTrue("Estado asiento no es reservado",asientoUno.getEstado().asientoVendido());
     }
-    
 }

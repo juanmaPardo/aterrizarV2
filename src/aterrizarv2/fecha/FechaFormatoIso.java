@@ -12,13 +12,13 @@ public class FechaFormatoIso extends Fecha {
         this.mes = substraerMes(fecha);
         this.anio = substraerAnio(fecha);
     }
-    protected int substraerDia(String fecha){
-        return Integer.parseInt(fecha.substring(8,10));
+    protected String substraerDia(String fecha){
+        return fecha.substring(8,10);
     }
-    protected int substraerMes(String fecha){
-        return Integer.parseInt(fecha.substring(5,7));
+    protected String substraerMes(String fecha){
+        return fecha.substring(5,7);
     }
-    protected int substraerAnio(String fecha){
-        return Integer.parseInt(fecha.substring(0,4));
+    protected String substraerAnio(String fecha){
+        return fecha.substring(0,4);
     }
 }

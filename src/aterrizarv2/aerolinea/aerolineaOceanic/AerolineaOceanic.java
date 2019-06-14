@@ -17,6 +17,9 @@ import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException
 import aterrizarv2.fecha.FechaFormatoLatinoamericano;
 import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
 import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
+import aterrizarv2.hora.Hora;
+import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
+import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoDTO;
 import aterrizarv2.vuelos.AsientoVueloFullData;
@@ -31,7 +34,7 @@ public class AerolineaOceanic extends Aerolinea{
         this.comunicacionOceanic = comunicacionOceanic;
     }
 
-    String convertirFormatoCiudad(String ciudad){
+    public String convertirFormatoCiudad(String ciudad){
         String codigoCiudadOceanic = ciudad;
         if (ciudad.length() == 2){
             codigoCiudadOceanic = ciudad + '_';
@@ -74,7 +77,7 @@ public class AerolineaOceanic extends Aerolinea{
     }
 
     @Override
-    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException {
+    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException {
         LinkedList<AsientoDTO> listaAsientos = new LinkedList();
         LinkedList<Asiento> listaFinal = new LinkedList();
         for (int i = 0; i < asientosVuelo.length; i++){
@@ -83,10 +86,13 @@ public class AerolineaOceanic extends Aerolinea{
             CodigoAsiento codigo = new CodigoAsiento(numeroVuelo,numeroAsiento);
             String fechaSalida = asientosVuelo[i][2];
             FechaFormatoLatinoamericano fechaLatam = new FechaFormatoLatinoamericano(fechaSalida);
-            PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[i][3]));
-            ClaseAsiento clase = new ClaseAsiento(asientosVuelo[i][4]);
-            UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[i][5]);
-            AsientoDTO asiento = new AsientoDTO(fechaLatam,null, clase, codigo, new EstadoAsiento("D"), precio, ubicacion);
+            String horaSalida = asientosVuelo[i][3];
+            Hora horaSal = new Hora(horaSalida);
+            PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[i][4]));
+            ClaseAsiento clase = new ClaseAsiento(asientosVuelo[i][5]);
+            UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[i][6]);
+            AsientoDTO asiento = new AsientoDTO(fechaLatam,horaSal, clase, codigo, new EstadoAsiento("D"), precio, ubicacion);
+            listaAsientos.add(asiento);
         }
         listaFinal.addAll(listaAsientos);
         return listaFinal;

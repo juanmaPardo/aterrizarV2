@@ -30,8 +30,16 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         });
     }
     
+    public void agregarFuncionalidadBotonReserva(ActionListener eventoReserva){
+        botonReservar.addActionListener(eventoReserva);
+    }
+    
     public void agregarFuncionalidadBotonBuscar(ActionListener eventoBusqueda){
         botonBuscar.addActionListener(eventoBusqueda);
+    }
+    
+    public void agregarFuncionalidadBotonComprar(ActionListener eventoCompra){
+        botonComprar.addActionListener(eventoCompra);
     }
     
     public void cambiarTextoTextField(String texto){
@@ -39,12 +47,37 @@ public class BusquedaAsientos extends javax.swing.JFrame {
  
     }
     
+    public void eliminarFilaSeleccionada(){
+        DefaultTableModel tb = (DefaultTableModel) resultadoBusqueda.getModel();
+        tb.removeRow(resultadoBusqueda.getSelectedRow());
+    }
+    
+    public void eliminarCeldasTabla(){
+        DefaultTableModel tb = (DefaultTableModel) resultadoBusqueda.getModel();
+        int a = resultadoBusqueda.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        tb.removeRow(tb.getRowCount()-1);
+        } 
+    }
+    
     public void rellenarTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
         DefaultTableModel modelo = (DefaultTableModel) resultadoBusqueda.getModel();
         Object[] filaAgregar = {aerolinea,vuelo,nroAsiento,precio,ubicacion,clase};
         modelo.addRow(filaAgregar);
     }
-   
+    
+    public boolean seSeleccionoFila(){
+        return (resultadoBusqueda.getSelectedRow() != -1);
+    }
+    
+    
+    public String obtenerCodigoVueloFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),1);
+    }
+    
+    public String obtenerNumeroAsientoFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),2);
+    }
     
     public String obtenerTextoOrigen(){
         return this.textoOrigen.getText();
@@ -90,7 +123,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        mostrarErrores.setEnabled(false);
         mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarErroresActionPerformed(evt);

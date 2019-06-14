@@ -1,5 +1,8 @@
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class CompraExitosa extends javax.swing.JFrame {
 
@@ -8,6 +11,26 @@ public class CompraExitosa extends javax.swing.JFrame {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
+    }
+    
+    public CompraExitosa(String codigoAsiento) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        nombreAsiento.setText(codigoAsiento);
+        botonSeguirBuscando.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                cerrarVentana();
+            }
+            
+        });
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
     }
 
     /**
@@ -78,7 +101,6 @@ public class CompraExitosa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSeguirBuscandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeguirBuscandoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_botonSeguirBuscandoActionPerformed
 
     /**
