@@ -12,10 +12,10 @@ public class EstadoAsiento {
     }
     
     public EstadoAsiento(String estado) throws EstadoAsientoInvalidaException{
-        if(estado == "D"){
+        if("D".equals(estado)){
             estadoAsiento = EnumEstadoAsiento.DISPONIBLE;
         }
-        else if(estado == "R"){
+        else if("R".equals(estado)){
             estadoAsiento = EnumEstadoAsiento.RESERVADO;
         }
         else{

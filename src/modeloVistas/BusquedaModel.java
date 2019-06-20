@@ -60,11 +60,11 @@ public class BusquedaModel {
                     String numeroAsiento = busqueda.obtenerNumeroAsientoFilaSeleccionada();
                     String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
                     Aerolinea aerolinea = pagina.obtenerAerolineaTieneAsiento(codigoAsiento);
-                    aerolinea.comprarAsiento(codigoAsiento, usuarioBusca);
+                    aerolinea.comprarAsiento(codigoAsiento,usuarioBusca);
                     displayExitoCompra(codigoAsiento);
                     actualizador.actualizarVistas();
                     busqueda.eliminarFilaSeleccionada();
-                } catch (CodigoAsientoException | AsientoReservadoException ex) {
+                } catch (Exception ex) {
                     displayErrorCompra(ex.getMessage());
                 }
             }
@@ -73,6 +73,7 @@ public class BusquedaModel {
                 displayErrorCompra("No se selecciono ningun asiento a comprar.");
             }
         }
+        
         
         public void displayExitoCompra(String codigoAsiento){
             CompraExitosa exitoCompra = new CompraExitosa(codigoAsiento);

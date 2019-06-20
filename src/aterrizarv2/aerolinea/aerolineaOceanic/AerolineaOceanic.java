@@ -46,13 +46,12 @@ public class AerolineaOceanic extends Aerolinea{
     }
 
     @Override
-    public void comprarAsiento(String codigoVuelo, Usuario usuario) throws CodigoAsientoException, AsientoReservadoException {
-        AsientoVueloFullData asientoAComprar = obtenerAsientoConCodigoVuelo(codigoVuelo);
+    public void comprarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException, AsientoReservadoException {
+        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoAComprar.getAsiento();
         revisionesCompra(asiento,usuario);
-        Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuario.getDni());
-        comunicacionOceanic.comprarSiHayDisponibilidad(dni, codigoVuelo,numeroAsiento);
+        comunicacionOceanic.comprarSiHayDisponibilidad(dni, codigoAsiento.split("-")[0],Integer.parseInt(codigoAsiento.split("-")[1]));
         postVentaCambioEstadoAsiento(asiento,usuario);
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
@@ -102,7 +101,7 @@ public class AerolineaOceanic extends Aerolinea{
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
         AsientoVueloFullData asientoEntero = obtenerAsiento(codigoAsiento);
         Asiento asiento = asientoEntero.getAsiento();
-        if(asiento.getEstado().estaReservado()){
+        if(asiento.getEstado().estaReservado() || asiento.getEstado().estaSobrereservado()){
             throw new AsientoReservadoException("El asiento ya esta reservado");
         }
         asiento.getEstado().reservarAsiento();
@@ -111,6 +110,12 @@ public class AerolineaOceanic extends Aerolinea{
         Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
         String dni = Integer.toString(usuarioReserva.getDni());
         comunicacionOceanic.reservar(dni,codigoVuelo,numeroAsiento);
+    }
+    
+    
+    @Override
+    public String getNombre(){
+        return "Oceanic";
     }
 
 }

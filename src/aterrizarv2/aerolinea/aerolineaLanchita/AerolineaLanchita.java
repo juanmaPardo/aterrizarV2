@@ -81,6 +81,10 @@ public class AerolineaLanchita extends Aerolinea{
         String dni = Integer.toString(usuarioReserva.getDni());
         comunicacionLanchita.reservar(codigoVuelo, dni);
     }
-
+    
+    @Override
+    public String getNombre(){
+        return "Lanchita";
+    }
     
 }

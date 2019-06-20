@@ -80,11 +80,11 @@ public abstract class Aerolinea{
                 .collect(Collectors.toList()).get(0);
     }
     
-    public AsientoVueloFullData obtenerAsientoConCodigoVuelo(String codigoVuelo){
+    /*public AsientoVueloFullData obtenerAsientoConCodigoVuelo(String codigoVuelo){
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getNumeroVuelo().equals(codigoVuelo))
                 .collect(Collectors.toList()).get(0);
-    }
+    }*/
     
     public boolean aerolineaTieneAsiento(String codigoAsiento){
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
@@ -167,6 +167,6 @@ public abstract class Aerolinea{
     
     public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
-
+    public abstract  String getNombre();
     
 }
