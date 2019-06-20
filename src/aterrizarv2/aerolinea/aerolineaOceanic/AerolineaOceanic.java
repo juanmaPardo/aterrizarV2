@@ -47,17 +47,10 @@ public class AerolineaOceanic extends Aerolinea{
 
     @Override
     public void comprarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException, AsientoReservadoException {
-        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
-        Asiento asiento = asientoAComprar.getAsiento();
-        revisionesCompra(asiento,usuario);
+        super.comprarAsiento(codigoAsiento, usuario);
         String dni = Integer.toString(usuario.getDni());
         comunicacionOceanic.comprarSiHayDisponibilidad(dni, codigoAsiento.split("-")[0],Integer.parseInt(codigoAsiento.split("-")[1]));
-        postVentaCambioEstadoAsiento(asiento,usuario);
-        asientosComprados.add(asiento);
-        actualizaAsientosVendidosVuelo(asiento);
-        usuario.efectuarCompra(asientoAComprar.getAsiento().getPrecio().getPrecioAsiento());
-        usuario.marcarComoComprado(asientoAComprar.getAsiento());
-        cambiarEstadoAsientoAVendido(asientoAComprar.getAsiento());
+        
     }
     
 
@@ -99,17 +92,8 @@ public class AerolineaOceanic extends Aerolinea{
 
     @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
-        AsientoVueloFullData asientoEntero = obtenerAsiento(codigoAsiento);
-        Asiento asiento = asientoEntero.getAsiento();
-        if(asiento.getEstado().estaReservado() || asiento.getEstado().estaSobrereservado()){
-            throw new AsientoReservadoException("El asiento ya esta reservado");
-        }
-        asiento.getEstado().reservarAsiento();
-        usuarioReserva.agregarAsientoReservado(asiento);
-        String codigoVuelo = asiento.getCodigo().getCodigo();
-        Integer numeroAsiento = Integer.parseInt(asiento.getCodigo().getNumeroAsiento());
-        String dni = Integer.toString(usuarioReserva.getDni());
-        comunicacionOceanic.reservar(dni,codigoVuelo,numeroAsiento);
+        super.reservarAsiento(codigoAsiento, usuarioReserva);
+        comunicacionOceanic.reservar(Integer.toString(usuarioReserva.getDni()),codigoAsiento.split("-")[0],Integer.parseInt(codigoAsiento.split("-")[1]));
     }
     
     

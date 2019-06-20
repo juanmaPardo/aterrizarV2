@@ -113,7 +113,6 @@ public abstract class Aerolinea{
         }
     }
     
-    public abstract void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException,AsientoReservadoException;
   
     public boolean estaReservadoAsiento(Asiento asiento){
         return asiento.getEstado().estaReservado();
@@ -161,7 +160,26 @@ public abstract class Aerolinea{
         return obtenerAsiento(codigoAsiento).getFechaSalida().representacionEnIso();
     }
     
-    public abstract void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException;
+    public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException{
+        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
+        Asiento asiento = asientoAComprar.getAsiento();
+        revisionesCompra(asiento,usuarioCompra);
+        postVentaCambioEstadoAsiento(asiento,usuarioCompra);
+        asientosComprados.add(asiento);
+        actualizaAsientosVendidosVuelo(asiento);
+        usuarioCompra.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
+        usuarioCompra.marcarComoComprado(asiento);
+        cambiarEstadoAsientoAVendido(asiento);
+    }
+
+    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException,AsientoReservadoException{
+        AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
+        if(asiento.getAsiento().getEstado().estaReservado() || asiento.getAsiento().getEstado().estaSobrereservado()){
+            throw new AsientoReservadoException("El asiento ya esta reservado");
+        }
+        asiento.getAsiento().getEstado().reservarAsiento();
+        usuario.agregarAsientoReservado(asiento.getAsiento());
+    }
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
     

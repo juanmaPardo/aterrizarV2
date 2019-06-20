@@ -30,16 +30,9 @@ public class AerolineaLanchita extends Aerolinea{
 
     @Override
     public void comprarAsiento(String codigoAsiento, Usuario usuarioAComprar) throws CodigoAsientoException, AsientoReservadoException{
-        AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
-        Asiento asiento = asientoAComprar.getAsiento();
-        revisionesCompra(asiento,usuarioAComprar);
+        super.comprarAsiento(codigoAsiento, usuarioAComprar);
         comunicacionLanchita.comprar(codigoAsiento);
-        postVentaCambioEstadoAsiento(asiento,usuarioAComprar);
-        asientosComprados.add(asiento);
-        actualizaAsientosVendidosVuelo(asiento);
-        usuarioAComprar.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
-        usuarioAComprar.marcarComoComprado(asiento);
-        cambiarEstadoAsientoAVendido(asiento);
+        
     }
    
     
@@ -71,15 +64,8 @@ public class AerolineaLanchita extends Aerolinea{
 
     @Override
     public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
-        AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
-        if(asiento.getAsiento().getEstado().estaReservado() || asiento.getAsiento().getEstado().estaSobrereservado()){
-            throw new AsientoReservadoException("El asiento ya esta reservado");
-        }
-        asiento.getAsiento().getEstado().reservarAsiento();
-        usuarioReserva.agregarAsientoReservado(asiento.getAsiento());
-        String codigoVuelo = asiento.getAsiento().getCodigo().getCodigo();
-        String dni = Integer.toString(usuarioReserva.getDni());
-        comunicacionLanchita.reservar(codigoVuelo, dni);
+        super.reservarAsiento(codigoAsiento, usuarioReserva);
+        comunicacionLanchita.reservar(codigoAsiento.split("-")[0], Integer.toString(usuarioReserva.getDni()));
     }
     
     @Override
