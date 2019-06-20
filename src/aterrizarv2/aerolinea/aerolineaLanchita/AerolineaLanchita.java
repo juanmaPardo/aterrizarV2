@@ -34,8 +34,6 @@ public class AerolineaLanchita extends Aerolinea{
         comunicacionLanchita.comprar(codigoAsiento);
         
     }
-   
-    
     
     @Override
     public String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos noInteresa) {
@@ -47,19 +45,16 @@ public class AerolineaLanchita extends Aerolinea{
         String horaLlegada = vuelo.getHoraLLegada();
         return comunicacionLanchita.asientosDisponibles(origen,destino,fechaSalida,fechaLlegada,horaSalida,horaLlegada);
     }
-
+    
     @Override
-    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException {
-        LinkedList<Asiento> disponibles = new LinkedList<>();
-        for(int i = 0 ; i < asientosVuelo.length ; i++){
-            CodigoAsiento codigo = new CodigoAsiento(asientosVuelo[i][0]);
-            PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[i][1]));
-            ClaseAsiento clase = new ClaseAsiento(asientosVuelo[i][2]);
-            UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[i][3]);
-            EstadoAsiento estado = new EstadoAsiento(asientosVuelo[i][4]);
-            disponibles.add(new Asiento(clase, codigo, estado, precio, ubicacion));
-        }
-        return disponibles;
+    public Asiento setearAsiento(String[][] asientosVuelo, int posicion) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException{
+        CodigoAsiento codigo = new CodigoAsiento(asientosVuelo[posicion][0]);
+        PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[posicion][1]));
+        ClaseAsiento clase = new ClaseAsiento(asientosVuelo[posicion][2]);
+        UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[posicion][3]);
+        EstadoAsiento estado = new EstadoAsiento(asientosVuelo[posicion][4]);
+        Asiento asientoSeteado = new Asiento(clase, codigo, estado, precio, ubicacion);
+        return asientoSeteado;
     }
 
     @Override
