@@ -11,15 +11,15 @@ public class ActualizadorVistas {
     }
     
     public void actualizarAsientosCompradosUsuario(){
-        ventanaCompras.setearAsientosCompradosEnVista();
+        ventanaCompras.setearAsientosEnVista(ventanaCompras.asientosCompradosUsuarioVista());
     }
     
     public void actualizarAsientosReservadosUsuario(){
-        ventanaReservas.setearAsientosReservadosEnVista();
+        ventanaReservas.setearAsientosEnVista(ventanaReservas.asientosReservadosUsuarioVista());
     }
      
     public void actualizarVistas(){
-        ventanaCompras.setearAsientosCompradosEnVista();
-        ventanaReservas.setearAsientosReservadosEnVista();
+        ventanaCompras.setearAsientosEnVista(ventanaCompras.asientosCompradosUsuarioVista());
+        ventanaReservas.setearAsientosEnVista(ventanaReservas.asientosReservadosUsuarioVista());
     } 
 }

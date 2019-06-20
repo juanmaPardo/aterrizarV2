@@ -28,7 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="reservas" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLabelVentana" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nombreUsuario" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -43,7 +43,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="reservas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreLabelVentana" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="reservas">
+    <Component class="javax.swing.JLabel" name="nombreLabelVentana">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="14" style="0"/>
@@ -71,7 +71,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="reservasUsuario">
+        <Component class="javax.swing.JTable" name="infoTablaUsuario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Comic Sans MS" size="12" style="0"/>
@@ -120,7 +120,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="reservasUsuario = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int i, int n){&#xa;        return false;&#xa;    }&#xa;};"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="infoTablaUsuario = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int i, int n){&#xa;        return false;&#xa;    }&#xa;};"/>
           </AuxValues>
         </Component>
       </SubComponents>
