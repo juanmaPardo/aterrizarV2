@@ -97,7 +97,7 @@ public class reservasNuevo {
     }
     
     @Test
-    public void reservarAsiento_reservaExitosaDeUsuarioAUnAsiento() throws CodigoAsientoException{
+    public void reservarAsiento_reservaExitosaDeUsuarioAUnAsiento() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
@@ -106,7 +106,7 @@ public class reservasNuevo {
     }
     
     @Test
-    public void reservarAsiento_usuarioReservaVariosAsientosExitosamente() throws CodigoAsientoException{
+    public void reservarAsiento_usuarioReservaVariosAsientosExitosamente() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         String codigoAsiento2 = "EC0344-66";
         Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
@@ -119,8 +119,8 @@ public class reservasNuevo {
         Assert.assertTrue("Estado asiento no es reservado",asientoDos.getEstado().estaReservado());
     }
     
-    @Test(expected = AsientoNoDisponibleException.class)
-    public void reservarAsiento_UsuarioNoPuedeReservarAsientoReservadoPorOtro() throws CodigoAsientoException{
+    @Test(expected = AsientoReservadoException.class)
+    public void reservarAsiento_UsuarioNoPuedeReservarAsientoReservadoPorOtro() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         userEstandar.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
@@ -141,7 +141,7 @@ public class reservasNuevo {
     }
     
     @Test
-    public void expiroReserva_UsuarioReservaPeroSuReservaExpiraYOtroUsuarioReservaSuAsiento() throws CodigoAsientoException{
+    public void expiroReserva_UsuarioReservaPeroSuReservaExpiraYOtroUsuarioReservaSuAsiento() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);
         Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
@@ -153,7 +153,7 @@ public class reservasNuevo {
     }
     
     @Test
-    public void expiroReserva_UsuarioPierdeLaReservaYElAsientoEstaDisponible() throws CodigoAsientoException{
+    public void expiroReserva_UsuarioPierdeLaReservaYElAsientoEstaDisponible() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         Asiento asientoUno = lanchitaNoMockeada.obtenerAsiento(codigoAsiento).getAsiento();
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);

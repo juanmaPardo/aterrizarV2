@@ -123,7 +123,7 @@ public abstract class Aerolinea{
         asiento.getEstado().venderAsiento();
     }
     
-    public void expiroReserva(Asiento asiento, Usuario usuario) throws CodigoAsientoException{
+    public void expiroReserva(Asiento asiento, Usuario usuario) throws CodigoAsientoException, AsientoReservadoException{
         usuario.eliminarAsientoReservado(asiento);
         if(asiento.getEstado().estaSobrereservado()){
             String codigoAsiento = asiento.getCodigo().getCodigo();

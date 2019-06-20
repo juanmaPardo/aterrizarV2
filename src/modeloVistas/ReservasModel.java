@@ -3,7 +3,7 @@ package modeloVistas;
 import Vistas.ErrorReserva;
 import Vistas.ReservaExitosa;
 import Vistas.Reservas;
-import Vistas.Sobrereservar;
+import Vistas.Sobrereserva;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;

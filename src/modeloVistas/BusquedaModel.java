@@ -5,7 +5,7 @@ import Vistas.CompraExitosa;
 import Vistas.ErrorCompra;
 import Vistas.ErrorReserva;
 import Vistas.ReservaExitosa;
-import Vistas.Sobrereservar;
+import Vistas.Sobrereserva;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
@@ -24,6 +24,8 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class BusquedaModel {
@@ -84,20 +86,23 @@ public class BusquedaModel {
     }
     
     class ReservaAsiento implements ActionListener{
-
+        Sobrereserva sobrereserva;
+        
         @Override
         public void actionPerformed(ActionEvent ae) {
             if(busqueda.seSeleccionoFila()){
+                String codigoVuelo = busqueda.obtenerCodigoVueloFilaSeleccionada();
+                String numeroAsiento = busqueda.obtenerNumeroAsientoFilaSeleccionada();
+                String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
                 try {
-                    String codigoVuelo = busqueda.obtenerCodigoVueloFilaSeleccionada();
-                    String numeroAsiento = busqueda.obtenerNumeroAsientoFilaSeleccionada();
-                    String codigoAsiento= codigoVuelo + "-" + numeroAsiento;
                     Aerolinea aerolinea = pagina.obtenerAerolineaTieneAsiento(codigoAsiento);
                     aerolinea.reservarAsiento(codigoAsiento, usuarioBusca);
                     displayExitoReserva(codigoAsiento);
                     actualizador.actualizarVistas();
                 } catch (CodigoAsientoException ex) {
                     displayErrorReserva(ex.getMessage());
+                } catch(AsientoReservadoException ex){
+                    displayOpcionSobrereserva(codigoAsiento);
                 }
             }
             else{
@@ -115,6 +120,33 @@ public class BusquedaModel {
             ErrorReserva falloReserva = new ErrorReserva(mensajeFallo);
             falloReserva.setVisible(true);
         }
+        
+        public void displayOpcionSobrereserva(String codigoAsiento){
+            sobrereserva =new Sobrereserva(codigoAsiento);
+            sobrereserva.setVisible(true);
+            sobrereserva.agregarFuncionalidadBotonSobrereserva(new ManejaSobrereservas(codigoAsiento));
+        }
+        
+        class ManejaSobrereservas implements ActionListener{
+            private String codigoAsiento;
+
+            public ManejaSobrereservas(String codigoAsiento) {
+                this.codigoAsiento = codigoAsiento;
+            }
+            
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    pagina.sobrereservarAsiento(codigoAsiento, usuarioBusca);
+                    sobrereserva.cerrarVentana();
+                    
+                } catch (AsientoReservadoException | CodigoAsientoException ex) {
+                    busqueda.cambiarTextoTextField("No se pudo realizar la sobrereserva debido a que " + ex.getMessage());
+                }
+            }
+            
+        }
+        
     }
     
     class ObtieneBusquedas implements ActionListener{
@@ -161,6 +193,7 @@ public class BusquedaModel {
         
     }
       
+    
     public void display(){
         this.busqueda.setVisible(true);
         this.busqueda.setLocation(500, 200);

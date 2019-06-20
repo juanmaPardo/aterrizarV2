@@ -88,7 +88,7 @@ public class ComienzoPrograma {
     }
     
     
-    public static void reservarUnAsiento(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException{
+    public static void reservarUnAsiento(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException, AsientoReservadoException{
         Aerolinea aerolinea = aterrizar.getAerolineas().get(0);
         aerolinea.reservarAsiento("EC0LAM-12", usuario);
     }

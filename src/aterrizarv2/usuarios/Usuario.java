@@ -62,7 +62,7 @@ public abstract class Usuario {
     
     public abstract boolean esVip();
     
-    public void reservarAsiento(String codigoAsiento, Aerolinea aerolinea) throws CodigoAsientoException {
+    public void reservarAsiento(String codigoAsiento, Aerolinea aerolinea) throws CodigoAsientoException, AsientoReservadoException {
         aerolinea.reservarAsiento(codigoAsiento, this);
     }
     

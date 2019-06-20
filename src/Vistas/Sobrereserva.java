@@ -1,16 +1,40 @@
 
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Sobrereservar extends javax.swing.JFrame {
+
+public class Sobrereserva extends javax.swing.JFrame {
 
     
-    public Sobrereservar() {
+    public Sobrereserva() {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
     }
-
+    
+    public Sobrereserva(String codigo) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        nombreAsiento.setText(codigo);
+        botonSeguirBuscandoo.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               cerrarVentana();
+            }
+        });
+    }
+    
+    public void cerrarVentana(){
+        this.setVisible(false);
+        this.dispose();
+    } 
+    
+    public void agregarFuncionalidadBotonSobrereserva(ActionListener accion){
+        sobrereservar.addActionListener(accion);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +94,7 @@ public class Sobrereservar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(sobrereservar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
                         .addComponent(botonSeguirBuscandoo))
                     .addComponent(queDeseaHacer)
                     .addGroup(layout.createSequentialGroup()
@@ -79,7 +103,7 @@ public class Sobrereservar extends javax.swing.JFrame {
                         .addComponent(nombreAsiento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(yaEstaReservado)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,20 +150,21 @@ public class Sobrereservar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sobrereservar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sobrereserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sobrereservar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sobrereserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sobrereservar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sobrereserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sobrereservar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sobrereserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sobrereservar().setVisible(true);
+                new Sobrereserva().setVisible(true);
             }
         });
     }
