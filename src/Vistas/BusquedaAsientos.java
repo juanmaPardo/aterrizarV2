@@ -2,6 +2,7 @@ package Vistas;
 
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.vuelos.AsientoVueloFullData;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -109,20 +110,18 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         fecha = new javax.swing.JLabel();
         destino = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textoDestino = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textoOrigen = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textoFecha = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         resultadoBusqueda = new javax.swing.JTable();
         botonComprar = new javax.swing.JButton();
         botonReservar = new javax.swing.JButton();
         botonCerrar = new javax.swing.JButton();
+        textoOrigen = new javax.swing.JTextField();
+        textoDestino = new javax.swing.JTextField();
+        textoFecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        mostrarErrores.setEditable(false);
         mostrarErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarErroresActionPerformed(evt);
@@ -140,36 +139,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
 
         botonBuscar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         botonBuscar.setText("Buscar");
-
-        textoDestino.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textoDestinoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textoDestinoKeyTyped(evt);
-            }
-        });
-        jScrollPane1.setViewportView(textoDestino);
-
-        textoOrigen.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textoOrigenKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textoOrigenKeyTyped(evt);
-            }
-        });
-        jScrollPane2.setViewportView(textoOrigen);
-
-        textoFecha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textoFechaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textoFechaKeyTyped(evt);
-            }
-        });
-        jScrollPane3.setViewportView(textoFecha);
 
         resultadoBusqueda = new javax.swing.JTable(){
             public boolean isCellEditable(int i, int n){
@@ -203,6 +172,34 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         botonCerrar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         botonCerrar.setText("Cerrar");
 
+        textoOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoOrigenActionPerformed(evt);
+            }
+        });
+        textoOrigen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoOrigenKeyTyped(evt);
+            }
+        });
+
+        textoDestino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoDestinoKeyTyped(evt);
+            }
+        });
+
+        textoFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoFechaActionPerformed(evt);
+            }
+        });
+        textoFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoFechaKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,25 +207,23 @@ public class BusquedaAsientos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonBuscar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fecha)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(origen)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(origen))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                    .addComponent(textoFecha))
                                 .addGap(43, 43, 43)
                                 .addComponent(destino)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(textoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonComprar)
@@ -244,17 +239,16 @@ public class BusquedaAsientos extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(mostrarErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(origen)
-                        .addComponent(destino))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(origen)
+                    .addComponent(destino)
+                    .addComponent(textoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fecha)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addComponent(botonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,44 +271,48 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonReservarActionPerformed
 
+    private void textoOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoOrigenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoOrigenActionPerformed
+
+    private void textoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoFechaActionPerformed
+
     private void textoOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoOrigenKeyTyped
-        int numeroCaracteres = 4;
-        if(textoOrigen.getText().length() >= numeroCaracteres){
+        int maxCaracteres = 3;
+        char c = evt.getKeyChar();
+        if(textoOrigen.getText().length() >= maxCaracteres){
             evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if(c<'A' || c>'Z'){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_textoOrigenKeyTyped
 
     private void textoDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDestinoKeyTyped
-        int numeroCaracteres = 4;
-        if(textoDestino.getText().length() >= numeroCaracteres){
+        int maxCaracteres = 3;
+        char c = evt.getKeyChar();
+        if(textoDestino.getText().length() >= maxCaracteres){
             evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+        }
+         if(c<'A' || c>'Z'){
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_textoDestinoKeyTyped
 
     private void textoFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFechaKeyTyped
-        int numeroCaracteres = 10;
-        if(textoFecha.getText().length() >= numeroCaracteres){
+        int maxCaracteres = 10;
+        char c = evt.getKeyChar();
+        if(textoFecha.getText().length() >= maxCaracteres){
             evt.consume();
+            Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_textoFechaKeyTyped
-
-    private void textoOrigenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoOrigenKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
-            textoDestino.requestFocus();
-        }
-    }//GEN-LAST:event_textoOrigenKeyPressed
-
-    private void textoDestinoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDestinoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
-            textoFecha.requestFocus();
-        }
-    }//GEN-LAST:event_textoDestinoKeyPressed
-
-    private void textoFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoFechaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_SHIFT){
-            textoOrigen.requestFocus();
-        }
-    }//GEN-LAST:event_textoFechaKeyPressed
         
     /**
      * @param args the command line arguments
@@ -359,15 +357,12 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     private javax.swing.JButton botonReservar;
     private javax.swing.JLabel destino;
     private javax.swing.JLabel fecha;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField mostrarErrores;
     private javax.swing.JLabel origen;
     private javax.swing.JTable resultadoBusqueda;
-    private javax.swing.JTextPane textoDestino;
-    private javax.swing.JTextPane textoFecha;
-    private javax.swing.JTextPane textoOrigen;
+    private javax.swing.JTextField textoDestino;
+    private javax.swing.JTextField textoFecha;
+    private javax.swing.JTextField textoOrigen;
     // End of variables declaration//GEN-END:variables
 }

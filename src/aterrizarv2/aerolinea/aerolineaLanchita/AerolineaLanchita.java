@@ -15,7 +15,6 @@ import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.usuarios.Usuario;
-import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 
@@ -63,7 +62,7 @@ public class AerolineaLanchita extends Aerolinea{
     }
 
     @Override
-    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         super.reservarAsiento(codigoAsiento, usuarioReserva);
         comunicacionLanchita.reservar(codigoAsiento.split("-")[0], Integer.toString(usuarioReserva.getDni()));
     }

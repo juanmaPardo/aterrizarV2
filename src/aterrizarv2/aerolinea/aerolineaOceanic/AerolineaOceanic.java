@@ -22,7 +22,6 @@ import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
 import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoDTO;
-import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 
@@ -91,7 +90,7 @@ public class AerolineaOceanic extends Aerolinea{
     }
 
     @Override
-    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         super.reservarAsiento(codigoAsiento, usuarioReserva);
         comunicacionOceanic.reservar(Integer.toString(usuarioReserva.getDni()),codigoAsiento.split("-")[0],Integer.parseInt(codigoAsiento.split("-")[1]));
     }

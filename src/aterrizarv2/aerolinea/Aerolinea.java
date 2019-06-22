@@ -126,6 +126,7 @@ public abstract class Aerolinea{
         usuario.eliminarAsientoReservado(asiento);
         if(asiento.getEstado().estaSobrereservado()){
             String codigoAsiento = asiento.getCodigo().getCodigo();
+            asiento.getEstado().asientoDisponible();
             Usuario usuarioSobrereserva = AterrizarV2.usuarioSobrereserva(codigoAsiento);
             reservarAsiento(codigoAsiento, usuarioSobrereserva);
         }
@@ -172,11 +173,8 @@ public abstract class Aerolinea{
         cambiarEstadoAsientoAVendido(asiento);
     }
 
-    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException,AsientoReservadoException{
+    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException{
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
-        if(asiento.getAsiento().getEstado().estaReservado() || asiento.getAsiento().getEstado().estaSobrereservado()){
-            throw new AsientoReservadoException("El asiento ya esta reservado");
-        }
         asiento.getAsiento().getEstado().reservarAsiento();
         usuario.agregarAsientoReservado(asiento.getAsiento());
     }

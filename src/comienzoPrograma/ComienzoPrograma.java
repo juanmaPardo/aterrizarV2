@@ -21,7 +21,7 @@ import aterrizarv2.usuarios.DniInvalidoException;
 import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.usuarios.UsuarioPaga;
 import aterrizarv2.vuelos.Vuelo;
-import modeloVistas.BienvenidaModel;
+import controladorVistas.BienvenidaController;
 import org.mockito.Mockito;
 
 
@@ -33,7 +33,7 @@ public class ComienzoPrograma {
         AterrizarV2 aterrizar = setearAterrizarDummy();
         efectuarDosCompras(aterrizar,usuario);
         reservarUnAsiento(aterrizar,usuario);
-        BienvenidaModel bienvenida = new BienvenidaModel(usuario,aterrizar);
+        BienvenidaController bienvenida = new BienvenidaController(usuario,aterrizar);
     }
     
     public static AterrizarV2 setearAterrizarDummy() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException, TipoPedidoInvalidaException, DniInvalidoException{
