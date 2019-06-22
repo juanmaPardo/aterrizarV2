@@ -80,12 +80,6 @@ public abstract class Aerolinea{
                 .collect(Collectors.toList()).get(0);
     }
     
-    /*public AsientoVueloFullData obtenerAsientoConCodigoVuelo(String codigoVuelo){
-        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
-        return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getNumeroVuelo().equals(codigoVuelo))
-                .collect(Collectors.toList()).get(0);
-    }*/
-    
     public boolean aerolineaTieneAsiento(String codigoAsiento){
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return !asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
@@ -181,8 +175,17 @@ public abstract class Aerolinea{
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
     
-    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
+    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException {
+        LinkedList<Asiento> asientosDisponibles = new  LinkedList<>();
+        for (int posicion = 0; posicion < asientosVuelo.length; posicion++){
+            Asiento asientoSeteado = setearAsiento(asientosVuelo, posicion);
+            asientosDisponibles.add(asientoSeteado);
+        }
+        return asientosDisponibles;
+    }
     
     public abstract  String getNombre();
+
+    public abstract Asiento setearAsiento(String[][] asientosVuelo, int posicion) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
 }
