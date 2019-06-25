@@ -23,7 +23,6 @@ import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoDTO;
 import aterrizarv2.vuelos.Vuelo;
-import java.util.LinkedList;
 
 public class AerolineaOceanic extends Aerolinea{
     private AerolineaOceanicI comunicacionOceanic;
