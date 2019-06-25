@@ -13,9 +13,9 @@ public class FechaFormatoIsoTest {
     public void seCreaExitosamenteUnaFechaFormatoIsoYFuncionanGetters(){
         try {
             FechaFormatoIso ffl = new FechaFormatoIso("2012-05-28");
-            Assert.assertEquals(28, ffl.getDia());
-            Assert.assertEquals(05, ffl.getMes());
-            Assert.assertEquals(2012, ffl.getAnio());
+            Assert.assertEquals("28", ffl.getDia());
+            Assert.assertEquals("05", ffl.getMes());
+            Assert.assertEquals("2012", ffl.getAnio());
         } catch (FormatoFechaIncorrectoException | FechaNoValidaException ex) {
             Assert.assertEquals(false, true);
         }     

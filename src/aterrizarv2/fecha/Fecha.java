@@ -55,7 +55,6 @@ public class Fecha implements DatosFecha{
     
     protected boolean fechaValida(String fecha, String dateFormat){
         try {
-            System.out.println(fecha + " ..... " + dateFormat);
             DateFormat df = new SimpleDateFormat(dateFormat);
             df.setLenient(false);
             df.parse(fecha);

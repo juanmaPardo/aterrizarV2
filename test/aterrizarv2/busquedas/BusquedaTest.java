@@ -117,6 +117,23 @@ public class BusquedaTest {
     }
     
     @Test
+    public void noDevuelveNadaNingunoMatchea() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroOrigen buenosAires = new FiltroOrigen("LAS");
+        FiltroDestino madrid = new FiltroDestino("MAD");
+        FiltroFecha junio2018 = new FiltroFecha(fechaSalida1Junio2018);
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(buenosAires,madrid,junio2018,primClase);
+        
+        
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userVip, busqueda,null);
+        
+        
+        
+        Assert.assertEquals(0, asientosCumplenParametro.size());
+    }
+    
+    @Test
     public void devuelveAsientoPrimeraClaseUsuarioPaga() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
         FiltroOrigen buenosAires = new FiltroOrigen("BUE");
         FiltroDestino madrid = new FiltroDestino("MAD");
@@ -152,5 +169,52 @@ public class BusquedaTest {
         Assert.assertEquals(0, asientosCumplenParametro.size());
     }
     
-   
+    @Test(expected = ParametrosInsuficienteException.class)
+    public void tiraErrorFaltaFecha() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroOrigen buenosAires = new FiltroOrigen("BUE");
+        FiltroDestino madrid = new FiltroDestino("MAD");
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(buenosAires,madrid,primClase);
+        
+        
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda,null);
+        
+        
+        
+        Assert.assertEquals(0, asientosCumplenParametro.size());
+    }
+    
+    @Test(expected = ParametrosInsuficienteException.class)
+    public void tiraErrorFaltaDestino() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroOrigen buenosAires = new FiltroOrigen("BUE");
+        FiltroFecha junio2018 = new FiltroFecha(fechaSalida1Junio2018);
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(buenosAires,junio2018,primClase);
+        
+        
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda,null);
+        
+        
+        
+        Assert.assertEquals(0, asientosCumplenParametro.size());
+    }
+    
+    @Test(expected = ParametrosInsuficienteException.class)
+    public void tiraErrorFaltaOrigen() throws ClaseAsientoInvalidaException, ParametrosInsuficienteException{
+        FiltroDestino madrid = new FiltroDestino("MAD");
+        FiltroFecha junio2018 = new FiltroFecha(fechaSalida1Junio2018);
+        FiltroClaseAsiento primClase = new FiltroClaseAsiento(new ClaseAsiento("P"));
+        
+        Busqueda busqueda = new Busqueda(madrid,junio2018,primClase);
+        
+        
+        List<AsientoVueloFullData> asientosCumplenParametro = aterrizar.asientosCumplenParametro(userEstandar, busqueda,null);
+        
+        
+        
+        Assert.assertEquals(0, asientosCumplenParametro.size());
+    }
+    
 }

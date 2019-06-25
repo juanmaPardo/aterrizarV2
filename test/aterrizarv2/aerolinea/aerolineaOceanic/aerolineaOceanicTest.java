@@ -6,6 +6,7 @@ import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
 import aterrizarv2.asientos.UbicacionAsiento;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
@@ -264,4 +265,19 @@ public class aerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
+    
+    @Test
+    public void seCompraUnAsientoSastifactoriamente() throws CodigoAsientoException, AsientoReservadoException{
+        oceanic.comprarAsiento("EC0344-13", userEstandar);
+        org.junit.Assert.assertEquals("565.6", String.valueOf(userEstandar.getPerfil().dineroGastado()));
+        org.junit.Assert.assertEquals(oceanic.aerolineaTieneAsiento("EC0344-13"),true);
+        Asiento asiento = oceanic.obtenerAsiento("EC0344-13").getAsiento();
+        org.junit.Assert.assertEquals(asiento.getEstado().asientoVendido(),true);
+    }
+    
+    @Test(expected = CodigoAsientoException.class)
+    public void fallaCompraAsiento() throws CodigoAsientoException, AsientoReservadoException{
+        oceanic.comprarAsiento("EC0344-422", userEstandar);
+    }
+   
 }
