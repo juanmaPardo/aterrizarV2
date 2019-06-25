@@ -80,12 +80,6 @@ public abstract class Aerolinea{
                 .collect(Collectors.toList()).get(0);
     }
     
-    /*public AsientoVueloFullData obtenerAsientoConCodigoVuelo(String codigoVuelo){
-        LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
-        return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getNumeroVuelo().equals(codigoVuelo))
-                .collect(Collectors.toList()).get(0);
-    }*/
-    
     public boolean aerolineaTieneAsiento(String codigoAsiento){
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
         return !asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
@@ -126,6 +120,7 @@ public abstract class Aerolinea{
         usuario.eliminarAsientoReservado(asiento);
         if(asiento.getEstado().estaSobrereservado()){
             String codigoAsiento = asiento.getCodigo().getCodigo();
+            asiento.getEstado().asientoDisponible();
             Usuario usuarioSobrereserva = AterrizarV2.usuarioSobrereserva(codigoAsiento);
             reservarAsiento(codigoAsiento, usuarioSobrereserva);
         }
@@ -172,19 +167,25 @@ public abstract class Aerolinea{
         cambiarEstadoAsientoAVendido(asiento);
     }
 
-    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException,AsientoReservadoException{
+    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException{
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
-        if(asiento.getAsiento().getEstado().estaReservado() || asiento.getAsiento().getEstado().estaSobrereservado()){
-            throw new AsientoReservadoException("El asiento ya esta reservado");
-        }
         asiento.getAsiento().getEstado().reservarAsiento();
         usuario.agregarAsientoReservado(asiento.getAsiento());
     }
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
     
-    public abstract LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
+    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException, FormatoFechaIncorrectoException {
+        LinkedList<Asiento> asientosDisponibles = new  LinkedList<>();
+        for (int posicion = 0; posicion < asientosVuelo.length; posicion++){
+            Asiento asientoSeteado = setearAsiento(asientosVuelo, posicion);
+            asientosDisponibles.add(asientoSeteado);
+        }
+        return asientosDisponibles;
+    }
     
     public abstract  String getNombre();
+
+    public abstract Asiento setearAsiento(String[][] asientosVuelo, int posicion) throws FormatoHoraIncorrectoException, HoraInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FechaNoValidaException,FormatoFechaIncorrectoException;
     
 }

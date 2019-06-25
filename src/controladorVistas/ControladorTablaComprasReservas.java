@@ -1,4 +1,4 @@
-package modeloVistas;
+package controladorVistas;
 
 import Vistas.ReservasCompras;
 import aterrizarv2.AterrizarV2;
@@ -40,7 +40,7 @@ public class ControladorTablaComprasReservas {
                 vista.rellenarFilaTabla(fechaSalida,aerolinea,codigoVuelo,numeroAsiento,precio);
             } catch (CodigoAsientoException ex) {
                 //Nunca va a entrar a este catch en realidad asi que no pasa nada
-                Logger.getLogger(ComprasModel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ComprasController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

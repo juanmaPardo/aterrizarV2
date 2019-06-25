@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package aterrizarv2.busquedas.ordenamientoBusqueda;
 
 import aterrizarv2.AterrizarV2;
@@ -10,12 +5,6 @@ import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchitaI;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
-import aterrizarv2.asientos.Asiento;
-import aterrizarv2.asientos.ClaseAsiento;
-import aterrizarv2.asientos.CodigoAsiento;
-import aterrizarv2.asientos.EstadoAsiento;
-import aterrizarv2.asientos.PrecioAsiento;
-import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -40,7 +29,6 @@ import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 
 
 public class OrdenPorPopularidadTest {

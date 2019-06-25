@@ -1,11 +1,10 @@
-package modeloVistas;
-
+package controladorVistas;
 
 public class ActualizadorVistas {
-    private ComprasModel ventanaCompras;
-    private ReservasModel ventanaReservas;
+    private ComprasController ventanaCompras;
+    private ReservasController ventanaReservas;
 
-    public ActualizadorVistas(ComprasModel ventanaCompras, ReservasModel ventanaReservas) {
+    public ActualizadorVistas(ComprasController ventanaCompras, ReservasController ventanaReservas) {
         this.ventanaCompras = ventanaCompras;
         this.ventanaReservas = ventanaReservas;
     }

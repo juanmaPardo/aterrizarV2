@@ -20,12 +20,8 @@ import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.usuarios.UsuarioPaga;
 import aterrizarv2.vuelos.Vuelo;
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
 
 
@@ -119,7 +115,7 @@ public class reservasNuevo {
         Assert.assertTrue("Estado asiento no es reservado",asientoDos.getEstado().estaReservado());
     }
     
-    @Test(expected = AsientoReservadoException.class)
+    @Test(expected = AsientoNoDisponibleException.class)
     public void reservarAsiento_UsuarioNoPuedeReservarAsientoReservadoPorOtro() throws CodigoAsientoException, AsientoReservadoException{
         String codigoAsiento = "EC0344-42";
         userVip.reservarAsiento(codigoAsiento, lanchitaNoMockeada);

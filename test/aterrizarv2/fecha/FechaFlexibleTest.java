@@ -5,10 +5,6 @@ import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- *
- * @author juanm
- */
 public class FechaFlexibleTest {
     
     public FechaFlexibleTest() {

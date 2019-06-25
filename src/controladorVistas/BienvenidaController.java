@@ -1,4 +1,4 @@
-package modeloVistas;
+package controladorVistas;
 
 import Vistas.Bienvenida;
 import aterrizarv2.AterrizarV2;
@@ -7,20 +7,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class BienvenidaModel {
+public class BienvenidaController {
     private Bienvenida bienvenida;
     private Usuario usuarioLogeado;
-    private ComprasModel ventanaCompras;
-    private ReservasModel ventanaReservas;
-    private BusquedaModel ventanaBusquedas;
+    private ComprasController ventanaCompras;
+    private ReservasController ventanaReservas;
+    private BusquedaController ventanaBusquedas;
     private ActualizadorVistas actualizador;
 
-    public BienvenidaModel(Usuario usuarioLogeado, AterrizarV2 pagina) {
+    public BienvenidaController(Usuario usuarioLogeado, AterrizarV2 pagina) {
         this.usuarioLogeado = usuarioLogeado;
-        this.ventanaCompras = new ComprasModel(usuarioLogeado,pagina);
-        this.ventanaReservas = new ReservasModel(usuarioLogeado,pagina);
+        this.ventanaCompras = new ComprasController(usuarioLogeado,pagina);
+        this.ventanaReservas = new ReservasController(usuarioLogeado,pagina);
         this.actualizador = new ActualizadorVistas(ventanaCompras, ventanaReservas);
-        this.ventanaBusquedas = new BusquedaModel(usuarioLogeado,pagina,actualizador);
+        this.ventanaBusquedas = new BusquedaController(usuarioLogeado,pagina,actualizador);
         this.bienvenida = new Bienvenida(usuarioLogeado.getNombre());
         setearListeners();
     }

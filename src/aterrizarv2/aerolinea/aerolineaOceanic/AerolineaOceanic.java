@@ -22,7 +22,6 @@ import aterrizarv2.hora.excepcionesHora.FormatoHoraIncorrectoException;
 import aterrizarv2.hora.excepcionesHora.HoraInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoDTO;
-import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
 import java.util.LinkedList;
 
@@ -69,29 +68,23 @@ public class AerolineaOceanic extends Aerolinea{
     }
 
     @Override
-    public LinkedList<Asiento> devolverAsiento(String[][] asientosVuelo) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException {
-        LinkedList<AsientoDTO> listaAsientos = new LinkedList();
-        LinkedList<Asiento> listaFinal = new LinkedList();
-        for (int i = 0; i < asientosVuelo.length; i++){
-            String numeroVuelo = asientosVuelo[i][0];
-            String numeroAsiento = asientosVuelo[i][1];
-            CodigoAsiento codigo = new CodigoAsiento(numeroVuelo,numeroAsiento);
-            String fechaSalida = asientosVuelo[i][2];
-            FechaFormatoLatinoamericano fechaLatam = new FechaFormatoLatinoamericano(fechaSalida);
-            String horaSalida = asientosVuelo[i][3];
-            Hora horaSal = new Hora(horaSalida);
-            PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[i][4]));
-            ClaseAsiento clase = new ClaseAsiento(asientosVuelo[i][5]);
-            UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[i][6]);
-            AsientoDTO asiento = new AsientoDTO(fechaLatam,horaSal, clase, codigo, new EstadoAsiento("D"), precio, ubicacion);
-            listaAsientos.add(asiento);
-        }
-        listaFinal.addAll(listaAsientos);
-        return listaFinal;
+    public Asiento setearAsiento(String[][] asientosVuelo, int posicion) throws CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException{
+        String numeroVuelo = asientosVuelo[posicion][0];
+        String numeroAsiento = asientosVuelo[posicion][1];
+        CodigoAsiento codigo = new CodigoAsiento(numeroVuelo,numeroAsiento);
+        String fechaSalida = asientosVuelo[posicion][2];
+        FechaFormatoLatinoamericano fechaLatam = new FechaFormatoLatinoamericano(fechaSalida);
+        String horaSalida = asientosVuelo[posicion][3];
+        Hora horaSal = new Hora(horaSalida);
+        PrecioAsiento precio = new PrecioAsiento(Double.parseDouble(asientosVuelo[posicion][4]));
+        ClaseAsiento clase = new ClaseAsiento(asientosVuelo[posicion][5]);
+        UbicacionAsiento ubicacion = new UbicacionAsiento(asientosVuelo[posicion][6]);
+        AsientoDTO asiento = new AsientoDTO(fechaLatam,horaSal, clase, codigo, new EstadoAsiento("D"), precio, ubicacion);
+        return asiento;
     }
-
+    
     @Override
-    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException, AsientoReservadoException {
+    public void reservarAsiento(String codigoAsiento, Usuario usuarioReserva) throws CodigoAsientoException {
         super.reservarAsiento(codigoAsiento, usuarioReserva);
         comunicacionOceanic.reservar(Integer.toString(usuarioReserva.getDni()),codigoAsiento.split("-")[0],Integer.parseInt(codigoAsiento.split("-")[1]));
     }

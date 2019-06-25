@@ -93,7 +93,7 @@ public class AerolineaLanchitaTest {
     @Test
     public void seCompraUnAsientoSastifactoriamente() throws CodigoAsientoException, AsientoReservadoException{
         lanchitaNoMockeada.comprarAsiento("EC0344-42", userEstandar);
-        Assert.assertEquals(String.valueOf(userEstandar.getPerfil().dineroGastado()),"565.6");
+        Assert.assertEquals("565.6", String.valueOf(userEstandar.getPerfil().dineroGastado()));
         Assert.assertEquals(lanchitaNoMockeada.aerolineaTieneAsiento("EC0344-42"),true);
         Asiento asiento = lanchitaNoMockeada.obtenerAsiento("EC0344-42").getAsiento();
         Assert.assertEquals(asiento.getEstado().asientoVendido(),true);

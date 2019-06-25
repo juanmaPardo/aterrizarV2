@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/juan/NetBeans/aterrizarV2/src/comienzoPrograma/ComienzoPrograma.java</file>
+=======
+            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/aterrizarV2/test/aterrizarv2/vuelos/VueloTest.java</file>
+            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizarV2/aterrizarV2/src/controladorVistas/BusquedaController.java</file>
+>>>>>>> 09df6c0f026ee9be797d64dbafe7b1137a139ebc
         </group>
     </open-files>
 </project-private>

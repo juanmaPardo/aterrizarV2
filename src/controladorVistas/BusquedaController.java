@@ -1,4 +1,4 @@
-package modeloVistas;
+package controladorVistas;
 
 import Vistas.BusquedaAsientos;
 import Vistas.CompraExitosa;
@@ -8,6 +8,7 @@ import Vistas.ReservaExitosa;
 import Vistas.Sobrereserva;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.Aerolinea;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.busquedas.Busqueda;
@@ -24,11 +25,9 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
-public class BusquedaModel {
+public class BusquedaController {
     /* Esto ahora veo si lo hago global o lo trigereo e
     private ReservaExitosa reservaExitosa;
     private ErrorReserva errorReserva;
@@ -40,7 +39,7 @@ public class BusquedaModel {
     private AterrizarV2 pagina;
     private ActualizadorVistas actualizador;
 
-    public BusquedaModel(Usuario usuarioBusca, AterrizarV2 pagina,ActualizadorVistas actualizador) {
+    public BusquedaController(Usuario usuarioBusca, AterrizarV2 pagina,ActualizadorVistas actualizador) {
         this.usuarioBusca = usuarioBusca;
         this.pagina = pagina;
         this.busqueda = new BusquedaAsientos();
@@ -64,7 +63,7 @@ public class BusquedaModel {
                     displayExitoCompra(codigoAsiento);
                     actualizador.actualizarVistas();
                     busqueda.eliminarFilaSeleccionada();
-                } catch (Exception ex) {
+                } catch (AsientoReservadoException | CodigoAsientoException ex) {
                     displayErrorCompra(ex.getMessage());
                 }
             }
@@ -78,11 +77,13 @@ public class BusquedaModel {
         public void displayExitoCompra(String codigoAsiento){
             CompraExitosa exitoCompra = new CompraExitosa(codigoAsiento);
             exitoCompra.setVisible(true);
+            exitoCompra.setLocation(500,200);
         }
         
         public void displayErrorCompra(String mensajeFallo){
-            ErrorCompra exitoCompra = new ErrorCompra(mensajeFallo);
-            exitoCompra.setVisible(true);
+            ErrorCompra errorCompra = new ErrorCompra(mensajeFallo);
+            errorCompra.setVisible(true);
+            errorCompra.setLocation(500,200);
         }
     }
     
@@ -102,7 +103,7 @@ public class BusquedaModel {
                     actualizador.actualizarVistas();
                 } catch (CodigoAsientoException ex) {
                     displayErrorReserva(ex.getMessage());
-                } catch(AsientoReservadoException ex){
+                } catch(AsientoNoDisponibleException ex){
                     displayOpcionSobrereserva(codigoAsiento);
                 }
             }
@@ -115,16 +116,19 @@ public class BusquedaModel {
         public void displayExitoReserva(String codigoAsiento){
             ReservaExitosa exitoReserva = new ReservaExitosa(codigoAsiento);
             exitoReserva.setVisible(true);
+            exitoReserva.setLocation(500,200);
         }
         
         public void displayErrorReserva(String mensajeFallo){
             ErrorReserva falloReserva = new ErrorReserva(mensajeFallo);
             falloReserva.setVisible(true);
+            falloReserva.setLocation(500,200);
         }
         
         public void displayOpcionSobrereserva(String codigoAsiento){
             sobrereserva =new Sobrereserva(codigoAsiento);
             sobrereserva.setVisible(true);
+            sobrereserva.setLocation(500,200);
             sobrereserva.agregarFuncionalidadBotonSobrereserva(new ManejaSobrereservas(codigoAsiento));
         }
         
@@ -142,7 +146,7 @@ public class BusquedaModel {
                     sobrereserva.cerrarVentana();
                     
                 } catch (AsientoReservadoException | CodigoAsientoException ex) {
-                    busqueda.cambiarTextoTextField("No se pudo realizar la sobrereserva debido a que " + ex.getMessage());
+                    busqueda.cambiarTextoTextField(ex.getMessage());
                 }
             }
             
@@ -155,6 +159,7 @@ public class BusquedaModel {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
+                busqueda.cambiarTextoTextField("");
                 busqueda.eliminarCeldasTabla();
                 String origen = busqueda.obtenerTextoOrigen();
                 String destino = busqueda.obtenerTextoDestino();

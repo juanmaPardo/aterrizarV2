@@ -5,12 +5,7 @@ import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchitaI;
 import aterrizarv2.aerolinea.aerolineaOceanic.TipoPedidoInvalidaException;
 import aterrizarv2.aerolinea.exceptionesAerolinea.DatosVueloIncorrectoException;
-import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.ClaseAsiento;
-import aterrizarv2.asientos.CodigoAsiento;
-import aterrizarv2.asientos.EstadoAsiento;
-import aterrizarv2.asientos.PrecioAsiento;
-import aterrizarv2.asientos.UbicacionAsiento;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
 import aterrizarv2.asientos.excepcionesAsiento.EstadoAsientoInvalidaException;
@@ -32,7 +27,6 @@ import aterrizarv2.usuarios.UsuarioNoPaga;
 import aterrizarv2.usuarios.UsuarioPaga;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import aterrizarv2.vuelos.Vuelo;
-import java.util.LinkedList;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
@@ -136,8 +130,8 @@ public class BusquedaTest {
         
         
         
-        Assert.assertEquals(asientosCumplenParametro.size(),1);
-        Assert.assertEquals(asientosCumplenParametro.get(0).getAsiento().getCodigo().getCodigo(),"EC0344-42");
+        Assert.assertEquals(1, asientosCumplenParametro.size());
+        Assert.assertEquals("EC0344-42", asientosCumplenParametro.get(0).getAsiento().getCodigo().getCodigo());
         
     }
     
@@ -155,7 +149,7 @@ public class BusquedaTest {
         
         
         
-        Assert.assertEquals(asientosCumplenParametro.size(),0);
+        Assert.assertEquals(0, asientosCumplenParametro.size());
     }
     
    
