@@ -14,9 +14,9 @@ public class FechaFormatoLatinoamericanoTest {
     public void seCreaExitosamenteUnaFechaFormatoLatinoamericanoYFuncionanGetters(){
         try {
             FechaFormatoLatinoamericano ffl = new FechaFormatoLatinoamericano("12/01/2012");
-            Assert.assertEquals(12, ffl.getDia());
-            Assert.assertEquals(1, ffl.getMes());
-            Assert.assertEquals(2012, ffl.getAnio());
+            Assert.assertEquals("12", ffl.getDia());
+            Assert.assertEquals("01", ffl.getMes());
+            Assert.assertEquals("2012", ffl.getAnio());
         } catch (FormatoFechaIncorrectoException | FechaNoValidaException ex) {
             Assert.assertEquals(false, true);
         }     

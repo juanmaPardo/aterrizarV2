@@ -215,15 +215,6 @@ public class aerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
-    
-    @Test
-    public void compraDeUnAsientoExitosa() throws CodigoAsientoException, AsientoReservadoException{
-        oceanic.comprarAsiento("EC0344-13", userEstandar);
-        Assert.assertEquals("565.6", String.valueOf(userEstandar.getPerfil().dineroGastado()));
-        Assert.assertEquals(oceanic.aerolineaTieneAsiento("EC0344-13"),true);
-        Asiento asiento = oceanic.obtenerAsiento("EC0344-13").getAsiento();
-        Assert.assertEquals(asiento.getEstado().asientoVendido(),true);
-    }
 
     @Test
     public void asientosDisponiblesParaOrigenYDestinoDevuelveAsientoDTOCorrectamente() throws TipoPedidoInvalidaException, CodigoAsientoException, PrecioNegativoException, ClaseAsientoInvalidaException, UbicacionAsientoInvalidaException, EstadoAsientoInvalidaException, FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException{
@@ -274,4 +265,19 @@ public class aerolineaOceanicTest {
         Assert.assertEquals(asientoCasteado1.getUbicacion().getUbicacionAsiento(),pasillo.getUbicacionAsiento() );
         Assert.assertEquals(asientoCasteado2.getUbicacion().getUbicacionAsiento(), centro.getUbicacionAsiento()); 
     }
+    
+    @Test
+    public void seCompraUnAsientoSastifactoriamente() throws CodigoAsientoException, AsientoReservadoException{
+        oceanic.comprarAsiento("EC0344-13", userEstandar);
+        org.junit.Assert.assertEquals("565.6", String.valueOf(userEstandar.getPerfil().dineroGastado()));
+        org.junit.Assert.assertEquals(oceanic.aerolineaTieneAsiento("EC0344-13"),true);
+        Asiento asiento = oceanic.obtenerAsiento("EC0344-13").getAsiento();
+        org.junit.Assert.assertEquals(asiento.getEstado().asientoVendido(),true);
+    }
+    
+    @Test(expected = CodigoAsientoException.class)
+    public void fallaCompraAsiento() throws CodigoAsientoException, AsientoReservadoException{
+        oceanic.comprarAsiento("EC0344-422", userEstandar);
+    }
+   
 }

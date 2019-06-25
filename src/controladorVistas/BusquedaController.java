@@ -147,6 +147,7 @@ public class BusquedaController {
                     
                 } catch (AsientoReservadoException | CodigoAsientoException ex) {
                     busqueda.cambiarTextoTextField(ex.getMessage());
+                    sobrereserva.cerrarVentana();
                 }
             }
             

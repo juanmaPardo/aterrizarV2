@@ -14,9 +14,9 @@ public class FechaFlexibleTest {
     public void seCreaFechaFlexibleFormatoLatamYFuncionanGetters() throws FormatoFechaIncorrectoException, FormatoFechaIncorrectoException, FormatoFechaIncorrectoException{
         try {
             FechaFlexible fx = new FechaFlexible("15/06/2018");
-            Assert.assertEquals(15,fx.getDia());
-            Assert.assertEquals(06,fx.getMes());
-            Assert.assertEquals(2018,fx.getAnio());
+            Assert.assertEquals("15",fx.getDia());
+            Assert.assertEquals("06",fx.getMes());
+            Assert.assertEquals("2018",fx.getAnio());
         } catch (FormatoFechaIncorrectoException | FechaNoValidaException ex) {
             Assert.assertEquals(false,true);
         }   
@@ -27,9 +27,9 @@ public class FechaFlexibleTest {
     public void seCreaFechaFlexibleFormatoIsoYFuncionanGetters(){
         try {
             FechaFlexible fx = new FechaFlexible("2018-06-15");
-            Assert.assertEquals(15,fx.getDia());
-            Assert.assertEquals(06,fx.getMes());
-            Assert.assertEquals(2018,fx.getAnio());
+            Assert.assertEquals("15",fx.getDia());
+            Assert.assertEquals("06",fx.getMes());
+            Assert.assertEquals("2018",fx.getAnio());
         } catch (FormatoFechaIncorrectoException | FechaNoValidaException ex) {
             Assert.assertEquals(false,true);
         }   

@@ -99,6 +99,10 @@ public class AerolineaLanchitaTest {
         Assert.assertEquals(asiento.getEstado().asientoVendido(),true);
     }
     
+    @Test(expected = CodigoAsientoException.class)
+    public void fallaCompraAsiento() throws CodigoAsientoException, AsientoReservadoException{
+        lanchitaNoMockeada.comprarAsiento("EC0344-422", userEstandar);
+    }
    
     
 }

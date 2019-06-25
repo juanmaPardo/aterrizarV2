@@ -76,8 +76,12 @@ public abstract class Aerolinea{
     
     public AsientoVueloFullData obtenerAsiento(String codigoAsiento) throws CodigoAsientoException {
         LinkedList<AsientoVueloFullData> asientosVuelos = obtenerAsientosVuelosDisponibles(vuelos);
-        return asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
-                .collect(Collectors.toList()).get(0);
+        List<AsientoVueloFullData> filtrados =  asientosVuelos.stream().filter(asiento -> asiento.getAsiento().getCodigo().getCodigo().equals(codigoAsiento))
+                .collect(Collectors.toList());
+        if(filtrados.size() == 0){
+            return null;
+        }
+        return filtrados.get(0);
     }
     
     public boolean aerolineaTieneAsiento(String codigoAsiento){
@@ -157,6 +161,9 @@ public abstract class Aerolinea{
     
     public void comprarAsiento(String codigoAsiento, Usuario usuarioCompra) throws CodigoAsientoException, AsientoReservadoException{
         AsientoVueloFullData asientoAComprar = obtenerAsiento(codigoAsiento);
+        if(asientoAComprar == null){
+            throw new CodigoAsientoException("El codigo ingresado no fue encontrado en el sistema");
+        }
         Asiento asiento = asientoAComprar.getAsiento();
         revisionesCompra(asiento,usuarioCompra);
         postVentaCambioEstadoAsiento(asiento,usuarioCompra);
@@ -169,6 +176,9 @@ public abstract class Aerolinea{
 
     public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException{
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
+        if(asiento == null){
+            throw new CodigoAsientoException("El codigo ingresado no fue encontrado en el sistema");
+        }
         asiento.getAsiento().getEstado().reservarAsiento();
         usuario.agregarAsientoReservado(asiento.getAsiento());
     }
