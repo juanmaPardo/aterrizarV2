@@ -1,5 +1,7 @@
 package comienzoPrograma;
 
+import Controladores.ControladorBienvenida;
+import Vistas.Bienvenida;
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.RequisitoCargaAsientos;
@@ -33,7 +35,7 @@ public class ComienzoPrograma {
         AterrizarV2 aterrizar = setearAterrizarDummy();
         efectuarDosCompras(aterrizar,usuario);
         reservarUnAsiento(aterrizar,usuario);
-        BienvenidaController bienvenida = new BienvenidaController(usuario,aterrizar);
+        Bienvenida bienvenida = new Bienvenida(new ControladorBienvenida(usuario));
     }
     
     public static AterrizarV2 setearAterrizarDummy() throws FormatoFechaIncorrectoException, FechaNoValidaException, FormatoHoraIncorrectoException, HoraInvalidaException, DatosVueloIncorrectoException, TipoPedidoInvalidaException, DniInvalidoException{

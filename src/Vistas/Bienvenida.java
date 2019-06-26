@@ -1,9 +1,13 @@
 package Vistas;
 
+import Controladores.ControladorBienvenida;
 import java.awt.event.ActionListener;
 
 
 public class Bienvenida extends javax.swing.JFrame {
+    
+    ControladorBienvenida controlador;
+    
 
     
     public Bienvenida() {
@@ -14,18 +18,18 @@ public class Bienvenida extends javax.swing.JFrame {
         this.setLocation(500, 200);
     }
     
-    public Bienvenida(String nombreUser) {
+    public Bienvenida(ControladorBienvenida controladorB) {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
-        setearNombreUsuario(nombreUser);
+        setearNombreUsuario(controladorB);
         this.setVisible(true);
         this.setLocation(500, 200);
 
     }
     
-    private void setearNombreUsuario(String nombreUser){
-        this.nombreUsuario.setText(nombreUser);
+    private void setearNombreUsuario(ControladorBienvenida controladorB){
+        this.nombreUsuario.setText(controladorB.getUsuarioLogeado().getNombre());
     }
     
     public void agregarAbridorCompras(ActionListener eventoBotonCompras){
