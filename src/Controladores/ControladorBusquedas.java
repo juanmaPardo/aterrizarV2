@@ -2,9 +2,6 @@ package Controladores;
 
 import ModeloVistas.ModeloBusquedas;
 import AterrizarDummy.AterrizarDummy;
-import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
-import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
-import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.busquedas.Busqueda;
 import aterrizarv2.busquedas.exceptionesBusqueda.ParametrosInsuficienteException;
 import aterrizarv2.fecha.FechaFlexible;
@@ -15,8 +12,6 @@ import aterrizarv2.filtrosBusqueda.FiltroFecha;
 import aterrizarv2.filtrosBusqueda.FiltroOrigen;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ControladorBusquedas {
     private ModeloBusquedas modelo;

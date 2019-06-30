@@ -1,6 +1,5 @@
 package ModeloVistas;
 
-import aterrizarv2.asientos.Asiento;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.util.LinkedList;

@@ -1,7 +1,6 @@
 package Vistas;
 
 import Controladores.ControladorBusquedas;
-import aterrizarv2.AterrizarV2;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
@@ -15,11 +14,7 @@ import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -96,6 +91,7 @@ public class BusquedaAsientos extends javax.swing.JFrame {
                 controlador.getModelo().reservarAsientoSeleccionado();
                 ReservaExitosa exito = new ReservaExitosa(controlador.getModelo().codigoAsientoSeleccionado());
                 exito.setVisible(true);
+                exito.setLocation(500, 200);
             } catch (CodigoAsientoException ex) {
                 cambiarTextoTextField(ex.getMessage());
             } catch(AsientoNoDisponibleException ex){
@@ -157,9 +153,11 @@ public class BusquedaAsientos extends javax.swing.JFrame {
                 eliminarFilaSeleccionada();
                 CompraExitosa exito = new CompraExitosa(controlador.getModelo().codigoAsientoSeleccionado());
                 exito.setVisible(true);
+                exito.setLocation(500, 200);
             } catch (Exception ex) {
                 ErrorCompra error = new ErrorCompra(ex.getMessage());
                 error.setVisible(true);
+                error.setLocation(500, 200);
             }
         });
     }
@@ -474,13 +472,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BusquedaAsientos().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

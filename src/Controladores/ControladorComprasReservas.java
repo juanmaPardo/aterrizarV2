@@ -4,7 +4,6 @@ package Controladores;
 import ModeloVistas.ModeloCompras;
 import ModeloVistas.ModeloComprasReservas;
 import ModeloVistas.ModeloReservas;
-import aterrizarv2.usuarios.Usuario;
 import AterrizarDummy.AterrizarDummy;
 
 public class ControladorComprasReservas {

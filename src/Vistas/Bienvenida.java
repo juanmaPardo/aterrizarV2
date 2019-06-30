@@ -2,9 +2,6 @@ package Vistas;
 
 import AterrizarDummy.AterrizarDummy;
 import Controladores.ControladorBienvenida;
-import aterrizarv2.AterrizarV2;
-import aterrizarv2.usuarios.Usuario;
-import java.awt.event.ActionListener;
 
 
 public class Bienvenida extends javax.swing.JFrame {
@@ -42,6 +39,7 @@ public class Bienvenida extends javax.swing.JFrame {
         this.botonCompra.addActionListener(e -> {
             ReservasCompras contCompras = new ReservasCompras("compras");
             contCompras.setVisible(true);
+            contCompras.setLocation(500,200);
         });
     }
     
@@ -49,6 +47,7 @@ public class Bienvenida extends javax.swing.JFrame {
         this.botonReservas.addActionListener(e -> {
             ReservasCompras contCompras = new ReservasCompras("reservas");
             contCompras.setVisible(true);
+            contCompras.setLocation(500,200);
         });
     }
     
@@ -56,6 +55,7 @@ public class Bienvenida extends javax.swing.JFrame {
         this.botonAsientos.addActionListener(e -> {
             BusquedaAsientos busqueda = new BusquedaAsientos();
             busqueda.setVisible(true);
+            busqueda.setLocation(500,200);
         });
     }
 
@@ -176,13 +176,6 @@ public class Bienvenida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Bienvenida().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
