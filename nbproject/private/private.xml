@@ -5,11 +5,15 @@
         <group>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/fecha/FechaFormatoIsoTest.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/ordenamientoBusqueda/OrdenPorPrecioAscendenteTest.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/controladorVistas/BusquedaController.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaLanchita/AerolineaLanchitaTest.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/vuelos/AsientoVueloFullData.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/busquedas/BusquedaTest.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/aerolinea/aerolineaOceanic/aerolineaOceanicTest.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/fecha/Fecha.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/AsientoNoReservadoException.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/reservas/reservasNuevo.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/fecha/FechaFlexible.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/fecha/FechaFormatoLatinoamericanoTest.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/fecha/FechaTest.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/asientos/excepcionesAsiento/CodigoAsientoException.java</file>
@@ -20,6 +24,7 @@
             <file>file:/home/juan/NetBeans/aterrizarV2/src/comienzoPrograma/ComienzoPrograma.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/src/aterrizarv2/busquedas/Busqueda.java</file>
             <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/fecha/FechaFormatoNorteamericanoTest.java</file>
+            <file>file:/home/juan/NetBeans/aterrizarV2/test/aterrizarv2/vuelos/VueloTest.java</file>
         </group>
     </open-files>
 </project-private>
