@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizar/aterrizarV2/src/Vistas/Bienvenida.java</file>
-            <file>file:/C:/Users/santi/Desktop/git/folder1/aterrizar/aterrizarV2/src/Vistas/BusquedaAsientos.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/ModeloVistas/ModeloReservas.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/Vistas/ReservasCompras.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/Vistas/BusquedaAsientos.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/ModeloVistas/ModeloBusquedas.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/ModeloVistas/ModeloCompras.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/Controladores/ControladorBienvenida.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/ModeloVistas/ModeloBienvenida.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/ModeloVistas/ModeloComprasReservas.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/Controladores/ControladorBusquedas.java</file>
+            <file>file:/home/nahuel/Escritorio/Undav/POO/aterrizarV2/src/Controladores/ControladorComprasReservas.java</file>
         </group>
     </open-files>
 </project-private>
