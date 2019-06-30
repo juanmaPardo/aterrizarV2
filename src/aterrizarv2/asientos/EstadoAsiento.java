@@ -31,11 +31,11 @@ public class EstadoAsiento {
     }
     
     
-    public void reservarAsiento(){
-        if(!(estadoAsiento == EnumEstadoAsiento.DISPONIBLE)){
+    public void reservarAsiento() throws AsientoNoDisponibleException{
+        if(!estaDisponible()){
             throw new AsientoNoDisponibleException("El asiento no se encuentra disponible para reservar");
         }
-        if(estadoAsiento == EnumEstadoAsiento.SOBRERESERVADO){
+        if(estaSobrereservado()){
             throw new AsientoNoDisponibleException ("El asiento esta sobrereservado");
         }
         estadoAsiento = EnumEstadoAsiento.RESERVADO;

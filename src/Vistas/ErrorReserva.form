@@ -27,11 +27,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="errorReserva" min="-2" max="-2" attributes="0"/>
+                      <Component id="noSePudo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="intenteNuevamente" min="-2" max="-2" attributes="0"/>
+                      <Component id="errorEnReserva" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="descripcionError" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="intentaNuevamente" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="botonAceptar" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="37" max="32767" attributes="0"/>
@@ -43,11 +43,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="errorReserva" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="intenteNuevamente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noSePudo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorEnReserva" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="descripcionError" min="-2" max="-2" attributes="0"/>
+              <Component id="intentaNuevamente" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botonAceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -56,7 +56,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="errorReserva">
+    <Component class="javax.swing.JLabel" name="noSePudo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="12" style="0"/>
@@ -64,7 +64,7 @@
         <Property name="text" type="java.lang.String" value="Ha ocurrido un error en su reserva:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="intenteNuevamente">
+    <Component class="javax.swing.JLabel" name="errorEnReserva">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="12" style="0"/>
@@ -72,7 +72,7 @@
         <Property name="text" type="java.lang.String" value="&lt;descripci&#xf3;n del error&gt;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="descripcionError">
+    <Component class="javax.swing.JLabel" name="intentaNuevamente">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="12" style="0"/>

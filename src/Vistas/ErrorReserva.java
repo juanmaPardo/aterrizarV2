@@ -18,7 +18,7 @@ public class ErrorReserva extends javax.swing.JFrame {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
-        errorReserva.setText(mensajeError);
+        errorEnReserva.setText(mensajeError);
         botonAceptar.addActionListener(new ActionListener(){
 
             @Override
@@ -44,21 +44,21 @@ public class ErrorReserva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        errorReserva = new javax.swing.JLabel();
-        intenteNuevamente = new javax.swing.JLabel();
-        descripcionError = new javax.swing.JLabel();
+        noSePudo = new javax.swing.JLabel();
+        errorEnReserva = new javax.swing.JLabel();
+        intentaNuevamente = new javax.swing.JLabel();
         botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        errorReserva.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        errorReserva.setText("Ha ocurrido un error en su reserva:");
+        noSePudo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        noSePudo.setText("Ha ocurrido un error en su reserva:");
 
-        intenteNuevamente.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        intenteNuevamente.setText("<descripción del error>");
+        errorEnReserva.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        errorEnReserva.setText("<descripción del error>");
 
-        descripcionError.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        descripcionError.setText("Por favor intente nuevamente");
+        intentaNuevamente.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        intentaNuevamente.setText("Por favor intente nuevamente");
 
         botonAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         botonAceptar.setText("Aceptar");
@@ -76,10 +76,10 @@ public class ErrorReserva extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(errorReserva)
+                        .addComponent(noSePudo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(intenteNuevamente))
-                    .addComponent(descripcionError)
+                        .addComponent(errorEnReserva))
+                    .addComponent(intentaNuevamente)
                     .addComponent(botonAceptar))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -88,10 +88,10 @@ public class ErrorReserva extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(errorReserva)
-                    .addComponent(intenteNuevamente))
+                    .addComponent(noSePudo)
+                    .addComponent(errorEnReserva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descripcionError)
+                .addComponent(intentaNuevamente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonAceptar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -141,8 +141,8 @@ public class ErrorReserva extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
-    private javax.swing.JLabel descripcionError;
-    private javax.swing.JLabel errorReserva;
-    private javax.swing.JLabel intenteNuevamente;
+    private javax.swing.JLabel errorEnReserva;
+    private javax.swing.JLabel intentaNuevamente;
+    private javax.swing.JLabel noSePudo;
     // End of variables declaration//GEN-END:variables
 }

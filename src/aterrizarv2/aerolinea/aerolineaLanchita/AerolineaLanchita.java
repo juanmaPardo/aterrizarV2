@@ -16,7 +16,6 @@ import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
 import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.Vuelo;
-import java.util.LinkedList;
 
 public class AerolineaLanchita extends Aerolinea{
     private AerolineaLanchitaI comunicacionLanchita;

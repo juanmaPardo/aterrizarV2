@@ -2,6 +2,7 @@ package aterrizarv2;
 
 import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.aerolinea.aerolineaLanchita.AerolineaLanchita;
+import aterrizarv2.aerolinea.aerolineaOceanic.AerolineaOceanic;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -106,7 +107,7 @@ public class AterrizarV2 {
         
     }
     
-    private Asiento obtenerAsientoAerolinea(String codigoAsiento) throws CodigoAsientoException {
+    public Asiento obtenerAsientoAerolinea(String codigoAsiento) throws CodigoAsientoException {
         Aerolinea aerolinea = obtenerAerolineaTieneAsiento(codigoAsiento);
         return aerolinea.obtenerAsiento(codigoAsiento).getAsiento();
     }

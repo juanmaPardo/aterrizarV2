@@ -1,25 +1,79 @@
 package Vistas;
 
+import Controladores.ControladorBusquedas;
 import aterrizarv2.AterrizarV2;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoNoDisponibleException;
+import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
+import aterrizarv2.asientos.excepcionesAsiento.ClaseAsientoInvalidaException;
+import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
+import aterrizarv2.asientos.excepcionesAsiento.PrecioNegativoException;
+import aterrizarv2.asientos.excepcionesAsiento.UbicacionAsientoInvalidaException;
+import aterrizarv2.busquedas.exceptionesBusqueda.ParametrosInsuficienteException;
+import aterrizarv2.fecha.excepcionesFecha.FechaNoValidaException;
+import aterrizarv2.fecha.excepcionesFecha.FormatoFechaIncorrectoException;
 import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class BusquedaAsientos extends javax.swing.JFrame {
+    private ControladorBusquedas controlador;
     
     public BusquedaAsientos() {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
+        controlador = crearControladorBusquedas();
         agregarFuncionalidadBotones();
+        //agregarListenerTabla();
     }
     
     public void agregarFuncionalidadBotones(){
         agregarFuncionalidadBotonCierra();
+        agregarFuncionalidadBotonReserva();
+        agregarFuncionalidadBotonComprar();
+        agregarFuncionalidadBotonBuscar();
+    }
+    
+    public void agregarListenerTabla(){
+        ListSelectionModel rowSM = resultadoBusqueda.getSelectionModel();
+        rowSM.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+               String codigoAsiento = obtenerCodigoVueloFilaSeleccionada() + "-" + obtenerNumeroAsientoFilaSeleccionada();
+               String precio = obtenerPrecioAsientoFilaSeleccionada();
+               String clase = obtenerClaseAsientoFilaSeleccionada();
+               String ubicacion = obtenerUbicacionAsientoFilaSeleccionada();
+                try {
+                    controlador.getModelo().establecerAsientoSeleccionadoTabla(codigoAsiento,clase,ubicacion,precio);
+                } catch (PrecioNegativoException | UbicacionAsientoInvalidaException | ClaseAsientoInvalidaException ex) {
+                    cambiarTextoTextField(ex.getMessage());
+                }
+            }
+        });
+    }
+    
+    public void establecerAsientoSeleccionado(){
+        String codigoAsiento = obtenerCodigoVueloFilaSeleccionada() + "-" + obtenerNumeroAsientoFilaSeleccionada();
+        String precio = obtenerPrecioAsientoFilaSeleccionada();
+        String clase = obtenerClaseAsientoFilaSeleccionada();
+        String ubicacion = obtenerUbicacionAsientoFilaSeleccionada();
+         try {
+             controlador.getModelo().establecerAsientoSeleccionadoTabla(codigoAsiento,clase,ubicacion,precio);
+         } catch (PrecioNegativoException | UbicacionAsientoInvalidaException | ClaseAsientoInvalidaException ex) {
+             cambiarTextoTextField(ex.getMessage());
+         }
     }
     
     public void agregarFuncionalidadBotonCierra(){
@@ -31,16 +85,83 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         });
     }
     
-    public void agregarFuncionalidadBotonReserva(ActionListener eventoReserva){
-        botonReservar.addActionListener(eventoReserva);
+    public ControladorBusquedas crearControladorBusquedas(){
+        return new ControladorBusquedas();
     }
     
-    public void agregarFuncionalidadBotonBuscar(ActionListener eventoBusqueda){
-        botonBuscar.addActionListener(eventoBusqueda);
+    public void agregarFuncionalidadBotonReserva(){
+        botonReservar.addActionListener(e -> {
+            establecerAsientoSeleccionado();
+            try {
+                controlador.getModelo().reservarAsientoSeleccionado();
+                ReservaExitosa exito = new ReservaExitosa(controlador.getModelo().codigoAsientoSeleccionado());
+                exito.setVisible(true);
+            } catch (CodigoAsientoException ex) {
+                cambiarTextoTextField(ex.getMessage());
+            } catch(AsientoNoDisponibleException ex){
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "El asiento " + 
+                        controlador.getModelo().codigoAsientoSeleccionado()+ " ya se encuentra sobrereservado, desea sobrereservarlo?" , "Aterrizar.com", dialogButton);
+                if(dialogResult == 0) {
+                    try {
+                        controlador.getModelo().sobrereservarAsientoSeleccionado();
+                        JOptionPane.showMessageDialog(this, "El asiento " + controlador.getModelo().codigoAsientoSeleccionado() + " se sobrereservo con exito");
+                    } catch (AsientoReservadoException ex1) {
+                        cambiarTextoTextField(ex.getMessage());
+                    }
+                }
+            };
+        });
     }
     
-    public void agregarFuncionalidadBotonComprar(ActionListener eventoCompra){
-        botonComprar.addActionListener(eventoCompra);
+    public void agregarFuncionalidadBotonBuscar(){
+        //controlador.getModelo().setAsientoSeleccionado(null);
+        cambiarTextoTextField("");
+        botonBuscar.addActionListener(e -> {
+            String origen = obtenerTextoOrigen();
+            String destino = obtenerTextoDestino();
+            String fecha = obtenerTextoFecha();
+            try {
+                List<AsientoVueloFullData> resultado = controlador.realizarBusquedaFiltros(origen,destino,fecha);
+                if(resultado.size() == 0){
+                    cambiarTextoTextField("No se ha encontrado ningun asiento");
+                }
+                else{
+                    rellenarTabla(controlador.realizarBusquedaFiltros(origen,destino,fecha));
+                }
+            } catch (FormatoFechaIncorrectoException | FechaNoValidaException | ParametrosInsuficienteException ex) {
+                cambiarTextoTextField(ex.getMessage());
+            }
+        });
+    }
+    
+    public void rellenarTabla(List<AsientoVueloFullData> resultado){
+        eliminarCeldasTabla();
+        resultado.forEach(asiento -> {
+                String codigoAsiento = asiento.getAsiento().getCodigo().getCodigo();
+                String codigoVuelo = asiento.getAsiento().getCodigo().getNumeroVuelo();
+                String numeroAsiento = asiento.getAsiento().getCodigo().getNumeroAsiento();
+                String aerolinea = controlador.getModelo().getBuscador().obtenerAerolineaAsiento(codigoAsiento);
+                String precio = Double.toString(asiento.getAsiento().getPrecio().getPrecioAsiento());
+                String ubicacion = asiento.getAsiento().getUbicacion().ubicacionFormatoString();
+                String clase = asiento.getAsiento().getClase().claseFormatoString();
+                rellenarFilaTablaConDisponibles(aerolinea, codigoVuelo, numeroAsiento, precio, ubicacion, clase);
+            });
+    }
+    
+    public void agregarFuncionalidadBotonComprar(){
+        botonComprar.addActionListener(e -> {
+            establecerAsientoSeleccionado();
+            try {
+                controlador.getModelo().comprarAsientoSeleccionado();
+                eliminarFilaSeleccionada();
+                CompraExitosa exito = new CompraExitosa(controlador.getModelo().codigoAsientoSeleccionado());
+                exito.setVisible(true);
+            } catch (Exception ex) {
+                ErrorCompra error = new ErrorCompra(ex.getMessage());
+                error.setVisible(true);
+            }
+        });
     }
     
     public void cambiarTextoTextField(String texto){
@@ -61,7 +182,7 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         } 
     }
     
-    public void rellenarTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
+    public void rellenarFilaTablaConDisponibles(String aerolinea, String vuelo, String nroAsiento, String precio, String ubicacion, String clase){
         DefaultTableModel modelo = (DefaultTableModel) resultadoBusqueda.getModel();
         Object[] filaAgregar = {aerolinea,vuelo,nroAsiento,precio,ubicacion,clase};
         modelo.addRow(filaAgregar);
@@ -78,6 +199,18 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     
     public String obtenerNumeroAsientoFilaSeleccionada(){
         return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),2);
+    }
+    
+    public String obtenerClaseAsientoFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),5);
+    }
+    
+    public String obtenerUbicacionAsientoFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),4);
+    }
+    
+    public String obtenerPrecioAsientoFilaSeleccionada(){
+        return (String)resultadoBusqueda.getValueAt(resultadoBusqueda.getSelectedRow(),3);
     }
     
     public String obtenerTextoOrigen(){

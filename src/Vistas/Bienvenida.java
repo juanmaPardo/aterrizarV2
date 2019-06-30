@@ -1,43 +1,62 @@
 package Vistas;
 
+import AterrizarDummy.AterrizarDummy;
+import Controladores.ControladorBienvenida;
+import aterrizarv2.AterrizarV2;
+import aterrizarv2.usuarios.Usuario;
 import java.awt.event.ActionListener;
 
 
 public class Bienvenida extends javax.swing.JFrame {
-
+    
+    private ControladorBienvenida controlador;
+  
     
     public Bienvenida() {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
         initComponents();
-        this.setVisible(true);
-        this.setLocation(500, 200);
-    }
-    
-    public Bienvenida(String nombreUser) {
-        this.setTitle("Aterrizar.com");
-        this.setResizable(false);
-        initComponents();
-        setearNombreUsuario(nombreUser);
+        controlador = crearControladorBienvenida();
+        setearNombreUsuario();
+        setearListeners();
         this.setVisible(true);
         this.setLocation(500, 200);
 
     }
     
-    private void setearNombreUsuario(String nombreUser){
-        this.nombreUsuario.setText(nombreUser);
+    private void setearNombreUsuario(){
+        this.nombreUsuario.setText(controlador.getModelo().obtenerNombreUsuarioLogeado());
     }
     
-    public void agregarAbridorCompras(ActionListener eventoBotonCompras){
-        this.botonCompra.addActionListener(eventoBotonCompras);
+    private ControladorBienvenida crearControladorBienvenida(){
+        return new ControladorBienvenida(AterrizarDummy.getUsuario());
     }
     
-    public void agregarAbridorReservas(ActionListener eventoBotonReservas){
-        this.botonReservas.addActionListener(eventoBotonReservas);
+    private void setearListeners(){
+        setearListenerCompras();
+        setearListenerReservas();
+        setearListenerBuscador();
     }
     
-    public void agregarAbridorBusquedas(ActionListener eventoBotonBusqueda){
-        this.botonAsientos.addActionListener(eventoBotonBusqueda);
+    public void setearListenerCompras(){
+        this.botonCompra.addActionListener(e -> {
+            ReservasCompras contCompras = new ReservasCompras("compras");
+            contCompras.setVisible(true);
+        });
+    }
+    
+    public void setearListenerReservas(){
+        this.botonReservas.addActionListener(e -> {
+            ReservasCompras contCompras = new ReservasCompras("reservas");
+            contCompras.setVisible(true);
+        });
+    }
+    
+    public void setearListenerBuscador(){
+        this.botonAsientos.addActionListener(e -> {
+            BusquedaAsientos busqueda = new BusquedaAsientos();
+            busqueda.setVisible(true);
+        });
     }
 
     /**

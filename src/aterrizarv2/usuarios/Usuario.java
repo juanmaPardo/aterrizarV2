@@ -4,13 +4,15 @@ import aterrizarv2.aerolinea.Aerolinea;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
+import aterrizarv2.vuelos.AsientoVueloFullData;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 
 public abstract class Usuario {
     protected PerfilUsuario perfil;
-    protected LinkedList<Asiento> asientosComprados;
-    protected LinkedList<Asiento> asientosReservados;
+    protected LinkedList<AsientoVueloFullData> asientosComprados;
+    protected LinkedList<AsientoVueloFullData> asientosReservados;
     protected String nombre;
     protected String apellido;
     protected Integer dni;
@@ -44,11 +46,11 @@ public abstract class Usuario {
         return dni;
     }
     
-    public void agregarAsientoReservado(Asiento asiento){
+    public void agregarAsientoReservado(AsientoVueloFullData asiento){
         asientosReservados.add(asiento);
     }
     
-    public void marcarComoComprado(Asiento asiento){
+    public void marcarComoComprado(AsientoVueloFullData asiento){
         asientosComprados.add(asiento);
     }
     
@@ -57,7 +59,7 @@ public abstract class Usuario {
     }
     
     public boolean asientoReservadoPorMi(Asiento asiento){
-        return asientosReservados.stream().anyMatch(as -> as.getCodigo().getCodigo().equals(asiento.getCodigo().getCodigo()));
+        return asientosReservados.stream().anyMatch(as -> as.getAsiento().getCodigo().getCodigo().equals(asiento.getCodigo().getCodigo()));
     }
     
     public abstract boolean esVip();
@@ -71,14 +73,14 @@ public abstract class Usuario {
     }
 
     public void eliminarAsientoReservado(Asiento asiento) {
-        asientosReservados.remove(asiento);
+        asientosReservados.removeIf(as -> as.getAsiento().getCodigo().getCodigo().equals(asiento.getCodigo().getCodigo()));
     }
 
-    public LinkedList<Asiento> getAsientosComprados() {
+    public LinkedList<AsientoVueloFullData> getAsientosComprados() {
         return asientosComprados;
     }
 
-    public LinkedList<Asiento> getAsientosReservados() {
+    public LinkedList<AsientoVueloFullData> getAsientosReservados() {
         return asientosReservados;
     }
     

@@ -170,17 +170,17 @@ public abstract class Aerolinea{
         asientosComprados.add(asiento);
         actualizaAsientosVendidosVuelo(asiento);
         usuarioCompra.efectuarCompra(asiento.getPrecio().getPrecioAsiento());
-        usuarioCompra.marcarComoComprado(asiento);
+        usuarioCompra.marcarComoComprado(asientoAComprar);
         cambiarEstadoAsientoAVendido(asiento);
     }
 
-    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException{
+    public void reservarAsiento(String codigoAsiento, Usuario usuario) throws CodigoAsientoException,AsientoNoDisponibleException{
         AsientoVueloFullData asiento = obtenerAsiento(codigoAsiento);
         if(asiento == null){
             throw new CodigoAsientoException("El codigo ingresado no fue encontrado en el sistema");
         }
         asiento.getAsiento().getEstado().reservarAsiento();
-        usuario.agregarAsientoReservado(asiento.getAsiento());
+        usuario.agregarAsientoReservado(asiento);
     }
     
     public abstract String[][] asientosDisponibles(Vuelo vuelo, RequisitoCargaAsientos tipoPedido) throws TipoPedidoInvalidaException;
